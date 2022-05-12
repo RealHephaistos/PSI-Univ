@@ -1,9 +1,11 @@
 package com.example.psi_univ;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class IcsToRooms {
     public IcsToRooms(){}
@@ -14,13 +16,12 @@ public class IcsToRooms {
         int year,month,date,hrs,min;
         int parsingState = 0;
 
-        FileInputStream fin = new FileInputStream("./src/main/java/com/example/psi_univ/ics/ADECal.ics");
-        String l = "";
-        while(fin.available() > 0) {
-            l = l + (char)fin.read();
+        List<String> line = new ArrayList<>();
+        Scanner scanner = new Scanner(new File("./src/main/java/com/example/psi_univ/ics/ADECal.ics"));
+        while (scanner.hasNext()) {
+           line.add(scanner.nextLine());
         }
-        String[] l2 = l.split("\n");
-        for(String i : l2) {
+        for(String i : line) {
             if(i.contains("BEGIN:VEVENT")) {
                 if(parsingState != 0) parsingError(parsingState);
                 tmpEvent = new EventPSI();

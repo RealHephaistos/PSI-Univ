@@ -32,6 +32,8 @@ public class Room {
 
     @Override
     public String toString() {
-        return name + "\n" + events + "\n\n";
+        return "\n" + name +
+                "\n" + events.size() +
+                "\n" + events;
     }
 }

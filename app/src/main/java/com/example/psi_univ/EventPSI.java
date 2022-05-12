@@ -1,5 +1,7 @@
 package com.example.psi_univ;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 
 public class EventPSI {
@@ -33,12 +35,11 @@ public class EventPSI {
         this.subject = subject;
     }
 
+    @NonNull
     @Override
     public String toString() {
-        return "EventPSI{" +
-                "startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", subject='" + subject + '\'' +
-                "}\n";
+        return "\n   startTime = " + startTime +
+                "\n    endTime =   " + endTime +
+                "\n    subject =   " + subject + "\n";
     }
 }
