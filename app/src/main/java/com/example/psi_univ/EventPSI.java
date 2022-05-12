@@ -1,0 +1,44 @@
+package com.example.psi_univ;
+
+import java.util.Date;
+
+public class EventPSI {
+    private Date startTime;
+    private Date endTime;
+    private String subject;
+
+    public EventPSI(){}
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    @Override
+    public String toString() {
+        return "EventPSI{" +
+                "startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", subject='" + subject + '\'' +
+                "}\n";
+    }
+}
