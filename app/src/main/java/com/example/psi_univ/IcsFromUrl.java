@@ -1,4 +1,4 @@
-package com.example.psi_univ.ics;
+package com.example.psi_univ;
 import java.io.IOException;
 import java.nio.channels.*;
 import java.io.FileOutputStream;
