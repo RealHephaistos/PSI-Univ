@@ -12,16 +12,23 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true">
 
-            <androidx.appcompat.widget.Toolbar
+
+            <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/ToolBar"
                 style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                app:menu="@menu/menu"
+                android:background="@color/Rennes1Red"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_baseline_menu_24"
-                app:title="@string/ToolBar" />
+                app:title="@string/ToolBar"
+                app:titleTextColor="@color/white"
+
+                />
         </com.google.android.material.appbar.AppBarLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
