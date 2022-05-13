@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.example.psi_univ.VerticalScrollMap
+        android:id="@+id/vericalScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.psi_univ.HorizontalScrollMap
+            android:id="@+id/horizontalScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <com.example.psi_univ.CampusMapView
+                android:id="@+id/campusMap"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </com.example.psi_univ.HorizontalScrollMap>
+    </com.example.psi_univ.VerticalScrollMap>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -31,8 +49,4 @@
                 />
         </com.google.android.material.appbar.AppBarLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
