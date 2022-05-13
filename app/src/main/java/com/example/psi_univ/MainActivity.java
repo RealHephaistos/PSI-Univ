@@ -5,6 +5,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +21,23 @@ public class MainActivity extends AppCompatActivity {
         mToolBar = findViewById(R.id.ToolBar);
         getSupportActionBar();
         setSupportActionBar(mToolBar);
+
+        //Navigation Icon when clicked
+        mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Menu", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        mToolBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(MainActivity.this, "Test", Toast.LENGTH_SHORT).show();
+                return false;
+                   }
+        });
     }
 
     @Override
@@ -26,4 +46,6 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.top_app_bar,menu);
         return true;
     }
+
+
 }
