@@ -7,18 +7,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
+
+import com.github.chrisbanes.photoview.OnPhotoTapListener;
+import com.github.chrisbanes.photoview.PhotoView;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar mToolBar;
-
-    private GestureDetector gd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,30 +41,21 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 Toast.makeText(MainActivity.this, "Test", Toast.LENGTH_SHORT).show();
                 return false;
-                   }
+            }
         });
 
         //Map view
-        VerticalScrollMap verticalScroll = findViewById(R.id.vericalScroll);
-        HorizontalScrollMap horizontalScroll = findViewById(R.id.horizontalScroll);
-        CampusMapView campusMap = findViewById(R.id.campusMap);
 
-        gd = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onDown(MotionEvent e) {
-                return true;
-            }
+        PhotoView map = findViewById(R.id.map);
+        map.setImageResource(R.drawable.ic_map_test);
+        map.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
+        map.setOnPhotoTapListener(new OnPhotoTapListener() {
             @Override
-            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                horizontalScroll.smoothScrollBy((int) distanceX, 0);
-                verticalScroll.smoothScrollBy(0, (int) distanceY);
-                return true;
+            public void onPhotoTap(ImageView view, float x, float y) {
+                Log.d("PhotoView", "X: " + x + " Y: " + y);
             }
         });
-
-        horizontalScroll.setOnTouchListener((v, event) -> gd.onTouchEvent(event));
-        verticalScroll.setOnTouchListener((v, event) -> gd.onTouchEvent(event));
     }
 
     @Override

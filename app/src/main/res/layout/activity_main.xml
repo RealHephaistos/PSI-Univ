@@ -7,26 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.example.psi_univ.VerticalScrollMap
-        android:id="@+id/vericalScroll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.example.psi_univ.HorizontalScrollMap
-            android:id="@+id/horizontalScroll"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="SpeakableTextPresentCheck">
-
-            <com.example.psi_univ.CampusMapView
-                android:id="@+id/campusMap"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-        </com.example.psi_univ.HorizontalScrollMap>
-    </com.example.psi_univ.VerticalScrollMap>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -47,6 +35,9 @@
                 app:titleTextColor="@color/white"
 
                 />
+
         </com.google.android.material.appbar.AppBarLayout>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
