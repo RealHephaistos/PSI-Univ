@@ -17,12 +17,12 @@ import com.github.chrisbanes.photoview.PhotoView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,29 +69,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPhotoTap(ImageView view, float x, float y) {
                 Log.d("PhotoView", "X: " + x + " Y: " + y);
+                for (Building building : buildingList) {
+                    if(building.isInBuilding(x, y)){
+                        Toast.makeText(MainActivity.this, building.getName(), Toast.LENGTH_SHORT).show();
+                        Log.d("PhotoView", "In building " + building.getName());
+                    }
+                }
             }
         });
 
         buildingList = new ArrayList<>();
-        JSONParser parser = new JSONParser();
-        try(FileReader reader = new FileReader("./resources/json/building_list.json")){
-            JSONArray buildingJSON = (JSONArray) parser.parse(reader);
-            Log.d("JSON", buildingJSON.toString());
-            for(int i = 0; i < buildingJSON.length(); i++){
-                buildingList.add(new Building(buildingJSON.getJSONObject(i)));
+        JSONArray buildingJSON = getJSONObject("building_list.json");
+        assert buildingJSON != null;
+        for(int i = 0; i < buildingJSON.length(); i++){
+            try {
+                buildingList.add(new Building((JSONObject) buildingJSON.get(i)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.e("JSON", "Error");
             }
-
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-            Log.e("FileNotFoundException", "File Not Found");
-        }catch (IOException e){
-            e.printStackTrace();
-            Log.e("IOException", "IO Exception");
-        }catch (ParseException e){
-            e.printStackTrace();
-            Log.e("ParseException", "Parse Exception");
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 
@@ -119,5 +115,24 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    private JSONArray getJSONObject(String fileName){
+        try(InputStream is = getAssets().open(fileName)) {
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            return new JSONArray(new String(buffer, StandardCharsets.UTF_8));
+        }catch (FileNotFoundException e){
+            e.printStackTrace();//TODO: Handle this
+            Log.e("FileNotFoundException", "File Not Found : " + fileName);
+        }catch (IOException e) {
+            e.printStackTrace();
+            Log.e("IOException", "IO Exception : " + e.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("JSONException", "JSON Exception : " + e.toString());
+        }
+        return null;
+    }
 
 }

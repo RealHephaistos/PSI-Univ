@@ -4,6 +4,7 @@ import android.graphics.Point;
 import android.util.Log;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -16,12 +17,15 @@ public class Building {
     private final List<Segment> segments;
     private final String name;
 
-    public Building(JSONObject building) {
+    public Building(JSONObject building) throws JSONException {
 
-        name = building.optString("name");
+        JSONObject buildingObject = building.getJSONObject("building");
+
+        name = buildingObject.getString("name");
         Log.d("Building", "Building name: " + name);
+
         vertices = new ArrayList<>();
-        JSONArray verticesArray = building.optJSONArray("vertices");
+        JSONArray verticesArray = buildingObject.getJSONArray("vertices");
         for(int i = 0; i < verticesArray.length(); i++){
             JSONObject vertex = verticesArray.optJSONObject(i);
             vertices.add(new Vertex((float)vertex.optDouble("x"), (float)vertex.optDouble("y")));
@@ -56,13 +60,8 @@ public class Building {
      * @return true if the point is inside the building, false otherwise
      */
     public boolean isInBuilding(float x, float y) {
-        float maxX = getRightMostPoint();
-        if (x > maxX) {
-            //if the x coordinate is greater than the right most point, we know it's right of the building
-            return false;
-        }
 
-        Segment s = new Segment(new Vertex(x, y), new Vertex(maxX, y));
+        Segment s = new Segment(new Vertex(x, y), new Vertex(1, y));
         int intersectCount = 0;
         for (Segment segment : segments) {
             if (isIntersecting(s, segment)) {
@@ -74,40 +73,23 @@ public class Building {
     }
 
     /**
-     * @return the x coordinate of the right most point of the building
-     */
-    private float getRightMostPoint() {
-        float max = vertices.get(0).x;
-        for (Vertex p : vertices) {
-            if (p.x > max) {
-                max = p.x;
-            }
-        }
-        return max;
-    }
-
-    /**
      * @param s1 the first segment
      * @param s2 the second segment
      * @return true if the segments intersect, false otherwise
      */
     private boolean isIntersecting(Segment s1, Segment s2) {
-        if(ccw(s1.p, s1.q, s2.p) * ccw(s1.p, s1.q, s2.p) > 0){
-            return false;
-        }
 
-        return ccw(s2.p, s2.q, s1.p) * ccw(s2.p, s2.q, s1.p) <= 0;
-    }
+        float p1x, p1y, p2x, p2y;
+        p1x = s1.q.x - s1.p.x;
+        p1y = s1.q.y - s1.p.y;
+        p2x = s2.q.x - s2.p.x;
+        p2y = s2.q.y - s2.p.y;
 
-    /**
-     *
-     * @param p the first point
-     * @param q the second point
-     * @param r the third point
-     * @return 1 if the points are in counter clockwise order, -1 if they are in clockwise order, 0 if they are collinear
-     */
-    private int ccw(Vertex p, Vertex q, Vertex r) {
-        return (int)((q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y));
+        float s, t;
+        s = (-p1y * (s1.p.x - s2.p.x) + p1x * (s1.p.y - s2.p.y)) / (-p2x * p1y + p1x * p2y);
+        t = (p2x * (s1.p.y - s2.p.y) - p2y * (s1.p.x - s2.p.x)) / (-p2x * p1y + p1x * p2y);
+
+        return s >= 0 && s <= 1 && t >= 0 && t <= 1;
     }
 
     public static class Vertex {
