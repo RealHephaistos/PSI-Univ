@@ -2,7 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 <item
-    android:id="@+id/app_bar_search"
     android:icon="@drawable/ic_baseline_search_24"
     android:title="@string/ToolBarSearch"
     app:showAsAction="ifRoom"
