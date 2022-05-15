@@ -5,6 +5,7 @@
     android:icon="@drawable/ic_baseline_search_24"
     android:title="@string/ToolBarSearch"
     app:showAsAction="ifRoom"
-    />
+    android:id="@+id/top_app_search"
+    app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
 </menu>

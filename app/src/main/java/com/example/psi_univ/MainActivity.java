@@ -1,6 +1,7 @@
 package com.example.psi_univ;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
@@ -43,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
         mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Menu", Toast.LENGTH_SHORT).show();
+                switch (v.getId()){
+
+                }
             }
         });
 
@@ -96,6 +99,23 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.top_app_bar,menu);
+
+        MenuItem.OnActionExpandListener onActionExpandListener = new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return false;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                return false;
+            }
+        };
+
+
+        menu.findItem(R.id.top_app_search).setOnActionExpandListener(onActionExpandListener);
+        SearchView searchView = (SearchView) menu.findItem(R.id.top_app_search).getActionView();
+        searchView.setQueryHint("Recherche");
         return true;
     }
 
