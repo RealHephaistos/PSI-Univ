@@ -1,20 +1,15 @@
 package com.example.psi_univ;
-
-import android.graphics.Point;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 
 public class Building {
-    private final List<Vertex> vertices;
-    private final List<Level> levels;//TODO list to array
-    private final List<Segment> segments;
+    private final Level[] levels;
+    private final Segment[] segments;
     private final String name;
 
     public Building(JSONObject building) throws JSONException {
@@ -24,20 +19,21 @@ public class Building {
         name = buildingObject.getString("name");
         Log.d("Building", "Building name: " + name);
 
-        vertices = new ArrayList<>();
         JSONArray verticesArray = buildingObject.getJSONArray("vertices");
+        Vertex[] vertices = new Vertex[verticesArray.length()];
         for(int i = 0; i < verticesArray.length(); i++){
             JSONObject vertex = verticesArray.optJSONObject(i);
-            vertices.add(new Vertex((float)vertex.optDouble("x"), (float)vertex.optDouble("y")));
+            vertices[i] = new Vertex((float)vertex.optDouble("x"), (float)vertex.optDouble("y"));
         }
         Log.d("Building", "Building vertices: " + vertices.toString());
 
-        levels = new ArrayList<>();
-        segments = new ArrayList<>();
-        for(int i = 0; i < vertices.size()-1; i++){
-            segments.add(new Segment(vertices.get(i), vertices.get(i + 1)));
+        assert vertices.length > 0;
+        levels = new Level[buildingObject.getInt("levels")]; //TODO add levels
+        segments = new Segment[vertices.length];
+        for(int i = 0; i < vertices.length-1; i++){
+            segments[i] = new Segment(vertices[i], vertices[i + 1]);
         }
-        segments.add(new Segment(vertices.get(vertices.size() - 1), vertices.get(0)));
+        segments[vertices.length-1] = new Segment(vertices[vertices.length - 1], vertices[0]);
     }
 
     /**
@@ -51,7 +47,7 @@ public class Building {
      * @return the number of levels
      */
     public int getNumberOfLevels(){
-        return levels.size();
+        return levels.length;
     }
 
     /**
@@ -78,16 +74,17 @@ public class Building {
      * @return true if the segments intersect, false otherwise
      */
     private boolean isIntersecting(Segment s1, Segment s2) {
-
         float p1x, p1y, p2x, p2y;
         p1x = s1.q.x - s1.p.x;
         p1y = s1.q.y - s1.p.y;
         p2x = s2.q.x - s2.p.x;
         p2y = s2.q.y - s2.p.y;
 
-        float s, t;
-        s = (-p1y * (s1.p.x - s2.p.x) + p1x * (s1.p.y - s2.p.y)) / (-p2x * p1y + p1x * p2y);
-        t = (p2x * (s1.p.y - s2.p.y) - p2y * (s1.p.x - s2.p.x)) / (-p2x * p1y + p1x * p2y);
+        float s, t, v;
+        v = -p2x * p1y + p1x * p2y;
+        assert v != 0;
+        s = (-p1y * (s1.p.x - s2.p.x) + p1x * (s1.p.y - s2.p.y)) / v;
+        t = (p2x * (s1.p.y - s2.p.y) - p2y * (s1.p.x - s2.p.x)) / v;
 
         return s >= 0 && s <= 1 && t >= 0 && t <= 1;
     }
