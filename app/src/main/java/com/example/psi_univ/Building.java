@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
 import java.util.logging.Level;
 
 public class Building {
@@ -14,26 +15,27 @@ public class Building {
 
     public Building(JSONObject building) throws JSONException {
 
-        JSONObject buildingObject = building.getJSONObject("building");
+        //get building object
+        building = building.getJSONObject("building");
 
-        name = buildingObject.getString("name");
+        //get building name
+        name = building.getString("name");
         Log.d("Building", "Building name: " + name);
 
-        JSONArray verticesArray = buildingObject.getJSONArray("vertices");
-        Vertex[] vertices = new Vertex[verticesArray.length()];
-        for(int i = 0; i < verticesArray.length(); i++){
-            JSONObject vertex = verticesArray.optJSONObject(i);
-            vertices[i] = new Vertex((float)vertex.optDouble("x"), (float)vertex.optDouble("y"));
+        //get the vertices and use them to create segments
+        JSONArray verticesArray = building.getJSONArray("vertices");
+        assert verticesArray.length() >= 3; //A building's hitbox must be a polygon
+        //TODO check if we need to throw a JSONParseException if the JSONObject is not correct
+        segments = new Segment[verticesArray.length()];
+        for(int i = 0; i < verticesArray.length()-1; i++){
+            segments[i] = new Segment(verticesArray.optJSONObject(i), verticesArray.optJSONObject(i + 1));
         }
-        Log.d("Building", "Building vertices: " + vertices.toString());
+        segments[verticesArray.length()-1] = new Segment(verticesArray.optJSONObject(verticesArray.length()-1), verticesArray.optJSONObject(0));
+        Log.d("Building", "Building vertices: " + Arrays.toString(segments));
 
-        assert vertices.length > 0;
-        levels = new Level[buildingObject.getInt("levels")]; //TODO add levels
-        segments = new Segment[vertices.length];
-        for(int i = 0; i < vertices.length-1; i++){
-            segments[i] = new Segment(vertices[i], vertices[i + 1]);
-        }
-        segments[vertices.length-1] = new Segment(vertices[vertices.length - 1], vertices[0]);
+        //get the levels
+        levels = new Level[building.getInt("levels")]; //TODO add levels
+        assert levels.length > 0; //A building must have at least one level (the ground)
     }
 
     /**
@@ -89,7 +91,7 @@ public class Building {
         return s >= 0 && s <= 1 && t >= 0 && t <= 1;
     }
 
-    public static class Vertex {
+    private static class Vertex {
         private final float x;
         private final float y;
 
@@ -97,9 +99,14 @@ public class Building {
             this.x = x;
             this.y = y;
         }
+
+        public Vertex(JSONObject vertex) {
+            x = (float)vertex.optDouble("x");
+            y = (float)vertex.optDouble("y"); //TODO probably need to throw a JSONException if the JSONObject is not correct
+        }
     }
 
-    public static class Segment {
+    private static class Segment {
         private final Vertex p;
         private final Vertex q;
 
@@ -107,7 +114,10 @@ public class Building {
             this.p = p;
             this.q = q;
         }
+
+        public Segment(JSONObject v1, JSONObject v2) {
+            p = new Vertex(v1);
+            q = new Vertex(v2);
+        }
     }
 }
-
-
