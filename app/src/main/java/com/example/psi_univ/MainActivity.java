@@ -1,8 +1,11 @@
 package com.example.psi_univ;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +31,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar mToolBar;
+    private DrawerLayout drawer;
     private List<Building> buildingList;
 
     @Override
@@ -37,24 +41,21 @@ public class MainActivity extends AppCompatActivity {
 
         //Toolbar
         mToolBar = findViewById(R.id.ToolBar);
-        getSupportActionBar();
+        //getSupportActionBar();
         setSupportActionBar(mToolBar);
 
-        //Navigation Icon when clicked
-        mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()){
+        //Drawer
+        drawer =  findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,mToolBar,R.string.drawer_open,R.string.drawer_close);
 
-                }
-            }
-        });
+
 
 
         mToolBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(MainActivity.this, "Test", Toast.LENGTH_SHORT).show();
+                drawer.addDrawerListener(toggle);
+                toggle.syncState();
                 return false;
             }
         });
@@ -95,23 +96,24 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.top_app_bar,menu);
-
-        MenuItem.OnActionExpandListener onActionExpandListener = new MenuItem.OnActionExpandListener() {
-            @Override
-            public boolean onMenuItemActionExpand(MenuItem item) {
-                return false;
-            }
-
-            @Override
-            public boolean onMenuItemActionCollapse(MenuItem item) {
-                return false;
-            }
-        };
-
-
-        menu.findItem(R.id.top_app_search).setOnActionExpandListener(onActionExpandListener);
-        SearchView searchView = (SearchView) menu.findItem(R.id.top_app_search).getActionView();
+        MenuItem menuItem = menu.findItem(R.id.top_app_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Recherche");
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+
         return true;
     }
 
@@ -135,4 +137,13 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
+    @Override
+    public void onBackPressed() {
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
 }

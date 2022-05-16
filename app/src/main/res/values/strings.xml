@@ -4,4 +4,6 @@
 
     <string name="ToolBar" >PSI-Univ</string>
     <string name="ToolBarSearch">Recherche</string>
+    <string name="drawer_open">Ouvert</string>
+    <string name="drawer_close">Fermer</string>
 </resources>

@@ -1,11 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<item
-    android:icon="@drawable/ic_baseline_search_24"
-    android:title="@string/ToolBarSearch"
-    app:showAsAction="ifRoom"
-    android:id="@+id/top_app_search"
-    app:actionViewClass="androidx.appcompat.widget.SearchView" />
+    <item
+        android:id="@+id/top_app_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/ToolBarSearch"
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
 </menu>
