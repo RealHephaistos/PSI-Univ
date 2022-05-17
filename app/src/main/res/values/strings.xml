@@ -2,8 +2,14 @@
     <string name="app_name">PSI-Univ</string>
     <!-- Strings used for fragments for navigation -->
 
+    <string name="Settings">Paramètres</string>
+
     <string name="ToolBar" >PSI-Univ</string>
     <string name="ToolBarSearch">Recherche</string>
+
+
+    <string name="drawer_place">Lieux</string>
+    <string name="drawer_advanced_search">Recherche avancée</string>
     <string name="drawer_open">Ouvert</string>
     <string name="drawer_close">Fermer</string>
 </resources>
