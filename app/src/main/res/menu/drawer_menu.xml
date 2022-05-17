@@ -10,11 +10,12 @@
             android:title="@string/drawer_advanced_search"/>
     </group>
 
+
     <item android:title="@string/drawer_place">
         <menu>
             <item
-                android:id="@+id/FAC1"
-                android:title="FAC1"/>
+                android:id="@+id/Rennes1"
+                android:title="@string/Rennes1"/>
             <item
                 android:id="@+id/FAC2"
                 android:title="FAC2"/>
@@ -27,7 +28,7 @@
         </menu>
     </item>
 
-    <item android:title="@string/drawer_place">
+    <item android:title="@string/Settings">
         <menu>
             <group android:checkableBehavior="single">
                 <item
