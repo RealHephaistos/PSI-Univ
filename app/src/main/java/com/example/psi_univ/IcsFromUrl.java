@@ -10,7 +10,7 @@ public class IcsFromUrl {
     public static void getICS(String url, String file_name) throws IOException { //file_name string without .ics
         URL website = new URL(url);
         ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-        FileOutputStream fos = new FileOutputStream("./src/main/java/com/example/psi_univ/ics/"+file_name+".ics");
+        FileOutputStream fos = new FileOutputStream("./src/main/java/com/example/psi_univ/ics/"+file_name+".ics"); //ICS file download in specific repertory
         fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
     }
 }
