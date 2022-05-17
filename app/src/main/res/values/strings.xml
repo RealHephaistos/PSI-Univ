@@ -3,6 +3,7 @@
     <!-- Strings used for fragments for navigation -->
 
     <string name="Settings">Paramètres</string>
+    <string name="HomePage">Accueil</string>
 
     <string name="Rennes1">Université Rennes 1</string>
 
