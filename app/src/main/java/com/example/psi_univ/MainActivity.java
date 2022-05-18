@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -61,9 +60,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Create Map
-
         PhotoView map = findViewById(R.id.map);
-        map.setImageResource(R.drawable.ic_map_test);
+        map.setImageResource(R.drawable.map);
         map.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         map.setOnPhotoTapListener(new OnPhotoTapListener() {
@@ -71,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             public void onPhotoTap(ImageView view, float x, float y) {
                 Log.d("PhotoView", "X: " + x + " Y: " + y);
                 for (Building building : buildingList) {
-                    if(building.isInBuilding(x, y)){
+                    if(building.isInBuilding(x,y)){
                         Toast.makeText(MainActivity.this, building.getName(), Toast.LENGTH_SHORT).show();
                         Log.d("PhotoView", "In building " + building.getName());
                     }
@@ -116,6 +114,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Get JSONObject from file
+     * @param fileName
+     * @return
+     */
     private JSONArray getJSONObject(String fileName){
         try(InputStream is = getAssets().open(fileName)) {
             int size = is.available();

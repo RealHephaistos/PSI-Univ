@@ -58,6 +58,8 @@ public class Building {
      * @return true if the point is inside the building, false otherwise
      */
     public boolean isInBuilding(float x, float y) {
+        x = Math.round(x);
+        y = Math.round(y);
 
         Segment s = new Segment(new Vertex(x, y), new Vertex(1, y));
         int intersectCount = 0;
@@ -84,7 +86,12 @@ public class Building {
 
         float s, t, v;
         v = -p2x * p1y + p1x * p2y;
-        assert v != 0;
+        Log.d("Building", "v: " + v);
+        //assert v != 0;
+        if (v == 0) {
+            return false;
+        }
+
         s = (-p1y * (s1.p.x - s2.p.x) + p1x * (s1.p.y - s2.p.y)) / v;
         t = (p2x * (s1.p.y - s2.p.y) - p2y * (s1.p.x - s2.p.x)) / v;
 
