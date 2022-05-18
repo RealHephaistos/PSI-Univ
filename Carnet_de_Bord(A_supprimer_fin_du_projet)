@@ -3,15 +3,64 @@ Buan Tony
 Hamono Morvan
 Vachez Guillaume
 
-    ------Journal de Bord------
+		------Journal de Bord------
 
-    ---9/05/2022---
+	---9/05/2022---
     
 -Réunion de l'ensemble des membres du projet sur discord afin de discuter sur le projet
-    -Quelle IDE allons-nous utiliser : Android Studio
-    -Partage des tâches
-        -FrontEnd : Issameddine : Manipulation et création de la carte, Tony : Interface utilisateur
-        -BackEnd : Morvan et Guillaume : traitement des données 
-    -Comment récupérer les données pour les emplois du temps ? 
-        -Récupération manuelle depuis l'emploi du temps fournit depuis l'ENT, pas d'avancement car problème avec le site
-        
+ 	-Quelle IDE allons-nous utiliser : Android Studio
+	-Partage des tâches
+		-FrontEnd : Issameddine : Manipulation et création de la carte, Tony : Interface utilisateur
+		-BackEnd : Morvan et Guillaume : traitement des données 
+	-Créations des user cases
+	-Comment récupérer les données pour les emplois du temps ? 
+		-Récupération manuelle depuis l'emploi du temps fournit depuis l'ENT, pas d'avancement car problème avec le site
+-Utilisation de tutos en ligne pour comprendre l'utilisation de Android Studio si besoin
+
+	---10/05/2022---
+
+-Réunion de l'ensemble des membres du projet sur discord afin de discuter sur le projet et principalement la partie BackEnd
+	-Mise au point des détails sur l'interface
+	-Analyse des fichiers données par l'emploi du temps que nous avons réussi à récupérer avant le problème sur le site
+	-Retour sur le traitement des données de l'emploie du temps
+	-La même erreur ce produit
+	-Envoie d'un mail pour savoir si l'erreur est produit à cause de nos manipulations
+-Travail sur la partie FrontEnd
+
+	---11/05/2022---
+
+-Réponse au mail envoyé
+	-Les manipulations que nous avons réalisé ne sont pas spécialement à faire
+	-Nous avons appris que nous avion besoin d'autorisations afin d'utiliser les données de l'emploi du temps
+-Travail sur la partie FrontEnd
+
+	---12/05/2022---
+	
+-Réunion en présentiel à la FAC avec le prof "suiveur"
+-Présentation du projet 
+-Mise au point sur certains détails
+-Discussion par rapport aux autorisations nécessaire à notre projet
+	-Données de l'emploi du temps
+	-Demande d'autorisation pour les plans du 1er batiment que nous allons utlisé dans notre projet (Batiment 12D)
+-Nous avons défini des objectifs pour la prochaine réunion
+-Demande d'autorisation pour utiliser les données de l'emploi du temps et les plans du batiment
+
+	---13/05/2022---
+
+-Relance sur la demande d'autorisation pour utiliser les plans du batiment car incompréhension 
+-Travail sur la partie BackEnd et FrontEnd
+
+	---16/05/2022---
+
+-Réunion pour faire un point sur le projet
+-Nous avons envoyé un schéma représentant l'interface que nous allons utlisé pour l'affichage des salles afin d'obtenir les autorisations pour les plans du batiment 
+-Travail sur la partie BackEnd et FrontEnd
+	
+	---17/05/2022---
+
+-Travail sur la partie BackEnd et FrontEnd
+-On a fixé la prochaine mise au point avec notre professeur "suiveur"
+
+	---18/05/2022---
+
+-Travail sur la partie BackEnd et FrontEnd
