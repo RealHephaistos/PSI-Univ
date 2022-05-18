@@ -1,1 +1,17 @@
+Berrouche Issameddine
+Buan Tony
+Hamono Morvan
+Vachez Guillaume
 
+    ------Journal de Bord------
+
+    ---9/05/2022---
+    
+-Réunion de l'ensemble des membres du projet sur discord afin de discuter sur le projet
+    -Quelle IDE allons-nous utiliser : Android Studio
+    -Partage des tâches
+        -FrontEnd : Issameddine : Manipulation et création de la carte, Tony : Interface utilisateur
+        -BackEnd : Morvan et Guillaume : traitement des données 
+    -Comment récupérer les données pour les emplois du temps ? 
+        -Récupération manuelle depuis l'emploi du temps fournit depuis l'ENT, pas d'avancement car problème avec le site
+        
