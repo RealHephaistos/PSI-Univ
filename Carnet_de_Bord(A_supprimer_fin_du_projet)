@@ -54,6 +54,8 @@ Vachez Guillaume
 	---16/05/2022---
 
 -Réunion pour faire un point sur le projet
+	-Stockage des données pour les salles avec SQL Lite
+	-Pas de nouvelle sur l'autorisation pour utilisé les données de l'emploi di temps
 -Nous avons envoyé un schéma représentant l'interface que nous allons utlisé pour l'affichage des salles afin d'obtenir les autorisations pour les plans du batiment 
 -Travail sur la partie BackEnd et FrontEnd
 	
