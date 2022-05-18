@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/drawable/edit_background.xml" value="0.17" />
+        <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.17" />
         <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1" />
         <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1895" />
         <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.206" />
@@ -11,7 +13,7 @@
         <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/layout/activity_building.xml" value="0.2198549410698096" />
         <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/layout/activity_main.xml" value="0.27247191011235955" />
         <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/layout/content_main.xml" value="0.33" />
-        <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/layout/fragment_advanced_search.xml" value="0.20670897552130554" />
+        <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/layout/fragment_advanced_search.xml" value="0.33" />
         <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/layout/fragment_first.xml" value="0.33958333333333335" />
         <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/layout/fragment_second.xml" value="0.33958333333333335" />
         <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/layout/fragment_settings.xml" value="0.20670897552130554" />
