@@ -16,7 +16,7 @@
         android:minHeight="48dp"
         android:text="@string/ToolBarSearch"
         android:autofillHints=""
-        android:inputType="TODO" />
+         /><!--Les commentaires c'est comme ça en XML-->
 
 
     <androidx.appcompat.widget.SwitchCompat

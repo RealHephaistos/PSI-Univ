@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.logging.Level;
 
@@ -20,7 +21,6 @@ public class Building {
 
         //get building name
         name = building.getString("name");
-        Log.d("Building", "Building name: " + name);
 
         //get the vertices and use them to create segments
         JSONArray verticesArray = building.getJSONArray("vertices");
@@ -31,7 +31,6 @@ public class Building {
             segments[i] = new Segment(verticesArray.optJSONObject(i), verticesArray.optJSONObject(i + 1));
         }
         segments[verticesArray.length()-1] = new Segment(verticesArray.optJSONObject(verticesArray.length()-1), verticesArray.optJSONObject(0));
-        Log.d("Building", "Building vertices: " + Arrays.toString(segments));
 
         //get the levels
         levels = new Level[building.getInt("levels")]; //TODO add levels
@@ -58,9 +57,11 @@ public class Building {
      * @return true if the point is inside the building, false otherwise
      */
     public boolean isInBuilding(float x, float y) {
-        x = Math.round(x);
-        y = Math.round(y);
+        x = Math.round(x * 1000) / 1000.0f;
+        y = Math.round(y * 1000) / 1000.0f;
+        Log.d("Building", "round x: " + x + " y: " + y);
 
+        //Cast a ray from the point to the right border of the map
         Segment s = new Segment(new Vertex(x, y), new Vertex(1, y));
         int intersectCount = 0;
         for (Segment segment : segments) {
