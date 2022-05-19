@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.psi_univ.R;
 
-public class advanced_search_fragment extends  Fragment{
+public class SettingsFragment extends  Fragment{
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return getLayoutInflater().inflate(R.layout.fragment_advanced_search,container,false);
+        return getLayoutInflater().inflate(R.layout.fragment_settings,container,false);
     }
 }
