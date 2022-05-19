@@ -1,4 +1,4 @@
-package com.example.psi_univ;
+package com.example.psi_univ.ui.activities;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,13 +7,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.Toast;
 
+import com.example.psi_univ.ui.models.Building;
+import com.example.psi_univ.R;
 import com.github.chrisbanes.photoview.OnPhotoTapListener;
 import com.github.chrisbanes.photoview.PhotoView;
 
@@ -70,8 +72,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("PhotoView", "X: " + x + " Y: " + y);
                 for (Building building : buildingList) {
                     if(building.isInBuilding(x,y)){
-                        Toast.makeText(MainActivity.this, building.getName(), Toast.LENGTH_SHORT).show();
                         Log.d("PhotoView", "In building " + building.getName());
+                        Intent intent = new Intent(MainActivity.this, BuildingActivity.class);
+                        intent.putExtra("building", building.getName());
+                        MainActivity.this.startActivity(intent);
                     }
                 }
             }
@@ -133,10 +137,10 @@ public class MainActivity extends AppCompatActivity {
             Log.e("FileNotFoundException", "File Not Found : " + fileName);
         }catch (IOException e) {
             e.printStackTrace();
-            Log.e("IOException", "IO Exception : " + e.toString());
+            Log.e("IOException", "IO Exception : " + e);
         } catch (JSONException e) {
             e.printStackTrace();
-            Log.e("JSONException", "JSON Exception : " + e.toString());
+            Log.e("JSONException", "JSON Exception : " + e);
         }
         return null;
     }

@@ -1,30 +1,39 @@
-package com.example.psi_univ;
-import android.util.Log;
+package com.example.psi_univ.ui.models;
 
+import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.logging.Level;
-
 public class Building {
-    private final Level[] levels;
     private final Segment[] segments;
-    private final String name;
+    private String name;
 
-    public Building(JSONObject building) throws JSONException {
+    public Building(JSONObject building){
 
         //get building object
-        building = building.getJSONObject("building");
+        try {
+            building = building.getJSONObject("building");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         //get building name
-        name = building.getString("name");
+        try {
+            name = building.getString("name");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         //get the vertices and use them to create segments
-        JSONArray verticesArray = building.getJSONArray("vertices");
-        assert verticesArray.length() >= 3; //A building's hitbox must be a polygon
+        JSONArray verticesArray = null;
+        try {
+            verticesArray = building.getJSONArray("vertices");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        assert verticesArray != null && verticesArray.length() >= 3; //A building's hitbox must be a polygon
         //TODO check if we need to throw a JSONParseException if the JSONObject is not correct
         segments = new Segment[verticesArray.length()];
         for(int i = 0; i < verticesArray.length()-1; i++){
@@ -32,9 +41,6 @@ public class Building {
         }
         segments[verticesArray.length()-1] = new Segment(verticesArray.optJSONObject(verticesArray.length()-1), verticesArray.optJSONObject(0));
 
-        //get the levels
-        levels = new Level[building.getInt("levels")]; //TODO add levels
-        assert levels.length > 0; //A building must have at least one level (the ground)
     }
 
     /**
@@ -42,13 +48,6 @@ public class Building {
      */
     public String getName() {
         return name;
-    }
-
-    /**
-     * @return the number of levels
-     */
-    public int getNumberOfLevels(){
-        return levels.length;
     }
 
     /**
