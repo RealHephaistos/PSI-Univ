@@ -1,14 +1,20 @@
 package com.example.psi_univ;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -23,8 +29,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_END_EVENT = "endEvent";
     public static final String COLUMN_SUBJECT = "subject";
     public static final String COLUMN_NAME = "name";
-    public static final String ROOMS = "ROOMS";
-    public static final String EVENTS = "EVENTS";
+    public static final String ROOMS_TABLE = "rooms";
+    public static final String EVENTS_TABLE = "events";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, "psi-univ.db", null, 1);
@@ -33,7 +39,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //String createTableStatement = "CREATE TABLE " + EVENT_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_BUILDING + " TEXT, " + COLUMN_FLOOR + " INT, " + COLUMN_ROOM + " TEXT, " + COLUMN_START_EVENT + " DATE, " + COLUMN_END_EVENT + " DATE, " + COLUMN_SUBJECT + " TEXT)";
-        String createTableStatementRoom = "CREATE TABLE IF NOT EXISTS " + ROOMS + " (" +
+        String createTableStatementRoom = "CREATE TABLE IF NOT EXISTS " + ROOMS_TABLE + " (" +
                 COLUMN_BUILDING + " varchar(64) NOT NULL," +
                 COLUMN_NUMBER + " varchar(64) NOT NULL," +
                 COLUMN_FLOOR + " int(11) DEFAULT NULL," +
@@ -42,16 +48,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_INFOS + " text," +
                 "  PRIMARY KEY (" + COLUMN_BUILDING + "," + COLUMN_NUMBER + ")" +
                 ")";
-        String createTableStatementEvents = "CREATE TABLE IF NOT EXISTS " + EVENTS + " (" +
-                COLUMN_START_EVENT + " datetime NOT NULL," +
-                COLUMN_END_EVENT + " datetime NOT NULL," +
+        String createTableStatementEVENTS_TABLE = "CREATE TABLE IF NOT EXISTS " + EVENTS_TABLE + " (" +
+                COLUMN_START_EVENT + " /*datetime*/text NOT NULL," +
+                COLUMN_END_EVENT + " /*datetime*/text NOT NULL," +
                 COLUMN_SUBJECT + " varchar(64) DEFAULT NULL," +
                 COLUMN_BUILDING + " varchar(64) NOT NULL," +
                 COLUMN_NAME + " varchar(64) NOT NULL," +
-                "  KEY " + COLUMN_BUILDING + " (building)" +
+                " FOREIGN KEY (building)" + "REFERENCES " + ROOMS_TABLE + "(building)" +
                 ")";
         db.execSQL(createTableStatementRoom);
-        db.execSQL(createTableStatementEvents);
+        db.execSQL(createTableStatementEVENTS_TABLE);
     }
 
     @Override
@@ -72,7 +78,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_INFOS, buildingDB.getInfo());
 
 
-        long insert = db.insert(ROOMS, null, cv);
+        long insert = db.insert(ROOMS_TABLE, null, cv);
         return insert != -1;
     }
 
@@ -81,7 +87,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues cv = new ContentValues();
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         String start = dateFormat.format(eventPSI.getStartTime());
         String end = dateFormat.format(eventPSI.getEndTime());
 
@@ -90,10 +96,48 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_SUBJECT, eventPSI.getSubject());
         cv.put(COLUMN_BUILDING, buildingDB.getBuilding());
         cv.put(COLUMN_NAME, buildingDB.getRoom());
-        cv.put(COLUMN_TYPE, buildingDB.getType());
 
-        long insert = db.insert(EVENTS, null, cv);
+        long insert = db.insert(EVENTS_TABLE, null, cv);
         return insert != -1;
 
+    }
+
+    public List<EventPSI> getEvent() throws ParseException {
+
+        List<EventPSI> returnList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + EVENTS_TABLE;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString,null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String eventStart = cursor.getString(0);
+                String eventEnd = cursor.getString(1);
+                String eventSubject = cursor.getString(2);
+                String eventBuilding = cursor.getString(3);
+                String eventRoom = cursor.getString(4);
+
+                EventPSI eventPSI = new EventPSI();
+                @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+                Date start = dateFormat.parse(eventStart);
+                Date end = dateFormat.parse(eventEnd);
+                eventPSI.setStartTime(start);
+                eventPSI.setEndTime(end);
+                eventPSI.setSubject(eventSubject);
+                returnList.add(eventPSI);
+
+            }while (cursor.moveToNext());
+
+
+        }
+
+        cursor.close();
+        db.close();
+
+
+        return returnList;
     }
 }

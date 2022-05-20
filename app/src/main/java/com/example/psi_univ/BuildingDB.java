@@ -8,10 +8,11 @@ public class BuildingDB {
     private int capacity;
     private String info;
 
-    public BuildingDB(String building, String room, int floor, int capacity, String info, EventPSI event) {
+    public BuildingDB(String building, int floor, String room, int type, int capacity, String info) {
         this.building = building;
         this.room = room;
         this.floor = floor;
+        this.type = type;
         this.capacity = capacity;
         this.info = info;
     }
