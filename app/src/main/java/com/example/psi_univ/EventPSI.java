@@ -38,8 +38,8 @@ public class EventPSI {
     @NonNull
     @Override
     public String toString() {
-        return "\n   startTime = " + startTime +
-                "\n    endTime =   " + endTime +
-                "\n    subject =   " + subject + "\n";
+        return "startTime = " + startTime +
+                " endTime =   " + endTime +
+                " subject =   " + subject + "\n";
     }
 }

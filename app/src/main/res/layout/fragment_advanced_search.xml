@@ -43,6 +43,7 @@
 
 
     <TextView
+        android:onClick="timePicker"
         android:id="@+id/time_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
