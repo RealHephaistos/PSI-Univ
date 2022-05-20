@@ -33,7 +33,7 @@
                 style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                android:background="@color/Rennes1Red"
+                android:background="@color/rennes_red"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_baseline_menu_24"

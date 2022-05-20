@@ -13,12 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.psi_univ.R;
 import com.example.psi_univ.ui.models.Level;
+import com.richpath.RichPath;
+import com.richpath.RichPathView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LevelRecyclerAdapter extends RecyclerView.Adapter<LevelRecyclerAdapter.LevelViewHolders> {
 
-    List<Level> levels;
+    private final List<Level> levels;
 
     public LevelRecyclerAdapter(List<Level> levels) {
         this.levels = levels;
@@ -33,7 +36,15 @@ public class LevelRecyclerAdapter extends RecyclerView.Adapter<LevelRecyclerAdap
 
     @Override
     public void onBindViewHolder(@NonNull LevelViewHolders holder, int position) {
-        holder.levelMap.setImageResource(levels.get(position).getLevelMap());
+        //holder.levelMap.setVectorDrawable(levels.get(position).getLevelMap());
+        List<RichPath> richPathList = new ArrayList<>();
+
+        holder.levelMap.findRichPathByIndex(0).setFillColor(Color.parseColor("#000000"));
+        holder.levelMap.findRichPathByIndex(1).setFillColor(Color.parseColor("#000000"));
+        holder.levelMap.findRichPathByIndex(2).setFillColor(Color.parseColor("#000000"));
+        holder.levelMap.findRichPathByIndex(3).setFillColor(Color.parseColor("#000000"));
+        holder.levelMap.findRichPathByIndex(4).setFillColor(Color.parseColor("#000000"));
+
         if(position % 2 == 0){
             holder.levelMap.setBackgroundColor(Color.GREEN);
         }
@@ -42,7 +53,9 @@ public class LevelRecyclerAdapter extends RecyclerView.Adapter<LevelRecyclerAdap
         }
 
         holder.levelName.setText(levels.get(position).getLevelName());
-        holder.buildingName.setText(levels.get(position).getBuildingName()); //TODO make it pretty
+        holder.buildingName.setText(levels.get(position).getBuildingName());
+
+        //TODO make it pretty
         //TODO add level logo
     }
 
@@ -60,11 +73,11 @@ public class LevelRecyclerAdapter extends RecyclerView.Adapter<LevelRecyclerAdap
         CardView levelCard;
         TextView levelName;
         TextView buildingName;
-        ImageView levelMap;
+        RichPathView levelMap;
         public LevelViewHolders(@NonNull View itemView) {
             super(itemView);
             levelCard = itemView.findViewById(R.id.cv);
-            levelMap = itemView.findViewById(R.id.plan);
+            levelMap = itemView.findViewById(R.id.map);
             levelName = itemView.findViewById(R.id.levelName);
             buildingName = itemView.findViewById(R.id.buildingName);
         }

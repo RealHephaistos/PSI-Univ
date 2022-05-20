@@ -34,11 +34,11 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/plan"
+            <com.richpath.RichPathView
+                android:id="@+id/map"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/l1_level" />
+                app:vector="@drawable/ic_level1"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

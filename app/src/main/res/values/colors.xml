@@ -7,6 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="Rennes1Red">#e03c31</color>
     <color name="Grey">#D3D3D3</color>
+    <color name="rennes_red">#e03c31</color>
+    <color name="rennes_gray1">#ececec</color>
+    <color name="rennes_gray2">#d6d6d6</color>
+    <color name="rennes_gray3">#9f9f9e</color>
+    <color name="rennes_gray4">#444443</color>
+    <color name="rennes_gray5">#242322</color>
+
 </resources>
