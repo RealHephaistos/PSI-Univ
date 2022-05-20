@@ -1,5 +1,6 @@
 package com.example.psi_univ.ui.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -7,17 +8,25 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
+import com.example.psi_univ.ui.fragments.AdvancedSearchFragment;
+import com.example.psi_univ.ui.fragments.SettingsFragment;
 import com.example.psi_univ.ui.models.Building;
 import com.example.psi_univ.R;
 import com.github.chrisbanes.photoview.OnPhotoTapListener;
 import com.github.chrisbanes.photoview.PhotoView;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,9 +37,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar mToolBar;
     private DrawerLayout drawer;
     private List<Building> buildingList;
@@ -47,9 +57,38 @@ public class MainActivity extends AppCompatActivity {
 
         //Drawer
         drawer =  findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        //Fragment
+        TextView timer;
+        timer = findViewById(R.id.time_select);
+
+        /*
+        timer.setOnClickListener(new View.OnClickListener() {
+            int Minute,Hour;
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(MainActivity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                Hour = hourOfDay;
+                                Minute = minute;
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(0,0,0,Hour,Minute);
+                                timer.setText(DateFormat.format("hh:mm:aa", calendar));
+                            }
+                        },12,0,true);
+                timePickerDialog.updateTime(Hour,Minute);
+                timePickerDialog.show();
+            }
+        });
+
+         */
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,mToolBar,R.string.drawer_open,R.string.drawer_close);
-
-
 
 
         mToolBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -143,6 +182,26 @@ public class MainActivity extends AppCompatActivity {
             Log.e("JSONException", "JSON Exception : " + e);
         }
         return null;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.drawer_settings:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SettingsFragment()).commit();
+                break;
+            case R.id.homepage:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
+            case R.id.advanced_search:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AdvancedSearchFragment()).commit();
+
+                break;
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override

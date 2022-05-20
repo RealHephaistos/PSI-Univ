@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
 
     <EditText
@@ -10,12 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:ems="10"
-        android:hint="@string/ToolBarSearch"
+        android:hint="@string/advanced_search_search_bar"
         android:minHeight="48dp"
-        android:text="@string/ToolBarSearch"
-        android:autofillHints=""
          /><!--Les commentaires c'est comme ça en XML-->
 
 
@@ -56,5 +55,18 @@
         android:hint="@string/advanced_search_time_select"
         android:textSize="15sp"
         app:drawableTopCompat="@drawable/ic_baseline_access_time_24" />
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/time_select"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:hint="@string/advanced_search_research_button"
+        android:textSize="15sp"
+        android:backgroundTint="@color/white"
+        />
 
 </RelativeLayout>

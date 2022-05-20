@@ -13,9 +13,10 @@ import com.example.psi_univ.R;
 
 public class AdvancedSearchFragment extends  Fragment{
 
+
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return getLayoutInflater().inflate(R.layout.fragment_advanced_search,container,false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_advanced_search,container,false);
     }
 }
