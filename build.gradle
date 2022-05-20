@@ -2,6 +2,7 @@
 buildscript {
     repositories {
         maven { url "https://www.jitpack.io" }
+        google()
     }
 }
 
@@ -21,5 +22,6 @@ task clean(type: Delete) {
 allprojects {
     repositories {
         maven { url "https://www.jitpack.io" }
+        google()
     }
 }
