@@ -39,11 +39,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar mToolBar;
     private DrawerLayout drawer;
+    TextView timer;
     private List<Building> buildingList;
+    int timerHour,timerMinute;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,32 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         //Fragment
-        TextView timer;
         timer = findViewById(R.id.time_select);
-
-        /*
-        timer.setOnClickListener(new View.OnClickListener() {
-            int Minute,Hour;
-            @Override
-            public void onClick(View v) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(MainActivity.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                Hour = hourOfDay;
-                                Minute = minute;
-                                Calendar calendar = Calendar.getInstance();
-                                calendar.set(0,0,0,Hour,Minute);
-                                timer.setText(DateFormat.format("hh:mm:aa", calendar));
-                            }
-                        },12,0,true);
-                timePickerDialog.updateTime(Hour,Minute);
-                timePickerDialog.show();
-            }
-        });
-
-         */
-
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,mToolBar,R.string.drawer_open,R.string.drawer_close);
 
@@ -212,5 +191,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else {
             super.onBackPressed();
         }
+    }
+
+    public void timePicker(View vew){
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                timerHour = hourOfDay;
+                timerMinute = minute;
+                timer.setText(String.format(Locale.getDefault(),"%02d:%02d",timerHour,timerMinute));
+            }
+        };
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,onTimeSetListener,timerHour,timerMinute,true);
+        timePickerDialog.setTitle(R.string.drawer_close);
+        timePickerDialog.show();
     }
 }
