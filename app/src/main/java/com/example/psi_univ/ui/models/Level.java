@@ -2,13 +2,24 @@ package com.example.psi_univ.ui.models;
 
 import com.example.psi_univ.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Level {
     private final String levelName;
     private final String buildingName;
+    private final List<String> rooms = new ArrayList<>(); //TODO: change to List<Room>
 
     public Level(String levelName, String buildingName) {
         this.levelName = levelName;
         this.buildingName = buildingName;
+
+        //TODO: get rooms from database
+        for(int i = 50; i <= 60; i++){
+            rooms.add("i-" + i);
+        }
+
+        rooms.add("amphi-p");
     }
 
     public String getLevelName() {
@@ -20,6 +31,15 @@ public class Level {
     }
 
     public int getLevelMap() {
-        return R.drawable.ic_level1; //TODO: get level map from database
+        return R.drawable.ic_level1;
+        //TODO: get level map from database
+    }
+
+    public String getRoom(int index){
+        return rooms.get(index);
+    }
+
+    public int getRoomCount(){
+        return rooms.size();
     }
 }

@@ -8,6 +8,8 @@ import android.view.Display;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.psi_univ.R;
 import com.example.psi_univ.ui.adapters.LevelRecyclerAdapter;
 import com.example.psi_univ.ui.models.Level;
+import com.richpath.RichPath;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +48,8 @@ public class BuildingActivity extends AppCompatActivity {
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setAdapter(new LevelRecyclerAdapter(levels));
-
         PagerSnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(recycler);
+
     }
 }

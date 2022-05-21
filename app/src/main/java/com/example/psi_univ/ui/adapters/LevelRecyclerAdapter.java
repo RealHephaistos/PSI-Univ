@@ -1,17 +1,20 @@
 package com.example.psi_univ.ui.adapters;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.psi_univ.R;
+import com.example.psi_univ.ui.fragments.RoomFragment;
 import com.example.psi_univ.ui.models.Level;
 import com.richpath.RichPath;
 import com.richpath.RichPathView;
@@ -22,6 +25,7 @@ import java.util.List;
 public class LevelRecyclerAdapter extends RecyclerView.Adapter<LevelRecyclerAdapter.LevelViewHolders> {
 
     private final List<Level> levels;
+    private List<RichPath> richPathList;
 
     public LevelRecyclerAdapter(List<Level> levels) {
         this.levels = levels;
@@ -36,20 +40,34 @@ public class LevelRecyclerAdapter extends RecyclerView.Adapter<LevelRecyclerAdap
 
     @Override
     public void onBindViewHolder(@NonNull LevelViewHolders holder, int position) {
-        //holder.levelMap.setVectorDrawable(levels.get(position).getLevelMap());
-        List<RichPath> richPathList = new ArrayList<>();
+        Level level = levels.get(position);
+        holder.richPathViewMap.setVectorDrawable(level.getLevelMap());
+        richPathList = new ArrayList<>();
 
-        holder.levelMap.findRichPathByIndex(0).setFillColor(Color.parseColor("#000000"));
-        holder.levelMap.findRichPathByIndex(1).setFillColor(Color.parseColor("#000000"));
-        holder.levelMap.findRichPathByIndex(2).setFillColor(Color.parseColor("#000000"));
-        holder.levelMap.findRichPathByIndex(3).setFillColor(Color.parseColor("#000000"));
-        holder.levelMap.findRichPathByIndex(4).setFillColor(Color.parseColor("#000000"));
+        for(int i = 0; i<level.getRoomCount(); i++){
+            RichPath richPath = holder.richPathViewMap.findRichPathByName(level.getRoom(i));
+            //TODO: error map not found
+            assert richPath != null;
 
-        if(position % 2 == 0){
-            holder.levelMap.setBackgroundColor(Color.GREEN);
-        }
-        else{
-            holder.levelMap.setBackgroundColor(Color.RED);
+            richPath.setOnPathClickListener(new RichPath.OnPathClickListener() {
+                @Override
+                public void onClick() {
+                    Fragment fragment = new RoomFragment();
+                    FragmentManager fragmentManager = ((AppCompatActivity) holder.richPathViewMap.getContext()).getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
+            });
+            /*richPath.setFillAlpha(1);
+            richPath.setFillColor(Color.parseColor("#FF0000"));*/
+
+            //richPath.setScaleX(0.5f);
+            //richPath.setScaleY(0.5f);
+            //TODO: zoom maybe?
+
+            richPathList.add(richPath);
         }
 
         holder.levelName.setText(levels.get(position).getLevelName());
@@ -70,14 +88,12 @@ public class LevelRecyclerAdapter extends RecyclerView.Adapter<LevelRecyclerAdap
     }
 
     public static class LevelViewHolders extends RecyclerView.ViewHolder {
-        CardView levelCard;
         TextView levelName;
         TextView buildingName;
-        RichPathView levelMap;
+        RichPathView richPathViewMap;
         public LevelViewHolders(@NonNull View itemView) {
             super(itemView);
-            levelCard = itemView.findViewById(R.id.cv);
-            levelMap = itemView.findViewById(R.id.map);
+            richPathViewMap = itemView.findViewById(R.id.map);
             levelName = itemView.findViewById(R.id.levelName);
             buildingName = itemView.findViewById(R.id.buildingName);
         }

@@ -23,8 +23,9 @@
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/activity_building.xml" value="0.1" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/cardview_level.xml" value="0.192481884057971" />
-        <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/cardview_levelplan.xml" value="0.1" />
+        <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/cardview_levelplan.xml" value="0.22" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/fragment_advanced_search.xml" value="0.15881458966565348" />
+        <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/fragment_room.xml" value="0.18059777102330293" />
       </map>
     </option>
   </component>
