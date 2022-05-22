@@ -12,7 +12,7 @@ plugins {
 }
 
 ext {
-    defaultMinSdkVersion = 23
+    defaultMinSdkVersion = 26
     gradleVersion = '7.2.0'
 }
 task clean(type: Delete) {

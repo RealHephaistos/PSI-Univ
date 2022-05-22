@@ -20,10 +20,12 @@
         <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/menu/top_app_bar.xml" value="0.22706209453197404" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/drawable/ic_level1.xml" value="0.148" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/drawable/ic_map.xml" value="0.2825" />
+        <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/font/asks.xml" value="0.23055555555555557" />
+        <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/font/font.xml" value="0.34322916666666664" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/activity_building.xml" value="0.1" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/cardview_level.xml" value="0.192481884057971" />
-        <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/cardview_levelplan.xml" value="0.22" />
+        <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/cardview_levelplan.xml" value="0.1" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/fragment_advanced_search.xml" value="0.15881458966565348" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/fragment_room.xml" value="0.18059777102330293" />
       </map>

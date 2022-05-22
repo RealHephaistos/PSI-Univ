@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainer;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,7 +57,7 @@ public class LevelRecyclerAdapter extends RecyclerView.Adapter<LevelRecyclerAdap
                     Fragment fragment = new RoomFragment();
                     FragmentManager fragmentManager = ((AppCompatActivity) holder.richPathViewMap.getContext()).getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, fragment);
+                    fragmentTransaction.replace(R.id.roomFragmentContainerView, fragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
                 }
@@ -69,9 +71,6 @@ public class LevelRecyclerAdapter extends RecyclerView.Adapter<LevelRecyclerAdap
 
             richPathList.add(richPath);
         }
-
-        holder.levelName.setText(levels.get(position).getLevelName());
-        holder.buildingName.setText(levels.get(position).getBuildingName());
 
         //TODO make it pretty
         //TODO add level logo
@@ -88,14 +87,12 @@ public class LevelRecyclerAdapter extends RecyclerView.Adapter<LevelRecyclerAdap
     }
 
     public static class LevelViewHolders extends RecyclerView.ViewHolder {
-        TextView levelName;
-        TextView buildingName;
         RichPathView richPathViewMap;
+        FragmentContainerView fragmentContainer;
         public LevelViewHolders(@NonNull View itemView) {
             super(itemView);
             richPathViewMap = itemView.findViewById(R.id.map);
-            levelName = itemView.findViewById(R.id.levelName);
-            buildingName = itemView.findViewById(R.id.buildingName);
+            fragmentContainer = itemView.findViewById(R.id.roomFragmentContainerView);
         }
     }
 }
