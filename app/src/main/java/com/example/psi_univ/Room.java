@@ -1,5 +1,7 @@
 package com.example.psi_univ;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 public class Room {
@@ -30,6 +32,7 @@ public class Room {
         this.name = name;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "\n" + name +

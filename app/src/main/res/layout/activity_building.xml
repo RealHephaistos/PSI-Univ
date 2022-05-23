@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/rennes_gray1">
+    android:background="@color/rennes_gray1"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
+            android:id="@+id/mapRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -24,17 +23,34 @@
 
             <TextView
                 android:id="@+id/buildingName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/akshar_variablefont_wght"
+                android:layout_width="wrap_content"
+                android:layout_height="81dp"
+                android:layout_marginTop="-20dp"
+                android:fontFamily="@font/koulen_regular"
+                android:gravity="top"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="0dp"
                 android:textColor="@color/rennes_gray5"
-                android:textFontWeight="700"
                 android:textSize="64sp" />
 
-            <TextView
-                android:id="@+id/levelName"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/levelRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:clipToPadding="false"
+                    android:paddingTop="25dp"
+                    android:paddingBottom="25dp"
+                    android:fadingEdge="vertical"
+                    android:fadingEdgeLength="30dp"
+                    android:fillViewport="false"
+                    android:requiresFadingEdge="vertical" />
+            </FrameLayout>
+
         </LinearLayout>
     </FrameLayout>
 

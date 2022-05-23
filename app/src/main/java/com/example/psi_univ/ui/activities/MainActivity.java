@@ -41,6 +41,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+@SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar mToolBar;
     private DrawerLayout drawer;
@@ -84,17 +85,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         map.setImageResource(R.drawable.map);
         map.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-        map.setOnPhotoTapListener(new OnPhotoTapListener() {
-            @Override
-            public void onPhotoTap(ImageView view, float x, float y) {
-                Log.d("PhotoView", "X: " + x + " Y: " + y);
-                for (Building building : buildingList) {
-                    if(building.isInBuilding(x,y)){
-                        Log.d("PhotoView", "In building " + building.getName());
-                        Intent intent = new Intent(MainActivity.this, BuildingActivity.class);
-                        intent.putExtra("building", building.getName());
-                        MainActivity.this.startActivity(intent);
-                    }
+        map.setOnPhotoTapListener((view, x, y) -> {
+            Log.d("PhotoView", "X: " + x + " Y: " + y);
+            for (Building building : buildingList) {
+                if(building.isInBuilding(x,y)){
+                    Log.d("PhotoView", "In building " + building.getName());
+                    Intent intent = new Intent(MainActivity.this, BuildingActivity.class);
+                    intent.putExtra("building", building.getName());
+                    MainActivity.this.startActivity(intent);
                 }
             }
         });

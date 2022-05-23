@@ -4,16 +4,19 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.psi_univ.R;
+import com.example.psi_univ.ui.adapters.LevelNameAdapter;
 import com.example.psi_univ.ui.adapters.LevelRecyclerAdapter;
 import com.example.psi_univ.ui.models.Level;
 
@@ -31,7 +34,6 @@ public class BuildingActivity extends AppCompatActivity {
         String buildingName = intent.getStringExtra("building");
 
         TextView buildingNameTextView = findViewById(R.id.buildingName);
-        TextView levelNameTextView = findViewById(R.id.levelName);
         buildingNameTextView.setText(buildingName);
 
 
@@ -45,25 +47,48 @@ public class BuildingActivity extends AppCompatActivity {
             levels.add(new Level("Level " + (i + 1), buildingName));
         }
 
-        levelNameTextView.setText(levels.get(0).getLevelName());
-
-        RecyclerView recycler = findViewById(R.id.recycler);
-        recycler.setHasFixedSize(true);
-        recycler.setLayoutManager(new LinearLayoutManager(this));
-        recycler.setAdapter(new LevelRecyclerAdapter(levels));
+        RecyclerView mapRecycler = findViewById(R.id.mapRecycler);
+        mapRecycler.setHasFixedSize(true);
+        mapRecycler.setLayoutManager(new LinearLayoutManager(this));
+        mapRecycler.setAdapter(new LevelRecyclerAdapter(levels));
         PagerSnapHelper snapHelper = new PagerSnapHelper();
-        snapHelper.attachToRecyclerView(recycler);
+        snapHelper.attachToRecyclerView(mapRecycler);
 
-        recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        RecyclerView levelNameRecycler = findViewById(R.id.levelRecycler);
+        levelNameRecycler.setLayoutManager(new LinearLayoutManager(this));
+        levelNameRecycler.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);//TODO: Possibly not the best way to do this
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    int position = ((LinearLayoutManager) Objects.requireNonNull(recyclerView.getLayoutManager())).findFirstVisibleItemPosition();
-                    levelNameTextView.setText(levels.get(position).getLevelName());
-                }
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                return true;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
             }
         });
+        levelNameRecycler.setAdapter(new LevelNameAdapter(levels));
+        LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
+        linearSnapHelper.attachToRecyclerView(levelNameRecycler);
 
+        mapRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                    Objects.requireNonNull(levelNameRecycler.getLayoutManager()).smoothScrollToPosition(levelNameRecycler, null, mapRecycler.getChildAdapterPosition(mapRecycler.getChildAt(0)));
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
     }
 }
