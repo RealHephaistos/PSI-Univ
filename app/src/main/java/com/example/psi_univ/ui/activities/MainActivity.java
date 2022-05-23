@@ -45,10 +45,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar mToolBar;
     private DrawerLayout drawer;
-    TextView timer;
     private List<Building> buildingList;
-    int timerHour,timerMinute;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +61,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer =  findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        //Fragment
-        timer = findViewById(R.id.time_select);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,mToolBar,R.string.drawer_open,R.string.drawer_close);
 
@@ -191,18 +185,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void timePicker(View vew){
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                timerHour = hourOfDay;
-                timerMinute = minute;
-                timer.setText(String.format(Locale.getDefault(),"%02d:%02d",timerHour,timerMinute));
-            }
-        };
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,onTimeSetListener,timerHour,timerMinute,true);
-        timePickerDialog.setTitle(R.string.drawer_close);
-        timePickerDialog.show();
-    }
 }
