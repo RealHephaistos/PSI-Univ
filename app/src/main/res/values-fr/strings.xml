@@ -1,0 +1,30 @@
+<resources>
+    <!-- French strings-->
+    <!-- Strings used for fragments for the homepage -->
+    <string name="app_name">PSI-Univ</string>
+    <string name="Settings">Paramètres</string>
+    <string name="HomePage">Acceuil</string>
+    <string name="Rennes1">Université Rennes 1</string>
+
+
+    <!-- English strings for the advanced search -->
+    <string name="advanced_search_available_roms">Afficher les salles disponibles</string>
+    <string name="advanced_search_unavailable_roms">Afficher les salles indisponibles</string>
+    <string name="advanced_search_time_select">Sélectionner une heure</string>
+    <string name="advanced_search_search_bar">Mots</string>
+    <string name="advanced_search_research_button">Rechercher</string>
+
+    <!-- English strings for the toolbar -->
+    <string name="ToolBar">PSI-Univ</string>
+    <string name="ToolBarSearch">Rechercher</string>
+
+    <!-- English strings for the drawer -->
+    <string name="drawer_place">Lieux</string>
+    <string name="drawer_advanced_search">Recherche Avancée</string>
+    <string name="drawer_open">Ouvert</string>
+    <string name="drawer_close">Fermé</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getMenuInflater().inflate(R.menu.top_app_bar,menu);
         MenuItem menuItem = menu.findItem(R.id.top_app_search);
         SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("Recherche");
+        searchView.setQueryHint(getString(R.string.ToolBarSearch));
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
