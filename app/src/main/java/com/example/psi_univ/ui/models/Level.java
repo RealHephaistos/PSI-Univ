@@ -9,6 +9,7 @@ public class Level {
     private final String levelName;
     private final String buildingName;
     private final List<String> rooms = new ArrayList<>(); //TODO: change to List<Room>
+    private String levelMap;
 
     public Level(String levelName, String buildingName) {
         this.levelName = levelName;
@@ -41,5 +42,9 @@ public class Level {
 
     public int getRoomCount(){
         return rooms.size();
+    }
+
+    public void setLevelMap(String levelMap) {
+        this.levelMap = levelMap;
     }
 }

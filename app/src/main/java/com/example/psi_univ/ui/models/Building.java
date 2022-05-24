@@ -5,9 +5,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class Building {
     private final Segment[] segments;
     private String name;
+    private List<Level> levelList;
 
     public Building(JSONObject building){
 
@@ -111,6 +114,11 @@ public class Building {
             x = (float)vertex.optDouble("x");
             y = (float)vertex.optDouble("y"); //TODO probably need to throw a JSONException if the JSONObject is not correct
         }
+    }
+
+
+    public void setLevelList(List<Level> levelList) {
+        this.levelList = levelList;
     }
 
     private static class Segment {
