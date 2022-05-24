@@ -11,8 +11,15 @@
     <string name="advanced_search_available_roms">Show available rooms</string>
     <string name="advanced_search_unavailable_roms">Show unavailable rooms</string>
     <string name="advanced_search_time_select">Select Time</string>
+    <string name="advanced_search_date_select">Select Date</string>
     <string name="advanced_search_search_bar">Words</string>
     <string name="advanced_search_research_button">Research</string>
+    <string name="advanced_search_available_rooms_toast_on">Available rooms will be shown</string>
+    <string name="advanced_search_available_rooms_toast_of">Available rooms will not be shown</string>
+    <string name="advanced_search_unavailable_rooms_toast_on">Unavailable rooms will be shown</string>
+    <string name="advanced_search_unavailable_rooms_toast_of">Unavailable rooms will not be shown</string>
+
+
 
     <!-- English strings for the toolbar -->
     <string name="ToolBar">PSI-Univ</string>
