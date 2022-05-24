@@ -8,7 +8,7 @@ import java.util.List;
 public class Level {
     private final String levelName;
     private final String buildingName;
-    private final List<String> rooms = new ArrayList<>(); //TODO: change to List<Room>
+    private final List<Room> rooms = new ArrayList<>(); //TODO: change to List<Room>
     private String levelMap;
 
     public Level(String levelName, String buildingName) {
@@ -17,10 +17,10 @@ public class Level {
 
         //TODO: get rooms from database
         for(int i = 50; i <= 60; i++){
-            rooms.add("i-" + i);
+            rooms.add(new Room ("i-" + i, Room.dummyEvents()));
         }
 
-        rooms.add("amphi-p");
+        rooms.add(new Room ("amphi-p", Room.dummyEvents()));
     }
 
     public String getLevelName() {
@@ -36,12 +36,12 @@ public class Level {
         //TODO: get level map from database
     }
 
-    public String getRoom(int index){
-        return rooms.get(index);
-    }
-
     public int getRoomCount(){
         return rooms.size();
+    }
+
+    public String getRoomName(int position){
+        return rooms.get(position).getRoomName();
     }
 
     public void setLevelMap(String levelMap) {

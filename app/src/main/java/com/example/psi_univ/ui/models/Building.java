@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Building {
     private final Segment[] segments;
-    private String name;
+    private String buildingName;
     private List<Level> levelList;
 
     public Building(JSONObject building){
@@ -23,7 +23,7 @@ public class Building {
 
         //get building name
         try {
-            name = building.getString("name");
+            buildingName = building.getString("name");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -46,11 +46,18 @@ public class Building {
 
     }
 
+    public Building(String buildingName, List<Level> levelList){
+        this.buildingName = buildingName;
+        this.levelList = levelList;
+        //TODO: Fetch the building from the database
+        segments = new Segment[0];
+    }
+
     /**
      * @return the name of the building
      */
     public String getName() {
-        return name;
+        return buildingName;
     }
 
     /**

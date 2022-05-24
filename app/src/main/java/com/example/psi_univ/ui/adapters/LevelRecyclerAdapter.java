@@ -43,7 +43,7 @@ public class LevelRecyclerAdapter extends RecyclerView.Adapter<LevelRecyclerAdap
         List<RichPath> richPathList = new ArrayList<>();
 
         for(int i = 0; i<level.getRoomCount(); i++){
-            RichPath richPath = holder.richPathViewMap.findRichPathByName(level.getRoom(i));
+            RichPath richPath = holder.richPathViewMap.findRichPathByName(level.getRoomName(i));
             //TODO: error map not found
             assert richPath != null;
 
