@@ -43,7 +43,6 @@
 
 
     <TextView
-        android:onClick="timePicker"
         android:id="@+id/time_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,11 +56,51 @@
         android:textSize="15sp"
         app:drawableTopCompat="@drawable/ic_baseline_access_time_24" />
 
+
+    <RelativeLayout
+        android:id="@+id/Date"
+        android:layout_marginTop="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/time_select"
+        android:background="@drawable/edit_background"
+        >
+
+    <TextView
+        android:drawablePadding="2dp"
+        android:id="@+id/date_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:hint="@string/advanced_search_date_select"
+        android:textSize="15sp"
+        app:drawableTopCompat="@drawable/ic_baseline_calendar_today_24"
+        />
+
+    <Button
+        android:id="@+id/date_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date_select"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:hint="@string/advanced_search_research_button"
+        android:textSize="15sp"
+
+        android:backgroundTint="@color/white"
+        />
+    </RelativeLayout>
+
+
+
     <Button
         android:id="@+id/search_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/time_select"
+        android:layout_below="@id/Date"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:gravity="center"

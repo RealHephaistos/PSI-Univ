@@ -11,8 +11,13 @@
     <string name="advanced_search_available_roms">Afficher les salles disponibles</string>
     <string name="advanced_search_unavailable_roms">Afficher les salles indisponibles</string>
     <string name="advanced_search_time_select">Sélectionner une heure</string>
+    <string name="advanced_search_date_select">Sélectionner une date</string>
     <string name="advanced_search_search_bar">Mots</string>
     <string name="advanced_search_research_button">Rechercher</string>
+    <string name="advanced_search_available_rooms_toast_on">Les salles disponibles seront affichés</string>
+    <string name="advanced_search_available_rooms_toast_of">Les salles disponibles ne seront pas affichés</string>
+    <string name="advanced_search_unavailable_rooms_toast_on">Les salles indisponibles seront affichés</string>
+    <string name="advanced_search_unavailable_rooms_toast_of">Les salles indisponibles ne seront pas affichés</string>
 
     <!-- English strings for the toolbar -->
     <string name="ToolBar">PSI-Univ</string>
