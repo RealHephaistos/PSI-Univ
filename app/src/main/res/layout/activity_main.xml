@@ -21,7 +21,7 @@
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -38,8 +38,7 @@
                 app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_baseline_menu_24"
                 app:title="@string/ToolBar"
-                app:titleTextColor="@color/white"
-                />
+                app:titleTextColor="@color/white" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

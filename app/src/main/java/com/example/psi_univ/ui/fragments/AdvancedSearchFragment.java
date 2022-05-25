@@ -99,8 +99,8 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
                 DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        month = month +1;
-                        String date = makeDateString(dayOfMonth,month,year);
+                        month = month + 1;
+                        String date = makeDateString(dayOfMonth, month, year);
                         dateButton.setHint(date);
                     }
                 };
@@ -111,7 +111,7 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
 
                 int style = AlertDialog.THEME_HOLO_LIGHT;
 
-                datePickerDialog = new DatePickerDialog(getActivity(),style,dateSetListener,year,month,day);
+                datePickerDialog = new DatePickerDialog(getActivity(), style, dateSetListener, year, month, day);
 
                 datePickerDialog.show();
                 break;
@@ -120,10 +120,10 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
 
     /**
      * Date to String
+     *
      * @param dayOfMonth
      * @param month
      * @param year
-     *
      * @return A date in a string format
      */
     private String makeDateString(int dayOfMonth, int month, int year) {
@@ -131,45 +131,44 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
     }
 
     /**
-     *
      * @param month
      * @return The month's name in a string format
      */
     private String getMonthFormat(int month) {
-        if (month == 1){
+        if (month == 1) {
             return getString(R.string.January);
         }
-        if (month == 2){
+        if (month == 2) {
             return getString(R.string.February);
         }
-        if (month == 3){
+        if (month == 3) {
             return getString(R.string.March);
         }
-        if (month == 4){
+        if (month == 4) {
             return getString(R.string.April);
         }
-        if (month == 5){
+        if (month == 5) {
             return getString(R.string.May);
         }
-        if (month == 6){
+        if (month == 6) {
             return getString(R.string.June);
         }
-        if (month == 7){
+        if (month == 7) {
             return getString(R.string.July);
         }
-        if (month == 8){
+        if (month == 8) {
             return getString(R.string.August);
         }
-        if (month == 9){
+        if (month == 9) {
             return getString(R.string.September);
         }
-        if (month == 10){
+        if (month == 10) {
             return getString(R.string.October);
         }
-        if (month == 11){
+        if (month == 11) {
             return getString(R.string.November);
         }
-        if (month == 12){
+        if (month == 12) {
             return getString(R.string.December);
         }
         return getString(R.string.January);
