@@ -14,8 +14,7 @@
         android:layout_marginTop="100dp"
         android:ems="10"
         android:hint="@string/advanced_search_search_bar"
-        android:minHeight="48dp"
-         /><!--Les commentaires c'est comme ça en XML-->
+        android:minHeight="48dp" /><!--Les commentaires c'est comme ça en XML-->
 
 
     <androidx.appcompat.widget.SwitchCompat
@@ -59,41 +58,35 @@
 
     <RelativeLayout
         android:id="@+id/Date"
-        android:layout_marginTop="45dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/time_select"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
         android:background="@drawable/edit_background"
-        >
+        android:gravity="center">
 
-    <TextView
-        android:drawablePadding="2dp"
-        android:id="@+id/date_select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:hint="@string/advanced_search_date_select"
-        android:textSize="15sp"
-        app:drawableTopCompat="@drawable/ic_baseline_calendar_today_24"
-        />
+        <TextView
+            android:id="@+id/date_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:drawablePadding="2dp"
+            android:gravity="center"
+            android:hint="@string/advanced_search_date_select"
+            android:textSize="15sp"
+            app:drawableTopCompat="@drawable/ic_baseline_calendar_today_24" />
 
-    <Button
-        android:id="@+id/date_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/date_select"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:hint="@string/advanced_search_research_button"
-        android:textSize="15sp"
-
-        android:backgroundTint="@color/white"
-        />
+        <Button
+            android:id="@+id/date_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date_select"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/white"
+            android:gravity="center"
+            android:textSize="15sp" />
     </RelativeLayout>
-
 
 
     <Button
@@ -103,10 +96,9 @@
         android:layout_below="@id/Date"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:backgroundTint="@color/white"
         android:gravity="center"
         android:hint="@string/advanced_search_research_button"
-        android:textSize="15sp"
-        android:backgroundTint="@color/white"
-        />
+        android:textSize="15sp" />
 
 </RelativeLayout>
