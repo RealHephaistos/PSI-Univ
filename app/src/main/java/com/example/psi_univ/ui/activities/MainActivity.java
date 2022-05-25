@@ -52,17 +52,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Toolbar
+        //Initialisation Toolbar
         mToolBar = findViewById(R.id.ToolBar);
         //getSupportActionBar();
         setSupportActionBar(mToolBar);
 
-        //Drawer
-        drawer =  findViewById(R.id.drawer_layout);
+        //Initialisation Drawer
+        drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,mToolBar,R.string.drawer_open,R.string.drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, mToolBar, R.string.drawer_open, R.string.drawer_close);
 
 
         mToolBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         map.setOnPhotoTapListener((view, x, y) -> {
             Log.d("PhotoView", "X: " + x + " Y: " + y);
             for (Building building : buildingList) {
-                if(building.isInBuilding(x,y)){
+                if (building.isInBuilding(x, y)) {
                     Log.d("PhotoView", "In building " + building.getName());
                     Intent intent = new Intent(MainActivity.this, BuildingActivity.class);
                     intent.putExtra("building", building.getName());
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         buildingList = new ArrayList<>();
         JSONArray buildingJSON = getJSONObject("building_list.json");
         assert buildingJSON != null;
-        for(int i = 0; i < buildingJSON.length(); i++){
+        for (int i = 0; i < buildingJSON.length(); i++) {
             try {
                 buildingList.add(new Building((JSONObject) buildingJSON.get(i)));
             } catch (JSONException e) {
@@ -105,11 +105,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.top_app_bar,menu);
+        getMenuInflater().inflate(R.menu.top_app_bar, menu);
         MenuItem menuItem = menu.findItem(R.id.top_app_search);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint(getString(R.string.ToolBarSearch));
@@ -132,20 +131,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /**
      * Get JSONObject from file
+     *
      * @param fileName
      * @return
      */
-    private JSONArray getJSONObject(String fileName){
-        try(InputStream is = getAssets().open(fileName)) {
+    private JSONArray getJSONObject(String fileName) {
+        try (InputStream is = getAssets().open(fileName)) {
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
             return new JSONArray(new String(buffer, StandardCharsets.UTF_8));
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();//TODO: Handle this
             Log.e("FileNotFoundException", "File Not Found : " + fileName);
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             Log.e("IOException", "IO Exception : " + e);
         } catch (JSONException e) {
@@ -157,9 +157,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.drawer_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SettingsFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
                 break;
             case R.id.homepage:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.advanced_search:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AdvancedSearchFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdvancedSearchFragment()).commit();
 
                 break;
         }
@@ -177,10 +177,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
     }

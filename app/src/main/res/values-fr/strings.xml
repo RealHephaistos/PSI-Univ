@@ -29,6 +29,20 @@
     <string name="drawer_open">Ouvert</string>
     <string name="drawer_close">Fermé</string>
 
+    <!-- English string for the month name-->
+    <string name="January">Janvier</string>
+    <string name="February">Février</string>
+    <string name="March">Mars</string>
+    <string name="April">Avril</string>
+    <string name="May">Mai</string>
+    <string name="June">Juin</string>
+    <string name="July">Juillet</string>
+    <string name="August">Aôut</string>
+    <string name="September">Septembre</string>
+    <string name="October">Otobre</string>
+    <string name="November">Novembre</string>
+    <string name="December">Decembre</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

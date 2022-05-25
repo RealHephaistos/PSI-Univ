@@ -6,6 +6,7 @@
     android:background="@color/white">
 
 
+    <!-- Advanced Search Bar-->
     <EditText
         android:id="@+id/advanced_search_bar"
         android:layout_width="wrap_content"
@@ -17,6 +18,7 @@
         android:minHeight="48dp" /><!--Les commentaires c'est comme ça en XML-->
 
 
+    <!-- Switch for available rooms-->
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_available_room"
         android:layout_width="wrap_content"
@@ -29,6 +31,7 @@
         android:minHeight="48dp"
         android:text="@string/advanced_search_available_roms" />
 
+    <!-- Switch for unavailable rooms-->
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_unavailable_room"
         android:layout_width="wrap_content"
@@ -40,7 +43,7 @@
         android:minHeight="48dp"
         android:text="@string/advanced_search_unavailable_roms" />
 
-
+    <!-- Time Picker -->
     <TextView
         android:id="@+id/time_select"
         android:layout_width="wrap_content"
@@ -56,6 +59,7 @@
         app:drawableTopCompat="@drawable/ic_baseline_access_time_24" />
 
 
+    <!-- Date picker -->
     <RelativeLayout
         android:id="@+id/Date"
         android:layout_width="wrap_content"
@@ -89,6 +93,7 @@
     </RelativeLayout>
 
 
+    <!-- Search Button -->
     <Button
         android:id="@+id/search_button"
         android:layout_width="wrap_content"

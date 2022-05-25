@@ -34,26 +34,29 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
     DatePickerDialog datePickerDialog;
     int timerHour, timerMinute;
 
-    //Fragment
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //Fragment View
         View myView = inflater.inflate(R.layout.fragment_advanced_search, container, false);
 
+        //Variables initialisations
         timer = myView.findViewById(R.id.time_select);
         availableRoom = myView.findViewById(R.id.switch_available_room);
         unavailableRoom = myView.findViewById(R.id.switch_unavailable_room);
         dateButton = myView.findViewById(R.id.date_button);
 
+        //Calendar for the Date Picker
         Calendar cal = Calendar.getInstance();
         int mYear = cal.get(Calendar.YEAR);
         int mMonth = cal.get(Calendar.MONTH);
         int mDay = cal.get(Calendar.DAY_OF_MONTH);
 
+        //Current date as Hint in the Button
         dateButton.setHint(
                 new StringBuilder().append(mDay).append('/').append(mMonth + 1).append('/').append(mYear));
 
+        //On click listener in the fragment view
         availableRoom.setOnClickListener(this);
         unavailableRoom.setOnClickListener(this);
         timer.setOnClickListener(this);
@@ -64,7 +67,7 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.time_select:
+            case R.id.time_select://Timer Picker
                 TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -78,22 +81,21 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
                 timePickerDialog.setTitle(R.string.drawer_close);
                 timePickerDialog.show();
                 break;
-            case R.id.switch_available_room:
+            case R.id.switch_available_room://Message shown with the available rooms switch button
                 if (availableRoom.isChecked()) {
                     Toast.makeText(getActivity(), R.string.advanced_search_available_rooms_toast_on, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), R.string.advanced_search_available_rooms_toast_of, Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case R.id.switch_unavailable_room:
+            case R.id.switch_unavailable_room://Message shown with the available rooms switch button
                 if (unavailableRoom.isChecked()) {
                     Toast.makeText(getActivity(), R.string.advanced_search_unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), R.string.advanced_search_unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case R.id.date_button:
-
+            case R.id.date_button://Date Picker
                 DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -116,47 +118,60 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
         }
     }
 
+    /**
+     * Date to String
+     * @param dayOfMonth
+     * @param month
+     * @param year
+     *
+     * @return A date in a string format
+     */
     private String makeDateString(int dayOfMonth, int month, int year) {
         return getMonthFormat(month) + " " + dayOfMonth + " " + year;
     }
 
+    /**
+     *
+     * @param month
+     * @return The month's name in a string format
+     */
     private String getMonthFormat(int month) {
         if (month == 1){
-            return "JAN";
+            return getString(R.string.January);
         }
         if (month == 2){
-            return "FEB";
+            return getString(R.string.February);
         }
         if (month == 3){
-            return "MAR";
+            return getString(R.string.March);
         }
         if (month == 4){
-            return "APR";
+            return getString(R.string.April);
         }
         if (month == 5){
-            return "MAY";
+            return getString(R.string.May);
         }
         if (month == 6){
-            return "JUN";
+            return getString(R.string.June);
         }
         if (month == 7){
-            return "JUL";
+            return getString(R.string.July);
         }
         if (month == 8){
-            return "AUG";
+            return getString(R.string.August);
         }
         if (month == 9){
-            return "SEP";
+            return getString(R.string.September);
         }
         if (month == 10){
-            return "OCT";
+            return getString(R.string.October);
         }
         if (month == 11){
-            return "NOC";
+            return getString(R.string.November);
         }
         if (month == 12){
-            return "DEC";
+            return getString(R.string.December);
         }
-        return "JAN";
+        return getString(R.string.January);
     }
 }
