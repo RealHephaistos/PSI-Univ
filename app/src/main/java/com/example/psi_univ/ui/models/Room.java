@@ -14,23 +14,33 @@ public class Room {
     public Room(String roomName, List<Event> events) {
         this.roomName = roomName;
         this.events = events;
-        events.sort(Comparator.comparing(Event::getStart));
+        events.sort(Comparator.comparing(Event::getStart)); //TODO: try to implement binary search
     }
 
     public boolean isAvailableAt(Calendar d) {
-        Spliterator<Event> split = events.spliterator();
-        while (split.tryAdvance(e -> {
+        for (Event e : events) {
             if (e.isOverlapping(d)) {
-                return;
+                return false;
             }
-        })) {
-            return false;
+            if(e.getStart().after(d)){
+                return true;
+            }
         }
         return true;
     }
 
     public String getRoomName() {
         return roomName;
+    }
+
+    public Calendar getNextEvent() {
+        Calendar d = Calendar.getInstance();
+        for(Event e : events){
+            if(e.getStart().after(d)){
+                return e.getStart();
+            }
+        }
+        return null;
     }
 
     public static List<Event> dummyEvents() {//TODO remove this

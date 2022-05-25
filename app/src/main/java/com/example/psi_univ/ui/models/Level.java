@@ -40,8 +40,8 @@ public class Level {
         return rooms.size();
     }
 
-    public String getRoomName(int position){
-        return rooms.get(position).getRoomName();
+    public Room getRoomName(int position){
+        return rooms.get(position);
     }
 
     public void setLevelMap(String levelMap) {

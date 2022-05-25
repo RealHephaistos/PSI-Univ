@@ -46,6 +46,7 @@ public class BuildingActivity extends AppCompatActivity {
         for (int i = 0; i < levelsNbr; i++) {
             levels.add(new Level("Level " + (i + 1), buildingName));
         }
+        levels.add(new Level("Sous sol", buildingName));
 
         RecyclerView mapRecycler = findViewById(R.id.mapRecycler);
         mapRecycler.setHasFixedSize(true);

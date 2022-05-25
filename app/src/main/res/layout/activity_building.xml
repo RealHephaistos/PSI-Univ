@@ -11,13 +11,6 @@
         android:background="@color/rennes_gray1"
         android:padding="10dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mapRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -42,14 +35,13 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="41dp"
+                    android:layout_width="18dp"
+                    android:padding="3dp"
                     android:layout_height="80dp"
                     android:background="@android:color/transparent"
                     android:contentDescription="TODO"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_arrow"
-                    android:padding="5dp"
                     tools:ignore="Speak ableTextPresentCheck" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -62,10 +54,20 @@
                     android:fillViewport="false"
                     android:paddingTop="25dp"
                     android:paddingBottom="25dp"
-                    android:requiresFadingEdge="vertical" />
+                    android:requiresFadingEdge="vertical">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
             </LinearLayout>
 
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mapRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
