@@ -16,7 +16,7 @@ Vachez Guillaume
 	-Créations des user cases
 	-Comment récupérer les données pour les emplois du temps ? 
 		-Récupération manuelle depuis l'emploi du temps fournit depuis l'ENT, pas d'avancement car problème avec le site
--Utilisation de tutos en ligne pour comprendre l'utilisation de Android Studio si besoin
+-Utilisation de tutos en ligne pour comprendre l'utilisation de Android Studio
 
 	---10/05/2022---
 
@@ -26,14 +26,19 @@ Vachez Guillaume
 	-Retour sur le traitement des données de l'emploie du temps
 	-La même erreur ce produit
 	-Envoie d'un mail pour savoir si l'erreur est produit à cause de nos manipulations
--Travail sur la partie FrontEnd
+-Utilisation de tutos en ligne pour comprendre l'utilisation de Android Studio
+	
 
 	---11/05/2022---
 
 -Réponse au mail envoyé
 	-Les manipulations que nous avons réalisé ne sont pas spécialement à faire
 	-Nous avons appris que nous avion besoin d'autorisations afin d'utiliser les données de l'emploi du temps
--Travail sur la partie FrontEnd
+-Travail sur la partie FrontEnd et BackEnd
+	-Issameddine : Importation "photoview"
+	-Tony : Ajout barre de menu et icone des paramètres
+	-Morvan : ajout librairie Ical4j pour le traitement des données de l'emploie du temps et création de la classe "Room" ainsi qu'un fichier pour les fichiers.ics
+	-Guillaume :
 
 	---12/05/2022---
 	
@@ -45,11 +50,21 @@ Vachez Guillaume
 	-Demande d'autorisation pour les plans du 1er batiment que nous allons utlisé dans notre projet (Batiment 12D)
 -Nous avons défini des objectifs pour la prochaine réunion
 -Demande d'autorisation pour utiliser les données de l'emploi du temps et les plans du batiment
+-Travail sur la partie FrontEnd et BackEnd
+	-Issameddine :
+	-Tony :
+	-Morvan : Première version du parser, décision de ne plus utliser Ical4j (supression de la libraire) 
+	-Guillaume :Fonction pour récupérer un fichier ics depuis un irl qui va le télécharger dans le dossier ics
 
 	---13/05/2022---
 
 -Relance sur la demande d'autorisation pour utiliser les plans du batiment car incompréhension 
 -Travail sur la partie BackEnd et FrontEnd
+-Travail sur la partie FrontEnd et BackEnd
+	-Issameddine : Tantative de carte avec widget custom / scroll view custom 
+	-Tony : Modification Layout, ajout Material Componnents Android, ajout Toolbar et couleurs de la Fac stocké dans fichiers xml, Icon de recherche et Listener pour le menu et la recherhce
+	-Morvan : Seconde version du parser avec scanner et affichage régler pour les tests.
+	-Guillaume :
 
 	---16/05/2022---
 
@@ -58,12 +73,78 @@ Vachez Guillaume
 	-Pas de nouvelle sur l'autorisation pour utilisé les données de l'emploi di temps
 -Nous avons envoyé un schéma représentant l'interface que nous allons utlisé pour l'affichage des salles afin d'obtenir les autorisations pour les plans du batiment 
 -Travail sur la partie BackEnd et FrontEnd
+-Travail sur la partie FrontEnd et BackEnd
+	-Issameddine : Ajout de la classe CampusMapView qui gère les zoom, Mouvements sur la carte terminés, j'ai commencé à programmer les bat. J'ai pensé à enregistrer les bat préalablement dans un json (voir building_list.json) et le parser ça à chaque démarage du programme. Parsing de JSON permettant de cliquer sur les batiments. Affichage des batiments sur l'application et ajout des fichiers illustrator.
+	-Tony : Ecriture dans la barre de recherche possible. Ajout des différents documents demandés pour le projet.  Créations menu "tiroir" avec différents choix possibles (Acceuil , Lieux, Recherche avancée, Paramètres)
+	-Morvan : 
+	-Guillaume :
 	
 	---17/05/2022---
 
 -Travail sur la partie BackEnd et FrontEnd
 -On a fixé la prochaine mise au point avec notre professeur "suiveur"
+-Travail sur la partie FrontEnd et BackEnd
+	-Issameddine : Modification fichiers illustrator
+	-Tony : Mise a jour menu coulissant / tirroir (Bouton Accueil et création des pages pour la recheche avancé et les paramètres)
+	-Morvan : 
+	-Guillaume :
 
 	---18/05/2022---
 
--Travail sur la partie BackEnd et FrontEnd
+-Travail sur la partie FrontEnd et BackEnd
+	-Issameddine :Ajout de la carte
+	-Tony : Mise a jour page paramètres (Switch affichage des salles, EditText pour la recherche,Bouton pour le choix de l'heure). Mise a jour de ce document
+	-Morvan : 
+	-Guillaume : Base de données en SQL Lite
+
+	---19/05/2022---
+
+-Réunion avec notre professeur "suiveur"
+-Nous avons défini des objectifs pour la prochaine réunion
+-Discussion sur l'avancer de projet
+-Nous avons discuter des autorisations manquantes ( accès aux données des emplois du temps)
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine :Ajout de la carte, réorganisation des packages, ajout du scroller a étage
+	-Tony : Ajout classe pour les fragments des paramètres et la recherche avancée
+	-Morvan : 
+	-Guillaume : 
+
+	---20/05/2022---
+
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine : Suppression du scroller pour un recyclerView et migration vers androidX
+	-Tony : Fragments du menu tiroire clickable et implémentation du sélecteur de temps
+	-Morvan : 
+	-Guillaume : Mise a jour base de données en SQL Lite
+
+	---23/05/2022---
+
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine :Ajout du premier Vector drawable ic_level1.xml . Ajout de la librairie RichPathView. Les paths des plans peuvent être cliqués, ajout de font et changement de la version ciblée a android 26. Ajout de l'animation du nom d'étage
+	-Tony : Selecteur de temps fonctionnel. La langue de base du fichier strings.xml est l'anglais et création du fichier strings.xml en français
+	-Morvan : 
+	-Guillaume : 
+
+	---24/05/2022---
+
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine :Ajout des différents niveau de la carte, des models et création du fragments pour les salles
+	-Tony :  Listener pour les switches et messages, debut recherche avancée avec date
+	-Morvan : 
+	-Guillaume : 
+
+	---25/05/2022---
+
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine :
+	-Tony : Recherche avancée date, commentaire et spécifications, mise a jour du fragments pour les paramètres, mise a jour de ce document
+	-Morvan : 
+	-Guillaume : 
+
+	---26/05/2022---
+
+-Férié
+
+	---27/05/2022---
+
+-Pont
