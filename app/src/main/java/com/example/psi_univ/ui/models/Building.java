@@ -1,11 +1,11 @@
 package com.example.psi_univ.ui.models;
 
 import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Building {
@@ -125,16 +125,6 @@ public class Building {
     }
 
 
-    public void setLevelList(List<Level> levelList) {
-        this.levelList = levelList;
-    }
-
-    public void addLevel(Level level) {
-        if (this.levelList == null) {
-            this.levelList = new ArrayList<>();
-        }
-        this.levelList.add(level);
-    }
 
     private static class Segment {
         private final Vertex p;

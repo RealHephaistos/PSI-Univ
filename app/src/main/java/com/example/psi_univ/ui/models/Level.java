@@ -48,10 +48,7 @@ public class Level {
         this.levelMap = levelMap;
     }
 
-    public void addRoom(Room room){
-        if (this.rooms == null) {
-            this.rooms = new ArrayList<>();
-        }
-        this.rooms.add(room);
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 }

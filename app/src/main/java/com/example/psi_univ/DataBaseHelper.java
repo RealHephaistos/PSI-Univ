@@ -1,24 +1,23 @@
 package com.example.psi_univ;
 
 import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.example.psi_univ.ui.models.Building;
+import com.example.psi_univ.ui.models.Event;
 import com.example.psi_univ.ui.models.Level;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -80,331 +79,158 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean addOneBuilding(BuildingDB buildingDB)
-    {
-        SQLiteDatabase db = this.getReadableDatabase();
-        ContentValues cv = new ContentValues();
-
-        cv.put(COLUMN_BUILDING, buildingDB.getBuilding());
-        cv.put(COLUMN_FLOOR, buildingDB.getFloor());
-        cv.put(COLUMN_NUMBER, buildingDB.getRoom());
-        cv.put(COLUMN_TYPE, buildingDB.getType());
-        cv.put(COLUMN_SIZE, buildingDB.getCapacity());
-        cv.put(COLUMN_INFOS, buildingDB.getInfo());
-
-
-        long insert = db.insert(ROOMS_TABLE, null, cv);
-        return insert != -1;
-    }
-
-    public boolean addOneEvent(EventPSI eventPSI, BuildingDB buildingDB)
-    {
-        SQLiteDatabase db = this.getReadableDatabase();
-        ContentValues cv = new ContentValues();
-
-        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        String start = dateFormat.format(eventPSI.getStartTime());
-        String end = dateFormat.format(eventPSI.getEndTime());
-
-        cv.put(COLUMN_START_EVENT,start);
-        cv.put(COLUMN_END_EVENT,end);
-        cv.put(COLUMN_SUBJECT, eventPSI.getSubject());
-        cv.put(COLUMN_BUILDING, buildingDB.getBuilding());
-        cv.put(COLUMN_NAME, buildingDB.getRoom());
-
-        long insert = db.insert(EVENTS_TABLE, null, cv);
-        return insert != -1;
-
-    }
-
-    public boolean addOneImage (BuildingDB buildingDB, String text){
-        SQLiteDatabase db = this.getReadableDatabase();
-        ContentValues cv = new ContentValues();
-
-        cv.put(COLUMN_BUILDING, buildingDB.getBuilding());
-        cv.put(COLUMN_FLOOR, buildingDB.getFloor());
-        cv.put(COLUMN_IMAGES, text);
-
-
-        long insert = db.insert(IMAGES_TABLE, null, cv);
-        return insert != -1;
-    }
-
-    public List<EventPSI> getEvent() throws ParseException {
-
-        List<EventPSI> returnList = new ArrayList<>();
-
-        String queryString = "SELECT * FROM " + EVENTS_TABLE;
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.rawQuery(queryString,null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                String eventStart = cursor.getString(0);
-                String eventEnd = cursor.getString(1);
-                String eventSubject = cursor.getString(2);
-                String eventBuilding = cursor.getString(3);
-                String eventRoom = cursor.getString(4);
-
-                EventPSI eventPSI = new EventPSI();
-                @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-                Date start = dateFormat.parse(eventStart);
-                Date end = dateFormat.parse(eventEnd);
-                eventPSI.setStartTime(start);
-                eventPSI.setEndTime(end);
-                eventPSI.setSubject(eventSubject);
-                returnList.add(eventPSI);
-
-            }while (cursor.moveToNext());
-
-
-        }
-        else {}
-
-        cursor.close();
-        db.close();
-
-
-        return returnList;
-    }
-
-    public List<Building> getBuildings() {
+    /*
+    @return List<Building> : A list with all building, building's level, image and room's level, events of rooms
+     */
+    public List<Building> getBuildings() throws ParseException {
         List<Building> returnList = new ArrayList<>();
 
         String queryStringBuilding = "SELECT DISTINCT " + COLUMN_BUILDING + " FROM " + ROOMS_TABLE
                 + " ORDER BY " + COLUMN_BUILDING + " ASC";
 
-        String queryStringFloor;
-        String queryStringRoom;
-        String queryStringMap;
+
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursorBuilding = db.rawQuery(queryStringBuilding,null);
-        Cursor cursorFloor = null;
-        Cursor cursorMap = null;
-        Cursor cursorRoom = null;
 
         if (cursorBuilding.moveToFirst()) {
             do { //fetch building
-                Building building = new Building(cursorBuilding.getString(0),null );
-
-
-                queryStringFloor = "SELECT DISTINCT " + COLUMN_FLOOR + " FROM " + ROOMS_TABLE
-                        + " WHERE " + COLUMN_BUILDING + " = '" + building.getName() + "'"
-                        + " ORDER BY " + COLUMN_BUILDING + " ASC, "
-                        + COLUMN_FLOOR + " ASC";
-                cursorFloor = db.rawQuery(queryStringFloor,null);
-
-                if (cursorFloor.moveToFirst()) {
-                    do{ //fetch levels
-                        Level level = new Level(cursorFloor.getString(0),null);
-
-                        queryStringMap = "SELECT DISTINCT " + COLUMN_IMAGES + " FROM " + IMAGES_TABLE
-                                + " WHERE " + COLUMN_BUILDING + " = '" + building.getName() + "'"
-                                + " AND " + COLUMN_FLOOR + " = '" + level.getLevelName() + "'";
-                        cursorMap = db.rawQuery(queryStringMap,null);
-
-                        if (cursorMap.moveToFirst()) {
-                            level.setLevelMap(cursorMap.getString(0));
-                        }
-
-                        queryStringRoom = "SELECT DISTINCT " + COLUMN_NUMBER + " FROM " + ROOMS_TABLE
-                                + " WHERE " + COLUMN_BUILDING + " = '" + building.getName()+"'"
-                                + " AND " + COLUMN_FLOOR + " = " + level.getLevelName()
-                                + " ORDER BY " + COLUMN_NUMBER + " ASC;";
-                        cursorRoom = db.rawQuery(queryStringRoom,null);
-                        if (cursorRoom.moveToFirst()) {
-                            do { //fetch rooms
-                                com.example.psi_univ.ui.models.Room room = new com.example.psi_univ.ui.models.Room(cursorRoom.getString(0), null);
-                                level.addRoom(room);
-                            } while (cursorRoom.moveToNext());
-                        }
-
-                        building.addLevel(level);
-
-                    }while (cursorFloor.moveToNext());
-                }
+                String res = cursorBuilding.getString(0);
+                Building building = new Building(res,getLevels(res) );
                 returnList.add(building);
 
             }while (cursorBuilding.moveToNext());
 
 
         }
-        else {}
 
         cursorBuilding.close();
-        cursorFloor.close();
-        cursorMap.close();
-        cursorRoom.close();
         db.close();
 
 
         return returnList;
     }
 
-    public List<Building> getAllBuildingsOnly() {
-        List<Building> returnList = new ArrayList<>();
-
-        String queryStringBuilding = "SELECT DISTINCT " + COLUMN_BUILDING + " FROM " + ROOMS_TABLE
-                + " ORDER BY " + COLUMN_BUILDING + " ASC";
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursorBuilding = db.rawQuery(queryStringBuilding,null);
-
-        if (cursorBuilding.moveToFirst()) {
-            do {
-                Building building = new Building(cursorBuilding.getString(0), null);
-
-                returnList.add(building);
-            } while (cursorBuilding.moveToNext());
-        }
-        else {}
-
-        cursorBuilding.close();
-        db.close();
-
-        return returnList;
-    }
-
-    public List<Building> getAllFloors() {
-        List<Building> returnList = new ArrayList<>();
-
-        String queryStringBuilding = "SELECT DISTINCT " + COLUMN_BUILDING + " FROM " + ROOMS_TABLE
-                + " ORDER BY " + COLUMN_BUILDING + " ASC";
-
-        String queryStringFloor;
-
-        String queryStringRoom;
+    /*
+        @param buildingName : The name of the building you search
+        @param List<Level> : A list of all the level with their room and room's event
+         */
+    private List<Level> getLevels(String buildingName) throws ParseException {
+        List<Level> returnLevels = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursorBuilding = db.rawQuery(queryStringBuilding,null);
-        Cursor cursorFloor = null;
-        Cursor cursorRoom = null;
-
-        if (cursorBuilding.moveToFirst()) {
-            do {
-                Building building = new Building(cursorBuilding.getString(0),null );
-                Log.d("TEST",cursorBuilding.getString(0)+" "+building.getName());
-
-
-                queryStringFloor = "SELECT DISTINCT " + COLUMN_FLOOR + " FROM " + ROOMS_TABLE
-                        + " WHERE " + COLUMN_BUILDING + " = '" + building.getName() + "'"
-                        + " ORDER BY " + COLUMN_BUILDING + " ASC, "
-                        + COLUMN_FLOOR + " ASC";
-                cursorFloor = db.rawQuery(queryStringFloor,null);
-
-                if (cursorFloor.moveToFirst()) {
-                    do{
-                        Level level = new Level(cursorFloor.getString(0),null);
-
-                        building.addLevel(level);
-
-                    }while (cursorFloor.moveToNext());
-                }
-                returnList.add(building);
-
-            }while (cursorBuilding.moveToNext());
-
-
-        }
-        else {}
-
-        cursorBuilding.close();
-        cursorFloor.close();
-        db.close();
-
-
-        return returnList;
-    }
-
-    public void getFloorFromBuilding(String building){
-
-    }
-
-    public Level getSpecificFloor(String building, String floor) {
-        String queryStringRoom;
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursorRoom = null;
-
-        Level returnLevel = new Level(floor,null);
-        queryStringRoom = "SELECT DISTINCT " + COLUMN_NUMBER + " FROM " + ROOMS_TABLE
-                + " WHERE " + COLUMN_BUILDING + " = '" + building + "'"
-                + " AND " + COLUMN_FLOOR + " = " + floor
-                + " ORDER BY " + COLUMN_NUMBER + " ASC;";
-        cursorRoom = db.rawQuery(queryStringRoom,null);
-        if (cursorRoom.moveToFirst()){
-            do {
-                com.example.psi_univ.ui.models.Room room = new com.example.psi_univ.ui.models.Room(cursorRoom.getString(0), null);
-                returnLevel.addRoom(room);
-            } while (cursorRoom.moveToNext());
-        }
-
-
-        cursorRoom.close();
-        db.close();
-
-
-        return returnLevel;
-    }
-
-    public Building getSpecificBuilding(String building) {
-        String queryStringFloor;
-        String queryStringRoom;
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursorFloor = null;
-        Cursor cursorRoom = null;
-
-        Building returnBuilding = new Building(building,null );
-
-
-        queryStringFloor = "SELECT DISTINCT " + COLUMN_FLOOR + " FROM " + ROOMS_TABLE
-                + " WHERE " + COLUMN_BUILDING + " = '" + building + "'"
+        String queryStringFloor = "SELECT DISTINCT " + COLUMN_FLOOR + " FROM " + ROOMS_TABLE
+                + " WHERE " + COLUMN_BUILDING + " = '" + buildingName + "'"
                 + " ORDER BY " + COLUMN_BUILDING + " ASC, "
                 + COLUMN_FLOOR + " ASC";
-        cursorFloor = db.rawQuery(queryStringFloor,null);
+        Cursor cursorFloor = db.rawQuery(queryStringFloor,null);
 
         if (cursorFloor.moveToFirst()) {
-            do{
+            do{ //fetch levels
                 Level level = new Level(cursorFloor.getString(0),null);
-                queryStringRoom = "SELECT DISTINCT " + COLUMN_NUMBER + " FROM " + ROOMS_TABLE
-                        + " WHERE " + COLUMN_BUILDING + " = '" + building + "'"
-                        + " AND " + COLUMN_FLOOR + " = " + level.getLevelName()
-                        + " ORDER BY " + COLUMN_NUMBER + " ASC;";
-                cursorRoom = db.rawQuery(queryStringRoom,null);
 
-                if (cursorRoom.moveToFirst()) {
-                    do {
-                        com.example.psi_univ.ui.models.Room room = new com.example.psi_univ.ui.models.Room(cursorRoom.getString(0), null);
+                level.setLevelMap(getLevelMap(buildingName,level.getLevelName()));
 
-                        level.addRoom(room);
+                level.setRooms(getRooms(buildingName,level.getLevelName()));
 
-                    } while (cursorRoom.moveToNext());
-                }
-
-                returnBuilding.addLevel(level);
+                returnLevels.add(level);
 
             }while (cursorFloor.moveToNext());
         }
+
         cursorFloor.close();
-        cursorRoom.close();
-        db.close();
-
-
-        return returnBuilding;
+        return  returnLevels;
     }
 
-    public String getLevelMap(String buildingName, String levelName) {
+    /*
+    @param buildingName :  Name of the building you search
+    @param levelName : Name of the level's building you search
+    @retrun String : The map of the level
+     */
+    private String getLevelMap(String buildingName, String levelName) {
+        String queryString = "SELECT "+ COLUMN_IMAGES + " FROM " + IMAGES_TABLE
+                + " WHERE " + COLUMN_BUILDING + " = '" + buildingName + "'"
+                + " AND " + COLUMN_FLOOR + " = '" + levelName + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString,null);
+        String returnMap = "";
 
+        if(cursor.moveToFirst()){
+            returnMap = cursor.getString(0);
+        }
 
-        return "";
+        cursor.close();
+        db.close();
+        return returnMap;
+    }
+
+    /*
+    @param buildingName :  Name of the building you search
+    @param levelName : Name of the level's building you search
+    @return List<Room> : A list of all the rooms and their events
+     */
+    private List<com.example.psi_univ.ui.models.Room> getRooms(String buildingName, String levelName) throws ParseException {
+        List<com.example.psi_univ.ui.models.Room> returnRooms = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String queryStringRoom = "SELECT DISTINCT " + COLUMN_NUMBER + " FROM " + ROOMS_TABLE
+                + " WHERE " + COLUMN_BUILDING + " = '" + buildingName+"'"
+                + " AND " + COLUMN_FLOOR + " = '" + levelName + "'"
+                + " ORDER BY " + COLUMN_NUMBER + " ASC;";
+
+        Cursor cursorRoom = db.rawQuery(queryStringRoom,null);
+
+        if (cursorRoom.moveToFirst()) {
+            do { //fetch rooms
+                String res = cursorRoom.getString(0);
+                com.example.psi_univ.ui.models.Room room = new com.example.psi_univ.ui.models.Room(res, getEvents(buildingName,res));
+                returnRooms.add(room);
+            } while (cursorRoom.moveToNext());
+        }
+        cursorRoom.close();
+        return returnRooms;
+    }
+
+    /*
+    @param buildingName : The name of the building you search
+    @param roomName : The name of the room you search
+    @return List<Event> : A list of all event in a room
+     */
+    private List<Event> getEvents (String buildingName, String roomName) throws ParseException {
+        List<Event> returnEvents = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String queryStringEvent = "SELECT * FROM " + EVENTS_TABLE
+                + " WHERE " + COLUMN_BUILDING + " = '" + buildingName + "'"
+                + " AND " + COLUMN_NAME + " = '" + roomName + "'"
+                + " ORDER BY " + COLUMN_BUILDING + " ASC, "
+                + COLUMN_NAME + " ASC";
+        Cursor cursorEvent = db.rawQuery(queryStringEvent,null);
+
+        if (cursorEvent.moveToFirst()) {
+            do {
+                String eventStart = cursorEvent.getString(0);
+                String eventEnd = cursorEvent.getString(1);
+                String eventSubject = cursorEvent.getString(2);
+                String eventBuilding = cursorEvent.getString(3);
+                String eventRoom = cursorEvent.getString(4);
+
+                Calendar calendarStart = Calendar.getInstance();
+                Calendar calendarEnd = Calendar.getInstance();
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.FRANCE);
+                calendarStart.setTime(dateFormat.parse(eventStart));
+                calendarEnd.setTime(dateFormat.parse(eventEnd));
+                Event event = new Event(calendarStart,calendarEnd);
+                returnEvents.add(event);
+
+            } while (cursorEvent.moveToNext());
+        }
+
+        cursorEvent.close();
+        return returnEvents;
     }
 }
