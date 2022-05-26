@@ -8,7 +8,7 @@ import java.util.List;
 public class Level {
     private final String levelName;
     private final String buildingName;
-    private final List<Room> rooms = new ArrayList<>(); //TODO: change to List<Room>
+    private List<Room> rooms = new ArrayList<>(); //TODO: change to List<Room>
     private String levelMap;
 
     public Level(String levelName, String buildingName) {
@@ -46,5 +46,12 @@ public class Level {
 
     public void setLevelMap(String levelMap) {
         this.levelMap = levelMap;
+    }
+
+    public void addRoom(Room room){
+        if (this.rooms == null) {
+            this.rooms = new ArrayList<>();
+        }
+        this.rooms.add(room);
     }
 }
