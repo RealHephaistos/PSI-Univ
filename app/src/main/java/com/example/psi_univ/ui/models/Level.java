@@ -1,5 +1,9 @@
 package com.example.psi_univ.ui.models;
 
+import android.graphics.drawable.VectorDrawable;
+
+import androidx.core.graphics.PathParser;
+
 import com.example.psi_univ.R;
 
 import java.util.ArrayList;
@@ -7,28 +11,23 @@ import java.util.List;
 
 public class Level {
     private final String levelName;
-    private final String buildingName;
-    private List<Room> rooms = new ArrayList<>(); //TODO: change to List<Room>
-    private String levelMap;
+    private List<Room> rooms = new ArrayList<>();
 
-    public Level(String levelName, String buildingName) {
+    public Level(String levelName, List<Room> rooms) {
         this.levelName = levelName;
-        this.buildingName = buildingName;
 
         //TODO: get rooms from database
+        rooms = new ArrayList<>();
         for(int i = 50; i <= 60; i++){
             rooms.add(new Room ("i-" + i, Room.dummyEvents()));
         }
-
         rooms.add(new Room ("amphi-p", Room.dummyEvents()));
+
+        this.rooms = rooms;
     }
 
     public String getLevelName() {
         return levelName;
-    }
-
-    public String getBuildingName() {
-        return buildingName;
     }
 
     public int getLevelMap() {
@@ -40,12 +39,8 @@ public class Level {
         return rooms.size();
     }
 
-    public Room getRoomName(int position){
+    public Room getRoomAt(int position){
         return rooms.get(position);
-    }
-
-    public void setLevelMap(String levelMap) {
-        this.levelMap = levelMap;
     }
 
     public void setRooms(List<Room> rooms) {

@@ -79,7 +79,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    /*
+    /**
     @return List<Building> : A list with all building, building's level, image and room's level, events of rooms
      */
     public List<Building> getBuildings() throws ParseException {
@@ -112,7 +112,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
-    /*
+    /**
         @param buildingName : The name of the building you search
         @param List<Level> : A list of all the level with their room and room's event
          */
@@ -131,7 +131,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             do{ //fetch levels
                 Level level = new Level(cursorFloor.getString(0),null);
 
-                level.setLevelMap(getLevelMap(buildingName,level.getLevelName()));
+                //level.setLevelMap(getLevelMap(buildingName,level.getLevelName()));
 
                 level.setRooms(getRooms(buildingName,level.getLevelName()));
 
@@ -144,7 +144,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return  returnLevels;
     }
 
-    /*
+    /**
     @param buildingName :  Name of the building you search
     @param levelName : Name of the level's building you search
     @retrun String : The map of the level
@@ -166,7 +166,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnMap;
     }
 
-    /*
+    /**
     @param buildingName :  Name of the building you search
     @param levelName : Name of the level's building you search
     @return List<Room> : A list of all the rooms and their events
@@ -194,7 +194,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnRooms;
     }
 
-    /*
+    /**
     @param buildingName : The name of the building you search
     @param roomName : The name of the room you search
     @return List<Event> : A list of all event in a room
@@ -224,7 +224,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.FRANCE);
                 calendarStart.setTime(dateFormat.parse(eventStart));
                 calendarEnd.setTime(dateFormat.parse(eventEnd));
-                Event event = new Event(calendarStart,calendarEnd);
+                Event event = new Event(calendarStart,calendarEnd,"TODO"); //TODO : revoir ça
                 returnEvents.add(event);
 
             } while (cursorEvent.moveToNext());

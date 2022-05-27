@@ -13,10 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.github.chrisbanes.photoview.PhotoView
+
+        <com.example.psi_univ.ui.adapters.MapPhotoView
             android:id="@+id/map"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
 
         <FrameLayout
             android:id="@+id/fragment_container"

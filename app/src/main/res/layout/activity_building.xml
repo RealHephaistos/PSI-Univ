@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -25,49 +24,36 @@
                 android:gravity="top"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="0dp"
+                android:paddingBottom="5dp"
                 android:textColor="@color/rennes_gray5"
-                android:textSize="64sp"
-                android:paddingBottom="5dp"/>
+                android:textSize="64sp" />
 
-            <LinearLayout
+            <com.example.psi_univ.ui.adapters.LevelNameRecycler
+                android:id="@+id/nameRecycler"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="80dp"
+                android:clipToPadding="false"
+                android:fadingEdge="vertical"
+                android:fadingEdgeLength="30dp"
+                android:fillViewport="false"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:requiresFadingEdge="vertical">
 
-                <ImageButton
-                    android:layout_width="18dp"
-                    android:padding="3dp"
-                    android:layout_height="80dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="TODO"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_arrow"
-                    tools:ignore="Speak ableTextPresentCheck" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/levelRecycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:clipToPadding="false"
-                    android:fadingEdge="vertical"
-                    android:fadingEdgeLength="30dp"
-                    android:fillViewport="false"
-                    android:paddingTop="25dp"
-                    android:paddingBottom="25dp"
-                    android:requiresFadingEdge="vertical">
-
-                </androidx.recyclerview.widget.RecyclerView>
-
-            </LinearLayout>
+            </com.example.psi_univ.ui.adapters.LevelNameRecycler>
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.example.psi_univ.ui.adapters.LevelMapRecycler
             android:id="@+id/mapRecycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="-10dp"
+            android:layout_marginBottom="-10dp"
+            android:overScrollMode="never">
 
-        </androidx.recyclerview.widget.RecyclerView>
+        </com.example.psi_univ.ui.adapters.LevelMapRecycler>
+
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

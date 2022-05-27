@@ -1,7 +1,9 @@
 package com.example.psi_univ;
 
+import com.example.psi_univ.ui.models.Room;
+
 import java.io.File;
-import java.io.FileInputStream;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -57,12 +59,13 @@ public class IcsToRooms {
                 String name = i.substring(9);
                 int indiceRoom = -1;
                 for(int j = 0; j < rooms.size();j++){
-                    if(rooms.get(j).getName().compareTo(name) == 0) indiceRoom = j;
+                    if(rooms.get(j).getRoomName().compareTo(name) == 0) indiceRoom = j;
                 }
                 if(indiceRoom == -1) {
                     List<EventPSI> events = new ArrayList<>();
                     events.add(tmpEvent);
-                    rooms.add(new Room(name,events));
+                    rooms.add(new Room(name,events,false));
+                    //TODO: Faudrait qu'on discute de la mise en commun
                 }
                 else{
                     Room actualRoom = rooms.get(indiceRoom);
