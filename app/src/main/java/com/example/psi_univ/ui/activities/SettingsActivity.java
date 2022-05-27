@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.psi_univ.R;
+import com.example.psi_univ.ui.fragments.SettingsFragment;
 
 
 public class SettingsActivity extends AppCompatActivity {
@@ -31,5 +32,12 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        if (findViewById(R.id.settings_container) != null) {
+            if (savedInstanceState != null){
+                return;
+            }
+
+            getFragmentManager().beginTransaction().add(R.id.settings_container, new SettingsFragment()).commit();
+        }
     }
 }

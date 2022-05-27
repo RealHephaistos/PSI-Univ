@@ -17,4 +17,12 @@
         app:title="@string/Settings"
         app:titleTextColor="@color/white" />
 
+    <FrameLayout
+        android:layout_below="@id/ToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/settings_container">
+
+    </FrameLayout>
+
 </RelativeLayout>
