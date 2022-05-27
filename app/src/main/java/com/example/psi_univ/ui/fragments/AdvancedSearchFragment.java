@@ -16,7 +16,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
@@ -26,12 +28,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+
 public class AdvancedSearchFragment extends Fragment implements View.OnClickListener {
     TextView timer;
     SwitchCompat availableRoom;
     SwitchCompat unavailableRoom;
     Button dateButton;
     DatePickerDialog datePickerDialog;
+    private Toolbar toolbar;
+
     int timerHour, timerMinute;
 
     @Nullable
@@ -45,6 +50,8 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
         availableRoom = myView.findViewById(R.id.switch_available_room);
         unavailableRoom = myView.findViewById(R.id.switch_unavailable_room);
         dateButton = myView.findViewById(R.id.date_button);
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.drawer_advanced_search);
 
         //Calendar for the Date Picker
         Calendar cal = Calendar.getInstance();

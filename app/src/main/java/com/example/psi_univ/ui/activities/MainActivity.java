@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.drawer_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
+               startActivity(new Intent(this,SettingsActivity.class));
                 break;
             case R.id.homepage:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

@@ -20,7 +20,6 @@
     <string name="advanced_search_unavailable_rooms_toast_of">Unavailable rooms will not be shown</string>
 
 
-
     <!-- English strings for the toolbar -->
     <string name="ToolBar">PSI-Univ</string>
     <string name="ToolBarSearch">Research</string>
@@ -44,7 +43,6 @@
     <string name="October">October</string>
     <string name="November">November</string>
     <string name="December">December</string>
-
 
 
     <!-- TODO: Remove or change this placeholder text -->
