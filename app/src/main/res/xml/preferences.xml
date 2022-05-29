@@ -1,14 +1,27 @@
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:key="first_preferencescreen">
-    <CheckBoxPreference
-        android:key="wifi enabled"
-        android:title="WiFi" />
-    <PreferenceScreen
-        android:key="second_preferencescreen"
-        android:title="WiFi settings">
-        <CheckBoxPreference
-            android:key="prefer wifi"
-            android:title="Prefer WiFi" />
-    </PreferenceScreen>
+    <PreferenceCategory
+        android:key="key_user_category"
+        android:title="@string/User">
+
+        <ListPreference
+            android:defaultValue="@string/defaultLanguage"
+            android:entries="@array/languageList"
+            android:entryValues="@array/languageListValue"
+            android:key="key_langage"
+            android:summary="@string/Language_Summary"
+            android:title="@string/Language">
+        </ListPreference>
+
+        <ListPreference
+            android:defaultValue="@string/defaultDateFomrat"
+            android:entries="@array/dateFormatList"
+            android:entryValues="@array/dateFormatListValue"
+            android:key="key_date_format"
+            android:summary="@string/dateFormat_summary"
+            android:title="@string/dateFormat">
+        </ListPreference>
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

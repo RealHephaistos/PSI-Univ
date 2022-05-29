@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="languageList">
+        <item>Français</item>
+        <item>Anglais</item>
+    </string-array>
+
+    <string-array name="languageListValue">
+        <item>FRE</item>
+        <item>ENG</item>
+    </string-array>
+
+    <string-array name="dateFormatList">
+        <item>Jour/Mois/Année</item>
+        <item>Mois/Jour/Année</item>
+        <item>Année/Mois/Jour</item>
+    </string-array>
+
+    <string-array name="dateFormatListValue">
+        <item>dd/mm/yyyy</item>
+        <item>mm/dd/yyyy</item>
+        <item>yyyy/mm/dd</item>
+    </string-array>
+
+</resources>

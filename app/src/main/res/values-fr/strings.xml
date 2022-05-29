@@ -43,6 +43,15 @@
     <string name="November">Novembre</string>
     <string name="December">Decembre</string>
 
+    <!-- English string for the settings-->
+    <string name="defaultLanguage">Français</string>
+    <string name="defaultDateFomrat">Jour/Mois/Année</string>
+    <string name="User">User</string>
+    <string name="Language">Langue</string>
+    <string name="dateFormat">Format de la Date</string>
+    <string name="dateFormat_summary">Changer le format de la date</string>
+    <string name="Language_Summary">Changer la langue</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
