@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.psi_univ.DataBaseHelper;
 import com.example.psi_univ.R;
 import com.example.psi_univ.ui.adapters.LevelNameAdapter;
 import com.example.psi_univ.ui.adapters.LevelMapRecycler;
 import com.example.psi_univ.ui.adapters.LevelMapRecyclerAdapter;
 import com.example.psi_univ.ui.adapters.LevelNameRecycler;
+import com.example.psi_univ.ui.models.Building;
 import com.example.psi_univ.ui.models.Level;
 
 import java.util.ArrayList;
@@ -33,6 +35,8 @@ public class BuildingActivity extends AppCompatActivity {
         String buildingName = intent.getStringExtra("building");
         TextView buildingNameTextView = findViewById(R.id.buildingName);
         buildingNameTextView.setText(buildingName);
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+        Building building = dataBaseHelper.getBuilding(buildingName);
 
         int levelsNbr = 4; //TODO: get levels from database
         List<Level> levels = new ArrayList<>();

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Room {
     private final String roomName;
-    private final List<Event> events;
+    private List<Event> events;
 
     public Room(String roomName, List<Event> events) {
         this.roomName = roomName;
@@ -80,5 +80,9 @@ public class Room {
             events.add(event);
         }
         return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }

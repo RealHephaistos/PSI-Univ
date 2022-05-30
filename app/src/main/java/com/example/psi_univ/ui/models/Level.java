@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Level {
     private final String levelName;
-    private List<Room> rooms = new ArrayList<>();
+    private List<Room> rooms;
 
     public Level(String levelName, List<Room> rooms) {
         this.levelName = levelName;
