@@ -6,8 +6,8 @@
     </string-array>
 
     <string-array name="languageListValue">
-        <item>ENG</item>
         <item>FRE</item>
+        <item>ENG</item>
     </string-array>
 
     <string-array name="dateFormatList">
