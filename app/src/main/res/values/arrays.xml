@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="languageList">
-        <item>French</item>
         <item>English</item>
+        <item>French</item>
     </string-array>
 
     <string-array name="languageListValue">
-        <item>FRE</item>
         <item>ENG</item>
+        <item>FRE</item>
     </string-array>
 
     <string-array name="dateFormatList">

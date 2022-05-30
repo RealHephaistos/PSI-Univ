@@ -8,7 +8,7 @@
             android:defaultValue="@string/defaultLanguage"
             android:entries="@array/languageList"
             android:entryValues="@array/languageListValue"
-            android:key="key_langage"
+            android:key="key_language"
             android:summary="@string/Language_Summary"
             android:title="@string/Language">
         </ListPreference>

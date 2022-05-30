@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.psi_univ.R;
 import com.example.psi_univ.ui.fragments.SettingsFragment;
+
 
 
 public class SettingsActivity extends AppCompatActivity {
@@ -40,4 +44,5 @@ public class SettingsActivity extends AppCompatActivity {
             getFragmentManager().beginTransaction().add(R.id.settings_container, new SettingsFragment()).commit();
         }
     }
+
 }
