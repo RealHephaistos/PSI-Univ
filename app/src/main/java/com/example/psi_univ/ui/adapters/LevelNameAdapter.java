@@ -26,7 +26,7 @@ public class LevelNameAdapter extends RecyclerView.Adapter<LevelNameAdapter.Leve
     @Override
     public LevelNameViewHolders onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.text_view, parent, false);
-        Log.d("LevelNameAdapter", "onCreateViewHolder: "+ v.getHeight());
+        Log.d("LevelNameAdapter", "onCreateViewHolder: " + v.getHeight());
         return new LevelNameViewHolders(v);
     }
 
@@ -41,7 +41,7 @@ public class LevelNameAdapter extends RecyclerView.Adapter<LevelNameAdapter.Leve
         return levels.size();
     }
 
-    public static class LevelNameViewHolders extends RecyclerView.ViewHolder{
+    public static class LevelNameViewHolders extends RecyclerView.ViewHolder {
         final TextView levelNameTextView;
 
         public LevelNameViewHolders(@NonNull View itemView) {

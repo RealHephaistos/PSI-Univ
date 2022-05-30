@@ -1,29 +1,19 @@
 package com.example.psi_univ.ui.fragments;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
-import android.view.Display;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.preference.PreferenceFragment;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
 import com.example.psi_univ.R;
-import com.example.psi_univ.ui.activities.SettingsActivity;
 
 import java.util.Locale;
 
@@ -39,8 +29,8 @@ public class SettingsFragment extends PreferenceFragment {
                 preference.setSummary(listPreference.getEntries()[index]);
             }
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(preference.getContext());
-            if (sharedPreferences.getString("key_language","").compareTo("FRE")==0){
-                Toast.makeText(getContext(), sharedPreferences.getString("key_language",""), Toast.LENGTH_SHORT).show();
+            if (sharedPreferences.getString("key_language", "").compareTo("FRE") == 0) {
+                Toast.makeText(getContext(), sharedPreferences.getString("key_language", ""), Toast.LENGTH_SHORT).show();
 
                 setLocal("fr");
             }
@@ -54,12 +44,12 @@ public class SettingsFragment extends PreferenceFragment {
         listener.onPreferenceChange(preference, PreferenceManager.getDefaultSharedPreferences(preference.getContext()).getString(preference.getKey(), ""));
     }
 
-    private void setLocal(String code){
+    private void setLocal(String code) {
         Resources resources = Resources.getSystem();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         Configuration configuration = resources.getConfiguration();
         configuration.setLocale(new Locale(code));
-        resources.updateConfiguration(configuration,metrics);
+        resources.updateConfiguration(configuration, metrics);
         onConfigurationChanged(configuration);
     }
 

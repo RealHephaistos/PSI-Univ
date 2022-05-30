@@ -9,7 +9,6 @@ import android.widget.ImageView;
 
 import com.example.psi_univ.R;
 import com.example.psi_univ.ui.activities.BuildingActivity;
-import com.github.chrisbanes.photoview.OnPhotoTapListener;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -39,8 +38,8 @@ public class MapPhotoView extends PhotoView {
             int eventType = xml.getEventType();
             while (eventType != XmlResourceParser.END_DOCUMENT) {
                 if (eventType == XmlResourceParser.START_TAG) {
-                    if(xml.getName().equals("area")){
-                        polygons.add(new Polygon(xml.getAttributeValue(null,"coords"), xml.getAttributeValue(null,"title")));
+                    if (xml.getName().equals("area")) {
+                        polygons.add(new Polygon(xml.getAttributeValue(null, "coords"), xml.getAttributeValue(null, "title")));
                     }
                 }
                 eventType = xml.next();
@@ -57,8 +56,8 @@ public class MapPhotoView extends PhotoView {
 
         //Set the onTouchListener
         setOnPhotoTapListener((view, x, y) -> {
-            for(Polygon poly : polygons){
-                if(poly.isInsidePolygon(x,y,width,height)){
+            for (Polygon poly : polygons) {
+                if (poly.isInsidePolygon(x, y, width, height)) {
                     Intent intent = new Intent(context, BuildingActivity.class);
                     intent.putExtra("building", poly.getName());
                     context.startActivity(intent);
@@ -67,7 +66,7 @@ public class MapPhotoView extends PhotoView {
         });
     }
 
-    private static class Polygon{
+    private static class Polygon {
         private final List<Vertex> vertices;
         private final String name;
 
@@ -75,8 +74,8 @@ public class MapPhotoView extends PhotoView {
             this.vertices = new ArrayList<>();
             this.name = name;
 
-           String[] verticesArray = verticesString.split(",");
-            for(int i = 0; i < verticesArray.length; i+=2){
+            String[] verticesArray = verticesString.split(",");
+            for (int i = 0; i < verticesArray.length; i += 2) {
                 vertices.add(new Vertex(Integer.parseInt(verticesArray[i]), Integer.parseInt(verticesArray[i + 1])));
             }
         }
@@ -85,23 +84,23 @@ public class MapPhotoView extends PhotoView {
             return name;
         }
 
-        public boolean isInsidePolygon(float x, float y, float width, float height){
+        public boolean isInsidePolygon(float x, float y, float width, float height) {
             float trueX = x * width;
             float trueY = y * height;
             float slope;
             Vertex lastVertex = vertices.get(vertices.size() - 1);
 
-            for (Vertex vertex: vertices) {
-                if(vertex.x == trueX && vertex.y == trueY){
+            for (Vertex vertex : vertices) {
+                if (vertex.x == trueX && vertex.y == trueY) {
                     return true;
                 }
 
-                if((vertex.y > trueY) != (lastVertex.y > trueY)){
+                if ((vertex.y > trueY) != (lastVertex.y > trueY)) {
                     slope = (x - vertex.x) * (lastVertex.y - vertex.y) - (y - vertex.y) * (lastVertex.x - vertex.x);
-                    if(slope == 0){
+                    if (slope == 0) {
                         return true;
                     }
-                    if(slope > 0){
+                    if (slope > 0) {
                         return false;
                     }
                 }
@@ -110,7 +109,7 @@ public class MapPhotoView extends PhotoView {
         }
     }
 
-    private static class Vertex{
+    private static class Vertex {
         private final int x;
         private final int y;
 

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<maps xmlns:android="http://schemas.android.com/apk/res/android">
-    <map name = "campus">
-        <area  alt="" title="B12D" shape="poly" coords="974,2214,990,2254,1021,2243,1075,2386,1190,2340,1138,2199,1284,2142,1265,2100,1075,2165,1065,2138,1031,2150,1039,2178" style="outline:none;" target="_self"     />
+<maps>
+    <map name="campus">
+        <area
+            style="outline:none;"
+            alt=""
+            coords="974,2214,990,2254,1021,2243,1075,2386,1190,2340,1138,2199,1284,2142,1265,2100,1075,2165,1065,2138,1031,2150,1039,2178"
+            shape="poly"
+            target="_self"
+            title="B12D" />
     </map>
 </maps>

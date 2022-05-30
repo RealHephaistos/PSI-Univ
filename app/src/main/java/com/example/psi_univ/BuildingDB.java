@@ -21,44 +21,44 @@ public class BuildingDB {
         return building;
     }
 
-    public String getRoom() {
-        return room;
-    }
-
-    public int getFloor() {
-        return floor;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public int getType() {
-        return type;
-    }
-
     public void setBuilding(String building) {
         this.building = building;
+    }
+
+    public String getRoom() {
+        return room;
     }
 
     public void setRoom(String room) {
         this.room = room;
     }
 
+    public int getFloor() {
+        return floor;
+    }
+
     public void setFloor(int floor) {
         this.floor = floor;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
+    public String getInfo() {
+        return info;
+    }
+
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public int getType() {
+        return type;
     }
 
     public void setType(int type) {

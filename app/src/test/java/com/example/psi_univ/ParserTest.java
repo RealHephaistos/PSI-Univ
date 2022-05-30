@@ -1,10 +1,8 @@
 package com.example.psi_univ;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-
-import static org.junit.Assert.*;
-
-import java.util.Date;
 
 public class ParserTest {
     @Test

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 343.94 244.53">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: none;
-        stroke: #9f9f9e;
-        stroke-miterlimit: 10;
-        stroke-width: 9px;
-      }
-    </style>
-  </defs>
-  <path id="bottomEmpty" class="cls-1" d="M122.85,24.99h0c-26.9-26.9-70.5-26.9-97.4,0h0c-26.9,26.9-26.9,70.5,0,97.4l97.4,97.4c26.9,26.9,70.5,26.9,97.4,0l97.4-97.4c26.9-26.9,26.9-70.5,0-97.4h0c-26.9-26.9-70.5-26.9-97.4,0h0c-26.9,26.9-70.5,26.9-97.4,0Z"/>
+<svg data-name="Layer 1" id="Layer_1" viewBox="0 0 343.94 244.53"
+    xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+            .cls-1 {
+            fill: none;
+            stroke: #9f9f9e;
+            stroke-miterlimit: 10;
+            stroke-width: 9px;
+            }
+        </style>
+    </defs>
+    <path class="cls-1" d="M122.85,24.99h0c-26.9-26.9-70.5-26.9-97.4,0h0c-26.9,26.9-26.9,70.5,0,97.4l97.4,97.4c26.9,26.9,70.5,26.9,97.4,0l97.4-97.4c26.9-26.9,26.9-70.5,0-97.4h0c-26.9-26.9-70.5-26.9-97.4,0h0c-26.9,26.9-70.5,26.9-97.4,0Z"
+        id="bottomEmpty" />
 </svg>

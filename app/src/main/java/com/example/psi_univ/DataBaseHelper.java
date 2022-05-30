@@ -67,7 +67,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-    @return List<Building> : A list with all building, building's level, image and room's level
+     * @return List<Building> : A list with all building, building's level, image and room's level
      */
     public List<Building> getBuildings() {
         List<Building> returnList = new ArrayList<>();
@@ -76,18 +76,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + " ORDER BY " + COLUMN_BUILDING + " ASC";
 
 
-
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursorBuilding = db.rawQuery(queryStringBuilding,null);
+        Cursor cursorBuilding = db.rawQuery(queryStringBuilding, null);
 
         if (cursorBuilding.moveToFirst()) {
             do { //fetch building
                 String res = cursorBuilding.getString(0);
-                Building building = new Building(res,getLevels(res) );
+                Building building = new Building(res, getLevels(res));
                 returnList.add(building);
 
-            }while (cursorBuilding.moveToNext());
+            } while (cursorBuilding.moveToNext());
 
 
         }
@@ -100,9 +99,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-        @param buildingName : The name of the building you search
-        @return List<Level> : A list of all the level with their room
-         */
+     * @param buildingName : The name of the building you search
+     * @return List<Level> : A list of all the level with their room
+     */
     private List<Level> getLevels(String buildingName) {
         List<Level> returnLevels = new ArrayList<>();
 
@@ -112,27 +111,27 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + " WHERE " + COLUMN_BUILDING + " = '" + buildingName + "'"
                 + " ORDER BY " + COLUMN_BUILDING + " ASC, "
                 + COLUMN_FLOOR + " ASC";
-        Cursor cursorFloor = db.rawQuery(queryStringFloor,null);
+        Cursor cursorFloor = db.rawQuery(queryStringFloor, null);
 
         if (cursorFloor.moveToFirst()) {
-            do{ //fetch levels
-                Level level = new Level(cursorFloor.getString(0),null);
+            do { //fetch levels
+                Level level = new Level(cursorFloor.getString(0), null);
 
-                level.setRooms(getRooms(buildingName,level.getLevelName()));
+                level.setRooms(getRooms(buildingName, level.getLevelName()));
 
                 returnLevels.add(level);
 
-            }while (cursorFloor.moveToNext());
+            } while (cursorFloor.moveToNext());
         }
 
         cursorFloor.close();
-        return  returnLevels;
+        return returnLevels;
     }
 
     /**
-    @param buildingName :  Name of the building you search
-    @param levelName : Name of the level's building you search
-    @return List<Room> : A list of all the rooms
+     * @param buildingName :  Name of the building you search
+     * @param levelName    : Name of the level's building you search
+     * @return List<Room> : A list of all the rooms
      */
     private List<Room> getRooms(String buildingName, String levelName) {
         List<Room> returnRooms = new ArrayList<>();
@@ -140,11 +139,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String queryStringRoom = "SELECT DISTINCT " + COLUMN_NUMBER + " FROM " + ROOMS_TABLE
-                + " WHERE " + COLUMN_BUILDING + " = '" + buildingName+"'"
+                + " WHERE " + COLUMN_BUILDING + " = '" + buildingName + "'"
                 + " AND " + COLUMN_FLOOR + " = '" + levelName + "'"
                 + " ORDER BY " + COLUMN_NUMBER + " ASC;";
 
-        Cursor cursorRoom = db.rawQuery(queryStringRoom,null);
+        Cursor cursorRoom = db.rawQuery(queryStringRoom, null);
 
         if (cursorRoom.moveToFirst()) {
             do { //fetch rooms
@@ -162,11 +161,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
      * @return building : Building whith all levels and rooms
      */
     public Building getBuilding(String buildingName) {
-        return new Building(buildingName,getLevels(buildingName) );
+        return new Building(buildingName, getLevels(buildingName));
     }
 
-    public void intitBuildingTest(SQLiteDatabase db){
-        String query = "INSERT INTO `"+ROOMS_TABLE+"` (`"+COLUMN_BUILDING+"`, `"+COLUMN_NUMBER+"`, `"+COLUMN_FLOOR+"`, `"+COLUMN_TYPE+"`, `"+COLUMN_SIZE+"`) VALUES\n" +
+    public void intitBuildingTest(SQLiteDatabase db) {
+        String query = "INSERT INTO `" + ROOMS_TABLE + "` (`" + COLUMN_BUILDING + "`, `" + COLUMN_NUMBER + "`, `" + COLUMN_FLOOR + "`, `" + COLUMN_TYPE + "`, `" + COLUMN_SIZE + "`) VALUES\n" +
                 "('B12D', 'Amphi P', 0, 2, 200),\n" +
                 "('B12D', 'i-202 Prioritaire M2 Salle multimédia', 2, 5, 40),\n" +
                 "('B12D', 'i-203 TP Spéciaux', 2, 3, 24),\n" +
@@ -193,8 +192,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-    public void intitEventTest(SQLiteDatabase db){
-        String query = "INSERT INTO "+EVENTS_TABLE+" ('"+COLUMN_START_EVENT+"', `"+COLUMN_END_EVENT+"`, `"+COLUMN_SUBJECT+"`, `"+COLUMN_BUILDING+"`, `"+COLUMN_NAME+"`) VALUES" +
+    public void intitEventTest(SQLiteDatabase db) {
+        String query = "INSERT INTO " + EVENTS_TABLE + " ('" + COLUMN_START_EVENT + "', `" + COLUMN_END_EVENT + "`, `" + COLUMN_SUBJECT + "`, `" + COLUMN_BUILDING + "`, `" + COLUMN_NAME + "`) VALUES" +
                 "('2021-09-10 04:00:00', '2021-09-10 06:00:00', 'NCG', 'B12D', 'Salle Guernesey'),\n" +
                 "('2021-09-10 04:30:00', '2021-09-10 07:30:00', 'FOM-CM/TD G3', 'B12D', 'i-52'),\n" +
                 "('2021-09-10 04:30:00', '2021-09-10 07:30:00', 'FOM-CM/TD G5', 'B12D', 'i-53'),\n" +
@@ -472,7 +471,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void delete(){
+    public void delete() {
         SQLiteDatabase db = this.getWritableDatabase();
         String statement1 = "DROP TABLE IF EXISTS " + ROOMS_TABLE;
         db.execSQL(statement1);

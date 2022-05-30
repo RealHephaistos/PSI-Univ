@@ -1,24 +1,19 @@
 package com.example.psi_univ.ui.activities;
 
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import com.example.psi_univ.R;
 import com.example.psi_univ.ui.fragments.SettingsFragment;
 
 
-
 public class SettingsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         if (findViewById(R.id.settings_container) != null) {
-            if (savedInstanceState != null){
+            if (savedInstanceState != null) {
                 return;
             }
 

@@ -9,7 +9,8 @@ public class EventPSI {
     private Date endTime;
     private String subject;
 
-    public EventPSI(){}
+    public EventPSI() {
+    }
 
     public Date getStartTime() {
         return startTime;
