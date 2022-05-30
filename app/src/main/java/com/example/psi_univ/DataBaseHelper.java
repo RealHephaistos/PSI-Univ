@@ -155,5 +155,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnRooms;
     }
 
+    /**
+     * @param buildingName : The name of the searched building
+     * @return building : Building whith all levels and rooms
+     */
+    public Building getBuilding(String buildingName) {
+        return new Building(buildingName,getLevels(buildingName) );
+    }
+
 
 }
