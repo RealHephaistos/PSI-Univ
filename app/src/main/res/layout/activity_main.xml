@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".ui.activities.MainActivity"
-    tools:openDrawer="start">
+    tools:openDrawer="end">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -22,26 +22,28 @@
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:liftOnScroll="true">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/ToolBar"
-                style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                android:background="@color/rennes_red"
-                app:layout_scrollFlags="scroll|enterAlways|snap"
-                app:menu="@menu/top_app_bar"
-                app:navigationIcon="@drawable/ic_baseline_menu_24"
-                app:title="@string/ToolBar"
-                app:titleTextColor="@color/white" />
+                android:layout_height="60dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/background_toolbar"
+                app:liftOnScroll="true">
 
-        </com.google.android.material.appbar.AppBarLayout>
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/ToolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_scrollFlags="scroll|enterAlways|snap"
+                    app:menu="@menu/top_app_bar"
+                    app:navigationIcon="@drawable/ic_baseline_menu_24"
+                    />
+
+            </com.google.android.material.appbar.AppBarLayout>
+        </FrameLayout>
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

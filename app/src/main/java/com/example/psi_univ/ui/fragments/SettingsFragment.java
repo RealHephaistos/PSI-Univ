@@ -38,12 +38,7 @@ public class SettingsFragment extends PreferenceFragment {
                 int index = listPreference.findIndexOfValue(value);
                 preference.setSummary(listPreference.getEntries()[index]);
             }
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(preference.getContext());
-            if (sharedPreferences.getString("key_language","").compareTo("FRE")==0){
-                Toast.makeText(getContext(), sharedPreferences.getString("key_language",""), Toast.LENGTH_SHORT).show();
 
-                setLocal("fr");
-            }
 
             return true;
         }
