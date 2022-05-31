@@ -18,7 +18,7 @@ import com.example.psi_univ.ui.fragments.AdvancedSearchFragment;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity  {
     private Toolbar mToolBar;
     private DrawerLayout drawer;
 
@@ -27,29 +27,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Initialisation Toolbar
-        mToolBar = findViewById(R.id.ToolBar);
-        //getSupportActionBar();
-        setSupportActionBar(mToolBar);
 
-        //Initialisation Drawer
-        drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, mToolBar, R.string.drawer_open, R.string.drawer_close);
-
-
-        mToolBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                drawer.addDrawerListener(toggle);
-                toggle.syncState();
-                return false;
-            }
-        });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -75,32 +54,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.drawer_settings:
-                startActivity(new Intent(this, SettingsActivity.class));
-                break;
-            case R.id.homepage:
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                break;
-            case R.id.advanced_search:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdvancedSearchFragment()).commit();
 
-                break;
-        }
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
 }
