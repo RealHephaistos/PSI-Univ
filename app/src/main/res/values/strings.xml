@@ -1,10 +1,12 @@
 <resources>
     <!-- Default strings-->
+
     <!-- Strings used for fragments for the homepage -->
     <string name="app_name">PSI-Univ</string>
     <string name="Settings">Settings</string>
     <string name="HomePage">Homepage</string>
     <string name="Rennes1">Rennes 1 University</string>
+    <string name="iconMenu">Icon Menu</string>
 
 
     <!-- English strings for the advanced search -->
@@ -46,7 +48,7 @@
 
     <!-- English string for the settings-->
     <string name="defaultLanguage">English</string>
-    <string name="defaultDateFomrat">Day/Months/Years</string>
+    <string name="defaultDateFormat">Day/Months/Years</string>
     <string name="User">User</string>
     <string name="Language">Language</string>
     <string name="dateFormat">Date Format</string>

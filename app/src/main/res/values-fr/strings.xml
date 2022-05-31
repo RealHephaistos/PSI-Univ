@@ -5,6 +5,7 @@
     <string name="Settings">Paramètres</string>
     <string name="HomePage">Acceuil</string>
     <string name="Rennes1">Université Rennes 1</string>
+    <string name="iconMenu">Icon du Menu</string>
 
 
     <!-- English strings for the advanced search -->
@@ -45,7 +46,7 @@
 
     <!-- English string for the settings-->
     <string name="defaultLanguage">Français</string>
-    <string name="defaultDateFomrat">Jour/Mois/Année</string>
+    <string name="defaultDateFormat">Jour/Mois/Année</string>
     <string name="User">User</string>
     <string name="Language">Langue</string>
     <string name="dateFormat">Format de la Date</string>
