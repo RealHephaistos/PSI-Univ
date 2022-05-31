@@ -1,5 +1,10 @@
 package com.example.psi_univ.ui.activities;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,14 +13,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import com.example.psi_univ.ui.fragments.AdvancedSearchFragment;
-import com.example.psi_univ.ui.fragments.SettingsFragment;
 import com.example.psi_univ.R;
+import com.example.psi_univ.ui.fragments.AdvancedSearchFragment;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -80,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.drawer_settings:
-               startActivity(new Intent(this,SettingsActivity.class));
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
             case R.id.homepage:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

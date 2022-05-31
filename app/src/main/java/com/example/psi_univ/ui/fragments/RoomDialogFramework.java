@@ -42,7 +42,7 @@ public class RoomDialogFramework extends DialogFragment {
         timeTextView.setText(time);
 
         TextView availableTextView = fragment.findViewById(R.id.availableTextView);
-        if(bundle.getBoolean("available")){
+        if (bundle.getBoolean("available")) {
             availableTextView.setText("Available");
         } else {
             availableTextView.setText("Not Available");

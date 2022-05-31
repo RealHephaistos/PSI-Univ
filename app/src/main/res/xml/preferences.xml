@@ -10,8 +10,7 @@
             android:entryValues="@array/languageListValue"
             android:key="key_language"
             android:summary="@string/Language_Summary"
-            android:title="@string/Language">
-        </ListPreference>
+            android:title="@string/Language"></ListPreference>
 
         <ListPreference
             android:defaultValue="@string/defaultDateFomrat"
@@ -19,8 +18,7 @@
             android:entryValues="@array/dateFormatListValue"
             android:key="key_date_format"
             android:summary="@string/dateFormat_summary"
-            android:title="@string/dateFormat">
-        </ListPreference>
+            android:title="@string/dateFormat"></ListPreference>
 
     </PreferenceCategory>
 
