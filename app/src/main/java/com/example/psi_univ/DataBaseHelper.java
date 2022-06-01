@@ -1,18 +1,25 @@
 package com.example.psi_univ;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.example.psi_univ.ui.models.Building;
+import com.example.psi_univ.ui.models.Event;
 import com.example.psi_univ.ui.models.Level;
 import com.example.psi_univ.ui.models.Room;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -148,7 +155,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if (cursorRoom.moveToFirst()) {
             do { //fetch rooms
                 String res = cursorRoom.getString(0);
-                Room room = new Room(res, Room.dummyEvents());//TODO replace dummyEvents()
+                Room room = new Room(res, null);
                 returnRooms.add(room);
             } while (cursorRoom.moveToNext());
         }
@@ -470,6 +477,52 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
 
     }
+
+    /**
+     @param buildingName : The name of the building you search
+     @param roomName : The name of the room you search
+     @param startTime : Date of first event (String format yyyy-MM-dd)
+     @param endTime : Date of last event (String format yyyy-MM-dd)
+     @return List<Event> : A list of all event in a room
+     */
+    public List<Event> getEvents (String buildingName, String roomName, String startTime, String endTime) throws ParseException {
+        List<Event> returnEvents = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String queryStringEvent = "SELECT "+COLUMN_START_EVENT+", "+COLUMN_END_EVENT+", "+COLUMN_SUBJECT+" FROM " + EVENTS_TABLE
+                + " WHERE " + COLUMN_BUILDING + " = '" + buildingName + "'"
+                + " AND " + COLUMN_NAME + " = '" + roomName + "'"
+                + " AND " + COLUMN_START_EVENT + " >= '" + startTime + " 00:00:00'"
+                + " AND " + COLUMN_END_EVENT + " <= '" + endTime + " 24:00:00'"
+                + " ORDER BY " + COLUMN_BUILDING + " ASC, "
+                + COLUMN_NAME + " ASC";
+        Cursor cursorEvent = db.rawQuery(queryStringEvent,null);
+
+        Log.i("test1","true");
+        if (cursorEvent.moveToFirst()) {
+            Log.i("test2","true");
+            do {
+                String eventStart = cursorEvent.getString(0);
+                String eventEnd = cursorEvent.getString(1);
+                String eventSubject = cursorEvent.getString(2);
+
+                Calendar calendarStart = Calendar.getInstance();
+                Calendar calendarEnd = Calendar.getInstance();
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.FRANCE);
+                Log.i("Temps",eventStart);
+                calendarStart.setTime(dateFormat.parse(eventStart));
+                calendarEnd.setTime(dateFormat.parse(eventEnd));
+                Event event = new Event(calendarStart,calendarEnd,eventSubject); //TODO : revoir ça
+                returnEvents.add(event);
+
+            } while (cursorEvent.moveToNext());
+        }
+
+        cursorEvent.close();
+        return returnEvents;
+    }
+
 
     public void delete() {
         SQLiteDatabase db = this.getWritableDatabase();
