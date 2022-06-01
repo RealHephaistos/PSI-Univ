@@ -13,7 +13,8 @@ public class Level {
     public Level(String levelName, List<Room> rooms) {
         this.levelName = levelName;
         this.rooms = rooms;
-        this.levelMap = R.drawable.ic_level1;
+        levelMap = R.drawable.ic_arrow;
+        //this.levelMap = R.drawable.ic_level1;
     }
 
     public String getLevelName() {
