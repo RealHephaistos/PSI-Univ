@@ -15,7 +15,7 @@ public class Room {
     public Room(String roomName, List<Event> events) {
         this.roomName = roomName;
         this.events = events;
-        events.sort(Comparator.comparing(Event::getStart)); //TODO: try to implement binary search
+        //events.sort(Comparator.comparing(Event::getStart)); //TODO: try to implement binary search
     }
 
     public Room(String roomName, List<EventPSI> events, boolean dummy) {
