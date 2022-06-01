@@ -23,7 +23,6 @@ import java.util.Locale;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-
     public static final String COLUMN_BUILDING = "building";
     public static final String COLUMN_FLOOR = "floor";
     public static final String COLUMN_NUMBER = "number";
@@ -122,7 +121,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         if (cursorFloor.moveToFirst()) {
             do { //fetch levels
-                Level level = new Level(cursorFloor.getString(0), null);
+                Level level = new Level(cursorFloor.getString(0), new ArrayList<>()); //TODO: mets pas null c'est caca meme new ArrayList() c'est caca
 
                 level.setRooms(getRooms(buildingName, level.getLevelName()));
 
@@ -155,7 +154,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if (cursorRoom.moveToFirst()) {
             do { //fetch rooms
                 String res = cursorRoom.getString(0);
-                Room room = new Room(res, null);
+                Room room = new Room(res, new ArrayList<>()); //TODO: pareil pas null toute les rooms doivent avoir des listEvevnts
                 returnRooms.add(room);
             } while (cursorRoom.moveToNext());
         }

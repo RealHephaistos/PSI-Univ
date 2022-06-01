@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 657.91 1000.14">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #d7d7d6;
+        font-family: Koulen-Regular, Koulen;
+        font-size: 29px;
+      }
+
+      .cls-2 {
+        stroke: #d7d7d6;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+        stroke-miterlimit: 10;
+        stroke-width: 4px;
+      }
+
+      .cls-3 {
+        stroke: #9f9f9e;
+      }
+
+      .cls-4 {
+        fill: #ececec;
+      }
+    </style>
+  </defs>
+  <g id="background">
+    <rect class="cls-4" x="-1355.37" width="2013.28" height="1000.14"/>
+  </g>
+  <g id="sousSol">
+    <rect id="Salle_Guernesey" data-name="Salle Guernesey" class="cls-2" x="220.06" y="221.86" width="113.78" height="78.89"/>
+    <polygon id="Salle_Jersay" data-name="Salle Jersay" class="cls-2" points="485.17 305.2 485.17 225.2 462.51 225.2 462.51 211.2 621.84 211.2 621.84 299.86 562.51 299.86 562.51 305.2 485.17 305.2"/>
+    <polygon class="cls-3" points="462.51 25.2 462.51 211.2 647.84 211.2 647.84 351.2 462.51 351.2 462.51 371.2 527.17 371.2 515.17 408.53 586.51 408.53 586.51 496.53 216.51 509.86 216.51 407.86 333.84 407.86 333.84 351.86 62.51 351.86 62.51 221.86 333.84 221.86 333.84 25.2 462.51 25.2"/>
+    <g id="text-2" data-name="text">
+      <text class="cls-1" transform="translate(246.85 256.33)"><tspan x="0" y="0">Salle</tspan><tspan x="-21.11" y="34.8">Guernsey</tspan></text>
+      <text class="cls-1" transform="translate(523.62 250.55)"><tspan x="0" y="0">Salle</tspan><tspan x="-7.49" y="34.8">Jersey</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -27,7 +27,6 @@ public class BuildingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DataBaseHelper db = new DataBaseHelper(BuildingActivity.this);
         setContentView(R.layout.activity_building);
 
         //Get and set the building's name

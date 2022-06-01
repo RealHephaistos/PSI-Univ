@@ -2,6 +2,7 @@ package com.example.psi_univ.ui.models;
 
 import com.example.psi_univ.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Level {

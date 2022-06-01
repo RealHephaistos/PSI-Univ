@@ -4,7 +4,6 @@ import com.example.psi_univ.EventPSI;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -43,6 +42,7 @@ public class Room {
     }
 
     public boolean isAvailableAt(Calendar d) {
+        if (events == null) return true;
         for (Event e : events) {
             if (e.isOverlapping(d)) {
                 return false;
@@ -65,7 +65,7 @@ public class Room {
                 return e.getStart();
             }
         }
-        return null;
+        return Calendar.getInstance();
     }
 
     public List<EventPSI> getEvents() {
