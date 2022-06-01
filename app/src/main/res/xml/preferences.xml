@@ -13,7 +13,7 @@
             android:title="@string/Language"></ListPreference>
 
         <ListPreference
-            android:defaultValue="@string/defaultDateFomrat"
+            android:defaultValue="@string/defaultDateFormat"
             android:entries="@array/dateFormatList"
             android:entryValues="@array/dateFormatListValue"
             android:key="key_date_format"
