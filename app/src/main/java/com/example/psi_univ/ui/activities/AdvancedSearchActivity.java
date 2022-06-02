@@ -7,28 +7,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.psi_univ.R;
-import com.example.psi_univ.ui.fragments.SettingsFragment;
+import com.example.psi_univ.ui.fragments.AdvancedSearchFragment;
 
 
-public class SettingsActivity extends AppCompatActivity {
+public class AdvancedSearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_advanced_search);
 
         Toolbar toolbar = findViewById(R.id.ToolBar);
         setSupportActionBar(toolbar);
 
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
-        if (findViewById(R.id.settings_container) != null) {
+        if (findViewById(R.id.advancedSearchContainer) != null) {
             if (savedInstanceState != null) {
                 return;
             }
-
-            getFragmentManager().beginTransaction().add(R.id.settings_container, new SettingsFragment()).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.advancedSearchContainer, new AdvancedSearchFragment()).commit();
         }
     }
-
 }

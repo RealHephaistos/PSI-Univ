@@ -46,7 +46,6 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
         unavailableRoom = myView.findViewById(R.id.switch_unavailable_room);
         dateButton = myView.findViewById(R.id.date_button);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.drawer_advanced_search);
 
         //Calendar for the Date Picker
         Calendar cal = Calendar.getInstance();

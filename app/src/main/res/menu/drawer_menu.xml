@@ -9,7 +9,7 @@
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/HomePage" />
         <item
-            android:id="@+id/advanced_search"
+            android:id="@+id/advancedSearch"
             android:icon="@drawable/ic_baseline_advanced_search_24"
             android:title="@string/drawer_advanced_search" />
     </group>
@@ -34,7 +34,7 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/drawer_settings"
+                    android:id="@+id/settings"
                     android:icon="@drawable/ic_baseline_settings_24"
                     android:title="@string/Settings" />
             </group>

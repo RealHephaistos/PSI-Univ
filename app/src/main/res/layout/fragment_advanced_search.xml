@@ -15,7 +15,7 @@
         android:layout_marginTop="100dp"
         android:ems="10"
         android:hint="@string/advanced_search_search_bar"
-        android:minHeight="48dp" /><!--Les commentaires c'est comme ça en XML-->
+        android:minHeight="48dp" /><!--xml comments-->
 
 
     <!-- Switch for available rooms-->

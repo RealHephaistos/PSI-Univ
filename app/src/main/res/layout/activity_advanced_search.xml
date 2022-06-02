@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.SettingsActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/ToolBar"
+        style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/rennes_red"
+        app:layout_scrollFlags="scroll|enterAlways|snap"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:title="@string/drawer_advanced_search"
+        app:titleTextColor="@color/white" />
+
+    <FrameLayout
+        android:id="@+id/advancedSearchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ToolBar"
+        android:isScrollContainer="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <!-- Advanced Search Bar-->
+        <EditText
+            android:id="@+id/advanced_search_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:ems="10"
+            android:hint="@string/advanced_search_search_bar"
+            android:minHeight="48dp" /><!--xml comments-->
+
+
+        <!-- Switch for available rooms-->
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_available_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/advanced_search_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:checked="true"
+
+            android:minHeight="48dp"
+            android:text="@string/advanced_search_available_roms" />
+
+        <!-- Switch for unavailable rooms-->
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_unavailable_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/switch_available_room"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:checked="true"
+            android:minHeight="48dp"
+            android:text="@string/advanced_search_unavailable_roms" />
+
+        <!-- Time Picker -->
+        <TextView
+            android:id="@+id/time_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/switch_unavailable_room"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/edit_background"
+            android:drawablePadding="2dp"
+            android:gravity="center"
+            android:hint="@string/advanced_search_time_select"
+            android:textSize="15sp"
+            app:drawableTopCompat="@drawable/ic_baseline_access_time_24" />
+
+
+        <!-- Date picker -->
+        <RelativeLayout
+            android:id="@+id/Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/time_select"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
+            android:background="@drawable/edit_background"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/date_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:drawablePadding="2dp"
+                android:gravity="center"
+                android:hint="@string/advanced_search_date_select"
+                android:textSize="15sp"
+                app:drawableTopCompat="@drawable/ic_baseline_calendar_today_24" />
+
+            <Button
+                android:id="@+id/date_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/date_select"
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+
+        <!-- Search Button -->
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Date"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/white"
+            android:gravity="center"
+            android:hint="@string/advanced_search_research_button"
+            android:textSize="15sp" />
+
+        </RelativeLayout>
+    </FrameLayout>
+
+</RelativeLayout>
