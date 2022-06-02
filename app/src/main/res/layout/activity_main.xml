@@ -26,7 +26,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/background_toolbar"
-            android:clickable="false">
+            android:clickable="false"
+            android:id="@+id/searchBar">
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
@@ -36,6 +37,7 @@
                 android:clickable="true"
                 app:iconifiedByDefault="false"
                 app:queryHint="@string/ToolBarSearch" />
+
 
             <ImageView
                 android:id="@+id/imageViewHome"
@@ -53,8 +55,33 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/list_layout"
+            android:visibility="gone"
+            android:layout_below="@id/searchBar">
+            <ListView
+                android:id="@+id/listRoom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:background="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/empty"
+                android:text="No result"
+                android:visibility="gone"
+                android:layout_centerInParent="true"/>
+
+
+
+        </RelativeLayout>
+
     </RelativeLayout>
-    
+
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
