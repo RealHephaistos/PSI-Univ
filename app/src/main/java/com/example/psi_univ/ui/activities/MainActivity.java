@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -50,14 +51,26 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         SearchView searchView = findViewById(R.id.searchView);
         ListView room = findViewById(R.id.listRoom);
         room.setEmptyView(findViewById(R.id.empty));
-        List<String> rooms = new ArrayList<String>();
 
-        rooms.add("B12D i-50");rooms.add("B12D i-51");rooms.add("B12D i-52");rooms.add("B12D i-53");rooms.add("B12D i-54");rooms.add("B12D i-55");
+        List<String> rooms = new ArrayList<String>();
+        rooms.add("B12D i- 50");rooms.add("B12D i- 51");rooms.add("B12D i- 52");rooms.add("B12D i- 53");rooms.add("B12D i- 54");rooms.add("B12D i- 55");
         rooms.add("B12D Salle Guernesey");rooms.add("B12D Salle Jersey");rooms.add("B12D Amphi P");
 
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,rooms);
         room.setAdapter(arrayAdapter);
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                arrayAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
