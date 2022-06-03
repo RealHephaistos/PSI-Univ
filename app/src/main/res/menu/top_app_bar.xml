@@ -2,13 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-
-
     <item
-        android:id="@+id/top_app_search"
-        android:icon="@drawable/ic_baseline_search_24"
+        android:id="@+id/topAppMenu"
+        android:icon="@drawable/ic_baseline_menu_24"
         android:title="@string/ToolBarSearch"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:iconTint="@color/white"
         app:showAsAction="collapseActionView|ifRoom" />
 
 </menu>

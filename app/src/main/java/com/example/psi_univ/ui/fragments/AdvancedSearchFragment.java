@@ -34,11 +34,14 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
     int timerHour, timerMinute;
     private Toolbar toolbar;
 
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //Fragment View
-        View myView = inflater.inflate(R.layout.fragment_advanced_search, container, false);
+        View myView = inflater.inflate(R.layout.activity_advanced_search, container, false);
+
 
         //Variables initialisations
         timer = myView.findViewById(R.id.time_select);

@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.SettingsActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolBarLayout">
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/ToolBar"
         style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
@@ -15,13 +20,29 @@
         app:layout_scrollFlags="scroll|enterAlways|snap"
         app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
         app:title="@string/Settings"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@color/white"/>
+
+    <ImageView
+        android:id="@+id/imageViewHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_marginEnd="15dp"
+        app:srcCompat="@drawable/ic_baseline_menu_24_white"
+        android:clickable="true"
+        android:contentDescription="@string/iconMenu"
+        android:focusable="true"/>
+
+    </RelativeLayout>
+
 
     <FrameLayout
         android:id="@+id/settings_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/ToolBar">
+        android:layout_below="@id/toolBarLayout">
 
     </FrameLayout>
 
