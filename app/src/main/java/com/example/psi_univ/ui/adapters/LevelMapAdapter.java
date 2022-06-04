@@ -13,25 +13,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.psi_univ.R;
 import com.example.psi_univ.ui.fragments.RoomDialogFramework;
-import com.example.psi_univ.ui.models.Level;
-import com.example.psi_univ.ui.models.Room;
+import com.example.psi_univ.models.Level;
+import com.example.psi_univ.models.Room;
 import com.richpath.RichPath;
 import com.richpath.RichPathView;
 
 import java.util.Calendar;
 import java.util.List;
 
-public class LevelMapRecyclerAdapter extends RecyclerView.Adapter<LevelMapRecyclerAdapter.LevelViewHolders> {
+public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelViewHolders> {
 
     private final List<Level> levels;
 
-    public LevelMapRecyclerAdapter(List<Level> levels) {
+    public LevelMapAdapter(List<Level> levels) {
         this.levels = levels;
     }
 
     @NonNull
     @Override
-    public LevelMapRecyclerAdapter.LevelViewHolders onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public LevelMapAdapter.LevelViewHolders onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.level_plan, parent, false);
         return new LevelViewHolders(v);
     }

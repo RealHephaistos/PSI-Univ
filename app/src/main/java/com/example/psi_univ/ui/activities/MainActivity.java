@@ -2,32 +2,24 @@ package com.example.psi_univ.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.psi_univ.R;
-import com.example.psi_univ.ui.fragments.AdvancedSearchFragment;
-import com.example.psi_univ.ui.fragments.SettingsFragment;
-import com.example.psi_univ.ui.models.Event;
-import com.example.psi_univ.ui.models.Room;
+import com.example.psi_univ.models.Event;
+import com.example.psi_univ.models.Room;
 import com.google.android.material.navigation.NavigationView;
 
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 

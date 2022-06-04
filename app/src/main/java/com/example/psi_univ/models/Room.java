@@ -1,4 +1,4 @@
-package com.example.psi_univ.ui.models;
+package com.example.psi_univ.models;
 
 import java.util.Calendar;
 import java.util.List;

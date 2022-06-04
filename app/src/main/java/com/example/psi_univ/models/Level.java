@@ -1,10 +1,9 @@
-package com.example.psi_univ.ui.models;
+package com.example.psi_univ.models;
 
 import android.content.Context;
 
 import com.example.psi_univ.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
@@ -23,7 +22,7 @@ public class Level {
         else{
             levelMapName +=levelnbr;
         }
-        int id = context.getResources().getIdentifier(levelMapName, "drawable", context.getPackageName());
+        int id = context.getResources().getIdentifier(levelMapName.toLowerCase(), "drawable", context.getPackageName());
         if(id == 0){
             this.levelMap = R.drawable.ic_b12d_s1; //TODO: truc par défaut
         }

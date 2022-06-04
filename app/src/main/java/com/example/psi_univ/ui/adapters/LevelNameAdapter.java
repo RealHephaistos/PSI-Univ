@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.psi_univ.R;
-import com.example.psi_univ.ui.models.Level;
+import com.example.psi_univ.models.Level;
 
 import java.util.List;
 

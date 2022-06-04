@@ -14,11 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.psi_univ.backend.DataBaseHelper;
 import com.example.psi_univ.R;
 import com.example.psi_univ.ui.adapters.LevelMapRecycler;
-import com.example.psi_univ.ui.adapters.LevelMapRecyclerAdapter;
+import com.example.psi_univ.ui.adapters.LevelMapAdapter;
 import com.example.psi_univ.ui.adapters.LevelNameAdapter;
 import com.example.psi_univ.ui.adapters.LevelNameRecycler;
-import com.example.psi_univ.ui.models.Building;
-import com.example.psi_univ.ui.models.Level;
+import com.example.psi_univ.models.Building;
+import com.example.psi_univ.models.Level;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class BuildingActivity extends AppCompatActivity {
 
         //Set the map recycler view
         LevelMapRecycler mapRecycler = findViewById(R.id.mapRecycler);
-        mapRecycler.setAdapter(new LevelMapRecyclerAdapter(levels));
+        mapRecycler.setAdapter(new LevelMapAdapter(levels));
         PagerSnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(mapRecycler);
 

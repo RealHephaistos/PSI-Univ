@@ -9,10 +9,10 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.example.psi_univ.ui.models.Building;
-import com.example.psi_univ.ui.models.Event;
-import com.example.psi_univ.ui.models.Level;
-import com.example.psi_univ.ui.models.Room;
+import com.example.psi_univ.models.Building;
+import com.example.psi_univ.models.Event;
+import com.example.psi_univ.models.Level;
+import com.example.psi_univ.models.Room;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
