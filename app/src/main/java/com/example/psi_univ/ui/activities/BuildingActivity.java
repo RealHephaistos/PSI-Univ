@@ -31,7 +31,6 @@ public class BuildingActivity extends AppCompatActivity {
 
         //Get and set the building's name
         Intent intent = getIntent();
-        //TODO: cibler un étage
         String buildingName = intent.getStringExtra("building");
         TextView buildingNameTextView = findViewById(R.id.buildingName);
         buildingNameTextView.setText(buildingName);
@@ -62,5 +61,12 @@ public class BuildingActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //Advanced search
+        String level = intent.getStringExtra("level");
+        if(level != null){
+            String roomName = intent.getStringExtra("room");
+            //TODO: cibler une salle
+        }
     }
 }

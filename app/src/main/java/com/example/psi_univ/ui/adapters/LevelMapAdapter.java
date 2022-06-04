@@ -12,12 +12,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.psi_univ.R;
-import com.example.psi_univ.ui.fragments.RoomDialogFramework;
+import com.example.psi_univ.backend.DataBaseHelper;
+import com.example.psi_univ.models.Event;
+import com.example.psi_univ.ui.fragments.RoomDialogFragment;
 import com.example.psi_univ.models.Level;
 import com.example.psi_univ.models.Room;
 import com.richpath.RichPath;
 import com.richpath.RichPathView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -41,35 +44,48 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
         Level level = levels.get(position);
         holder.richPathViewMap.setVectorDrawable(level.getLevelMap());
 
+        DataBaseHelper db = new DataBaseHelper(holder.itemView.getContext());
+
+        Calendar currentTime = Calendar.getInstance();//TODO: change to lookup date
+        Calendar endTime = Calendar.getInstance();
+        endTime.set(Calendar.HOUR_OF_DAY, 23);
+        endTime.set(Calendar.MINUTE, 59);
+        endTime.set(Calendar.SECOND, 59);
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat time = new SimpleDateFormat("HH:mm");
+
         for (int i = 0; i < level.getRoomCount(); i++) {
             Room room = level.getRoomAt(i);
+
             RichPath path = holder.richPathViewMap.findRichPathByName(room.getRoomName());
-            //assert path != null; //TODO: handle this case
             if(path != null) {
                 path.setOnPathClickListener(new RichPath.OnPathClickListener() {
                     @Override
                     public void onClick() {
                         Bundle bundle = new Bundle();
                         bundle.putString("roomName", room.getRoomName());
-                        Calendar currentTime = Calendar.getInstance();//TODO: change to lookup date
-                        bundle.putInt("day", currentTime.get(Calendar.DATE));
-                        bundle.putInt("month", currentTime.get(Calendar.MONTH));
-                        bundle.putInt("year", currentTime.get(Calendar.YEAR));
-                        bundle.putInt("hour", currentTime.get(Calendar.HOUR_OF_DAY));
-                        bundle.putInt("minute", currentTime.get(Calendar.MINUTE));
-                        bundle.putBoolean("available", room.isAvailableAt(Calendar.getInstance()));//TODO: only do that once
-                        Calendar next = room.getNextEvent();
-                        bundle.putInt("dayNext", next.get(Calendar.DATE));
-                        bundle.putInt("monthNext", next.get(Calendar.MONTH));
-                        bundle.putInt("yearNext", next.get(Calendar.YEAR));
-                        bundle.putInt("hourNext", next.get(Calendar.HOUR_OF_DAY));
-                        bundle.putInt("minuteNext", next.get(Calendar.MINUTE));
+                        bundle.putString("currentDate", date.format(currentTime.getTime()));
+                        bundle.putString("currentTime", time.format(currentTime.getTime()));
 
-                        RoomDialogFramework roomDialogFramework = new RoomDialogFramework();
+                        //Event event = db.getEventsAt(level.getBuildingName(), room.getRoomName(), currentTime);
+                        Event event = new Event(currentTime, endTime, "test");
 
-                        roomDialogFramework.setArguments(bundle);
+                        if(event == null){
+                            bundle.putBoolean("available",true);
+                        }
+                        else {
+                            bundle.putBoolean("available", event.isOverlapping(currentTime));
+                            if(event.getNext() != null){
+                                Calendar next = event.getNext().getStart();
+                                bundle.putString("nextDate", date.format(next.getTime()));
+                                bundle.putString("nextTime", time.format(next.getTime()));
+                            }
+                        }
+
+                        RoomDialogFragment roomDialogFragment = new RoomDialogFragment();
+                        roomDialogFragment.setArguments(bundle);
                         FragmentManager fragmentManager = ((AppCompatActivity) holder.richPathViewMap.getContext()).getSupportFragmentManager();
-                        roomDialogFramework.show(fragmentManager, "roomDialog_" + room.getRoomName());
+                        roomDialogFragment.show(fragmentManager, "roomDialog_" + room.getRoomName());
                     }
                 });
             }

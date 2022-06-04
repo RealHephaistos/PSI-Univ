@@ -3,12 +3,12 @@
     android:width="657.9dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#ffffff"
         android:fillAlpha="0"
-        android:name="salle guernsey"
+        android:name="Salle Guernesey"
         android:pathData="M220.1,221.9h113.8v78.9h-113.8z"
         android:strokeColor="#d7d7d6" android:strokeWidth="4"/>
     <path android:fillColor="#ffffff"
         android:fillAlpha="0"
-        android:name="salle jersey"
+        android:name="Salle Jersey"
         android:pathData="M485.2,305.2l0,-80l-22.7,0l0,-14l159.3,0l0,88.7l-59.3,0l0,5.3l-77.3,0z"
         android:strokeColor="#d7d7d6" android:strokeWidth="4"/>
     <path android:fillColor="#ffffff"

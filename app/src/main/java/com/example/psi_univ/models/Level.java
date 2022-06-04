@@ -8,10 +8,12 @@ import java.util.List;
 
 public class Level {
     private final String levelName;
+    private final String buildingName;
     private final int levelMap;
     private List<Room> rooms;
 
     public Level(String buildingName, String levelName, List<Room> rooms, Context context) {
+        this.buildingName = buildingName;
         int levelnbr = Integer.parseInt(levelName); //TODO: levelName en int dans la db
         this.levelName = levelName;
         this.rooms = rooms;
@@ -49,5 +51,9 @@ public class Level {
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+
+    public String getBuildingName(){
+        return buildingName;
     }
 }

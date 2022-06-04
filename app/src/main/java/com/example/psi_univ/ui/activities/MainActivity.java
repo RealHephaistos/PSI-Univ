@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         room.setEmptyView(findViewById(R.id.empty));
 
         List<Room> rooms = new ArrayList<Room>();
-        rooms.add(new Room("i- 50", "B12D","0",new ArrayList<Event>()));
+        rooms.add(new Room("i- 50", "B12D","0"));
 
         arrayAdapter = new ArrayAdapter<Room>(this, android.R.layout.simple_list_item_1,rooms);
         room.setAdapter(arrayAdapter);

@@ -15,7 +15,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.psi_univ.R;
 
-public class RoomDialogFramework extends DialogFragment {
+public class RoomDialogFragment extends DialogFragment {
 
     @Nullable
     @Override
@@ -34,12 +34,10 @@ public class RoomDialogFramework extends DialogFragment {
         TextView roomNameTextView = fragment.findViewById(R.id.roomNameTextView);
         roomNameTextView.setText(bundle.getString("roomName"));
 
-        String date = bundle.getInt("day") + "/" + bundle.getInt("month") + "/" + bundle.getInt("year");
-        String time = bundle.getInt("hour") + ":" + bundle.getInt("minute");
         TextView dateTextView = fragment.findViewById(R.id.dateTextView);
         TextView timeTextView = fragment.findViewById(R.id.timeTextView);
-        dateTextView.setText(date);
-        timeTextView.setText(time);
+        dateTextView.setText(bundle.getString("currentDate"));
+        timeTextView.setText(bundle.getString("currentTime"));
 
         TextView availableTextView = fragment.findViewById(R.id.availableTextView);
         if (bundle.getBoolean("available")) {
@@ -48,12 +46,17 @@ public class RoomDialogFramework extends DialogFragment {
             availableTextView.setText("Not Available");
         }
 
-        String nextDate = bundle.getInt("nextDay") + "/" + bundle.getInt("nextMonth") + "/" + bundle.getInt("nextYear");
-        String nextTime = bundle.getInt("nextHour") + ":" + bundle.getInt("nextMinute");
+        String nextDate = bundle.getString("nextDate");
+        String nextTime = bundle.getString("nextTime");
         TextView dateNextClassTextView = fragment.findViewById(R.id.dateNextClassTextView);
         TextView timeNextClassTextView = fragment.findViewById(R.id.timeNextClassTextView);
-        dateNextClassTextView.setText(nextDate);
-        timeNextClassTextView.setText(nextTime);
+        if(nextDate != null && nextTime != null) {
+            dateNextClassTextView.setText(nextDate);
+            timeNextClassTextView.setText(nextTime);
+        }else{
+            dateNextClassTextView.setText("No Next Class");
+            timeNextClassTextView.setText("");
+        }
 
         return fragment;
     }

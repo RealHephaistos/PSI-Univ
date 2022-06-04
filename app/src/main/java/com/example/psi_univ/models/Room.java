@@ -1,57 +1,19 @@
 package com.example.psi_univ.models;
 
-import java.util.Calendar;
-import java.util.List;
-
 public class Room {
     private final String roomName;
     private final String levelName;
     private final String buildingName;
-    private List<Event> events;
 
-    public Room(String roomName, String buildingName, String levelName, List<Event> events) {
+    public Room(String roomName, String buildingName, String levelName) {
         this.roomName = roomName;
         this.buildingName = buildingName;
         this.levelName = levelName;
-        this.events = events;
-        //events.sort(Comparator.comparing(Event::getStart)); //TODO: try to implement binary search
-    }
-
-    public boolean isAvailableAt(Calendar d) {
-        if (events == null) return true;
-        for (Event e : events) {
-            if (e.isOverlapping(d)) {
-                return false;
-            }
-            if (e.getStart().after(d)) {
-                return true;
-            }
-        }
-        return true;
     }
 
     public String getRoomName() {
         return roomName;
     }
-
-    public Calendar getNextEvent() {
-        Calendar d = Calendar.getInstance();
-        for (Event e : events) {
-            if (e.getStart().after(d)) {
-                return e.getStart();
-            }
-        }
-        return Calendar.getInstance();
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
     @Override
     public String toString() {
         return buildingName + ' ' +roomName;
