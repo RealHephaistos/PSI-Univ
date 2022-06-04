@@ -5,10 +5,14 @@ import java.util.List;
 
 public class Room {
     private final String roomName;
+    private final String levelName;
+    private final String buildingName;
     private List<Event> events;
 
-    public Room(String roomName, List<Event> events) {
+    public Room(String roomName, String buildingName, String levelName, List<Event> events) {
         this.roomName = roomName;
+        this.buildingName = buildingName;
+        this.levelName = levelName;
         this.events = events;
         //events.sort(Comparator.comparing(Event::getStart)); //TODO: try to implement binary search
     }

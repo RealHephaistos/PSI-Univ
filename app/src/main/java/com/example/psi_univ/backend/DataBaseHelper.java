@@ -157,7 +157,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if (cursorRoom.moveToFirst()) {
             do { //fetch rooms
                 String res = cursorRoom.getString(0);
-                Room room = new Room(res, new ArrayList<>()); //TODO: pareil pas null toute les rooms doivent avoir des listEvevnts
+                Room room = new Room(res, buildingName, levelName, new ArrayList<>()); //TODO: pareil pas null toute les rooms doivent avoir des listEvevnts
                 returnRooms.add(room);
             } while (cursorRoom.moveToNext());
         }
