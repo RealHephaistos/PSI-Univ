@@ -45,30 +45,32 @@ public class LevelMapRecyclerAdapter extends RecyclerView.Adapter<LevelMapRecycl
             Room room = level.getRoomAt(i);
             RichPath path = holder.richPathViewMap.findRichPathByName(room.getRoomName());
             //assert path != null; //TODO: handle this case
+            if(path != null) {
+                path.setOnPathClickListener(new RichPath.OnPathClickListener() {
+                    @Override
+                    public void onClick() {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("roomName", room.getRoomName());
+                        Calendar currentTime = Calendar.getInstance();//TODO: change to lookup date
+                        bundle.putInt("day", currentTime.get(Calendar.DATE));
+                        bundle.putInt("month", currentTime.get(Calendar.MONTH));
+                        bundle.putInt("year", currentTime.get(Calendar.YEAR));
+                        bundle.putInt("hour", currentTime.get(Calendar.HOUR_OF_DAY));
+                        bundle.putInt("minute", currentTime.get(Calendar.MINUTE));
+                        bundle.putBoolean("available", room.isAvailableAt(Calendar.getInstance()));//TODO: only do that once
+                        Calendar next = room.getNextEvent();
+                        bundle.putInt("dayNext", next.get(Calendar.DATE));
+                        bundle.putInt("monthNext", next.get(Calendar.MONTH));
+                        bundle.putInt("yearNext", next.get(Calendar.YEAR));
+                        bundle.putInt("hourNext", next.get(Calendar.HOUR_OF_DAY));
+                        bundle.putInt("minuteNext", next.get(Calendar.MINUTE));
 
-            if (path != null) {
-                path.setOnPathClickListener(() -> {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("roomName", room.getRoomName());
-                    Calendar currentTime = Calendar.getInstance();//TODO: change to lookup date
-                    bundle.putInt("day", currentTime.get(Calendar.DATE));
-                    bundle.putInt("month", currentTime.get(Calendar.MONTH));
-                    bundle.putInt("year", currentTime.get(Calendar.YEAR));
-                    bundle.putInt("hour", currentTime.get(Calendar.HOUR_OF_DAY));
-                    bundle.putInt("minute", currentTime.get(Calendar.MINUTE));
-                    bundle.putBoolean("available", room.isAvailableAt(Calendar.getInstance()));//TODO: only do that once
-                    Calendar next = room.getNextEvent();
-                    bundle.putInt("dayNext", next.get(Calendar.DATE));
-                    bundle.putInt("monthNext", next.get(Calendar.MONTH));
-                    bundle.putInt("yearNext", next.get(Calendar.YEAR));
-                    bundle.putInt("hourNext", next.get(Calendar.HOUR_OF_DAY));
-                    bundle.putInt("minuteNext", next.get(Calendar.MINUTE));
+                        RoomDialogFramework roomDialogFramework = new RoomDialogFramework();
 
-                    RoomDialogFramework roomDialogFramework = new RoomDialogFramework();
-
-                    roomDialogFramework.setArguments(bundle);
-                    FragmentManager fragmentManager = ((AppCompatActivity) holder.richPathViewMap.getContext()).getSupportFragmentManager();
-                    roomDialogFramework.show(fragmentManager, "roomDialog_" + room.getRoomName());
+                        roomDialogFramework.setArguments(bundle);
+                        FragmentManager fragmentManager = ((AppCompatActivity) holder.richPathViewMap.getContext()).getSupportFragmentManager();
+                        roomDialogFramework.show(fragmentManager, "roomDialog_" + room.getRoomName());
+                    }
                 });
             }
         }

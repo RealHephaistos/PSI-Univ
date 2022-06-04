@@ -19,16 +19,14 @@ import java.util.List;
 
 public class MapPhotoView extends PhotoView {
     private final List<Polygon> polygons;
-    private final float width;
-    private final float height;
+    private final float width = 2374;
+    private final float height = 2815;
 
     public MapPhotoView(Context context, AttributeSet attr) {
         //Create the PhotoView
         super(context, attr);
         setScaleType(ImageView.ScaleType.CENTER_CROP);
         setImageResource(R.drawable.ic_map);
-        width = getWidth();
-        height = getHeight();
 
         //Get the polygons from the XML file
         polygons = new ArrayList<>();
@@ -87,35 +85,28 @@ public class MapPhotoView extends PhotoView {
         public boolean isInsidePolygon(float x, float y, float width, float height) {
             float trueX = x * width;
             float trueY = y * height;
-            float slope;
-            Vertex lastVertex = vertices.get(vertices.size() - 1);
+            boolean inside = false;
+            int j = vertices.size() - 1;
 
-            for (Vertex vertex : vertices) {
-                if (vertex.x == trueX && vertex.y == trueY) {
-                    return true;
-                }
-
-                if ((vertex.y > trueY) != (lastVertex.y > trueY)) {
-                    slope = (x - vertex.x) * (lastVertex.y - vertex.y) - (y - vertex.y) * (lastVertex.x - vertex.x);
-                    if (slope == 0) {
-                        return true;
-                    }
-                    if (slope > 0) {
-                        return false;
+            for (int i = 0; i < vertices.size(); j = i++) {
+                if ((vertices.get(i).y < trueY && vertices.get(j).y >= trueY) || (vertices.get(j).y < trueY && vertices.get(i).y >= trueY)) {
+                    if (vertices.get(i).x + (trueY - vertices.get(i).y) / (vertices.get(j).y - vertices.get(i).y) * (vertices.get(j).x - vertices.get(i).x) < trueX) {
+                        inside = !inside;
                     }
                 }
             }
-            return true;
+
+            return inside;
         }
-    }
 
-    private static class Vertex {
-        private final int x;
-        private final int y;
+        private static class Vertex {
+            private final int x;
+            private final int y;
 
-        public Vertex(int x, int y) {
-            this.x = x;
-            this.y = y;
+            public Vertex(int x, int y) {
+                this.x = x;
+                this.y = y;
+            }
         }
     }
 }

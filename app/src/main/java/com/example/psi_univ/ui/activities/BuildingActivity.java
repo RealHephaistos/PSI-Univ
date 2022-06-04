@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.psi_univ.DataBaseHelper;
+import com.example.psi_univ.backend.DataBaseHelper;
 import com.example.psi_univ.R;
 import com.example.psi_univ.ui.adapters.LevelMapRecycler;
 import com.example.psi_univ.ui.adapters.LevelMapRecyclerAdapter;
@@ -31,6 +31,7 @@ public class BuildingActivity extends AppCompatActivity {
 
         //Get and set the building's name
         Intent intent = getIntent();
+        //TODO: cibler un étage
         String buildingName = intent.getStringExtra("building");
         TextView buildingNameTextView = findViewById(R.id.buildingName);
         buildingNameTextView.setText(buildingName);

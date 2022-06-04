@@ -40,12 +40,12 @@ allprojects {
 
 dependencies {
     implementation 'com.github.tarek360.RichPath:richpath:0.0.9'
-    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'com.google.android.material:material:1.6.1'
     implementation 'com.github.chrisbanes:PhotoView:2.1.4'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.fragment:fragment:1.4.1'
     implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment:2.4.2'
     implementation 'androidx.navigation:navigation-ui:2.4.2'

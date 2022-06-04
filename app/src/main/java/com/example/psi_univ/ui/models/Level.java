@@ -1,5 +1,7 @@
 package com.example.psi_univ.ui.models;
 
+import android.content.Context;
+
 import com.example.psi_univ.R;
 
 import java.util.ArrayList;
@@ -10,11 +12,24 @@ public class Level {
     private final int levelMap;
     private List<Room> rooms;
 
-    public Level(String levelName, List<Room> rooms) {
+    public Level(String buildingName, String levelName, List<Room> rooms, Context context) {
+        int levelnbr = Integer.parseInt(levelName); //TODO: levelName en int dans la db
         this.levelName = levelName;
         this.rooms = rooms;
-        levelMap = R.drawable.ic_arrow;
-        //this.levelMap = R.drawable.ic_level1;
+        String levelMapName = "ic_"+buildingName+"_";
+        if(levelnbr< 0){
+            levelMapName +="s"+levelnbr;
+        }
+        else{
+            levelMapName +=levelnbr;
+        }
+        int id = context.getResources().getIdentifier(levelMapName, "drawable", context.getPackageName());
+        if(id == 0){
+            this.levelMap = R.drawable.ic_b12d_s1; //TODO: truc par défaut
+        }
+        else {
+            this.levelMap = id;
+        }
     }
 
     public String getLevelName() {
