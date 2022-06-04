@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="false"
-    tools:context=".ui.fragments.RoomDialogFramework">
+    tools:context=".ui.fragments.RoomDialogFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
