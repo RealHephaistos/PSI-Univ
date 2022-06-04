@@ -51,4 +51,9 @@ public class Room {
     public List<Event> getEvents() {
         return events;
     }
+
+    @Override
+    public String toString() {
+        return buildingName + ' ' +roomName;
+    }
 }

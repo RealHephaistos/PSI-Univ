@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Filter;
@@ -22,6 +23,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.psi_univ.R;
 import com.example.psi_univ.ui.fragments.AdvancedSearchFragment;
 import com.example.psi_univ.ui.fragments.SettingsFragment;
+import com.example.psi_univ.ui.models.Event;
+import com.example.psi_univ.ui.models.Room;
 import com.google.android.material.navigation.NavigationView;
 
 import java.nio.file.Files;
@@ -32,7 +35,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView imageView;
     private DrawerLayout drawerLayout;
-    ArrayAdapter<String> arrayAdapter;
+    ArrayAdapter<Room> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +53,21 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         SearchView searchView = findViewById(R.id.searchView);
         ListView room = findViewById(R.id.listRoom);
+        Intent resultIntent = new Intent(this,BuildingActivity.class);
+        room.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                resultIntent.putExtra("building", parent.getItemAtPosition(position).toString().split(" ")[0]);
+                startActivity(resultIntent);
+            }
+        });
+
         room.setEmptyView(findViewById(R.id.empty));
 
-        List<String> rooms = new ArrayList<String>();
-        rooms.add("B12D i- 50");rooms.add("B12D i- 51");rooms.add("B12D i- 52");rooms.add("B12D i- 53");rooms.add("B12D i- 54");rooms.add("B12D i- 55");
-        rooms.add("B12D Salle Guernesey");rooms.add("B12D Salle Jersey");rooms.add("B12D Amphi P");
+        List<Room> rooms = new ArrayList<Room>();
+        rooms.add(new Room("i- 50", "B12D","0",new ArrayList<Event>()));
 
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,rooms);
+        arrayAdapter = new ArrayAdapter<Room>(this, android.R.layout.simple_list_item_1,rooms);
         room.setAdapter(arrayAdapter);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
