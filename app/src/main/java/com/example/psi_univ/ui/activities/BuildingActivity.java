@@ -64,9 +64,10 @@ public class BuildingActivity extends AppCompatActivity {
 
         //Advanced search
         String level = intent.getStringExtra("level");
+        String room = intent.getStringExtra("room");
         if(level != null){
-            String roomName = intent.getStringExtra("room");
-            //TODO: cibler une salle
+            int position = mapRecycler.scrollToLevel(level, room);
+            //nameRecycler.scrollToPosition(position); //TODO pas sure d'en avoir besoin
         }
     }
 }

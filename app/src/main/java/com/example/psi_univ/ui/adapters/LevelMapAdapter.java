@@ -27,6 +27,8 @@ import java.util.List;
 public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelViewHolders> {
 
     private final List<Level> levels;
+    private final SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+    private final SimpleDateFormat time = new SimpleDateFormat("HH:mm");
 
     public LevelMapAdapter(List<Level> levels) {
         this.levels = levels;
@@ -45,14 +47,13 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
         holder.richPathViewMap.setVectorDrawable(level.getLevelMap());
 
         DataBaseHelper db = new DataBaseHelper(holder.itemView.getContext());
+        FragmentManager fm = ((AppCompatActivity) holder.richPathViewMap.getContext()).getSupportFragmentManager();
 
         Calendar currentTime = Calendar.getInstance();//TODO: change to lookup date
         Calendar endTime = Calendar.getInstance();
         endTime.set(Calendar.HOUR_OF_DAY, 23);
         endTime.set(Calendar.MINUTE, 59);
         endTime.set(Calendar.SECOND, 59);
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat time = new SimpleDateFormat("HH:mm");
 
         for (int i = 0; i < level.getRoomCount(); i++) {
             Room room = level.getRoomAt(i);
@@ -62,30 +63,8 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
                 path.setOnPathClickListener(new RichPath.OnPathClickListener() {
                     @Override
                     public void onClick() {
-                        Bundle bundle = new Bundle();
-                        bundle.putString("roomName", room.getRoomName());
-                        bundle.putString("currentDate", date.format(currentTime.getTime()));
-                        bundle.putString("currentTime", time.format(currentTime.getTime()));
 
-                        //Event event = db.getEventsAt(level.getBuildingName(), room.getRoomName(), currentTime);
-                        Event event = new Event(currentTime, endTime, "test");
-
-                        if(event == null){
-                            bundle.putBoolean("available",true);
-                        }
-                        else {
-                            bundle.putBoolean("available", event.isOverlapping(currentTime));
-                            if(event.getNext() != null){
-                                Calendar next = event.getNext().getStart();
-                                bundle.putString("nextDate", date.format(next.getTime()));
-                                bundle.putString("nextTime", time.format(next.getTime()));
-                            }
-                        }
-
-                        RoomDialogFragment roomDialogFragment = new RoomDialogFragment();
-                        roomDialogFragment.setArguments(bundle);
-                        FragmentManager fragmentManager = ((AppCompatActivity) holder.richPathViewMap.getContext()).getSupportFragmentManager();
-                        roomDialogFragment.show(fragmentManager, "roomDialog_" + room.getRoomName());
+                       openRoomFragment(room.getRoomName(),currentTime,endTime,fm);
                     }
                 });
             }
@@ -100,6 +79,41 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    public int getPosition(String levelName) {
+           for (int i = 0; i < levels.size(); i++) {
+                if (levels.get(i).getLevelName().equals(levelName)) {
+                    return i;
+                }
+            }
+            return -1;
+    }
+
+    public void openRoomFragment(String roomName, Calendar currentTime, Calendar endTime, FragmentManager fm){
+        Bundle bundle = new Bundle();
+        bundle.putString("roomName", roomName);
+        bundle.putString("currentDate", date.format(currentTime.getTime()));
+        bundle.putString("currentTime", time.format(currentTime.getTime()));
+
+        //Event event = db.getEventsAt(level.getBuildingName(), room.getRoomName(), currentTime);
+        Event event = new Event(currentTime, endTime, "test");
+
+        if(event == null){
+            bundle.putBoolean("available",true);
+        }
+        else {
+            bundle.putBoolean("available", event.isOverlapping(currentTime));
+            if(event.getNext() != null){
+                Calendar next = event.getNext().getStart();
+                bundle.putString("nextDate", date.format(next.getTime()));
+                bundle.putString("nextTime", time.format(next.getTime()));
+            }
+        }
+
+        RoomDialogFragment roomDialogFragment = new RoomDialogFragment();
+        roomDialogFragment.setArguments(bundle);
+        roomDialogFragment.show(fm, "roomDialog_" + roomName);
     }
 
     public static class LevelViewHolders extends RecyclerView.ViewHolder {
