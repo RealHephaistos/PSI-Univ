@@ -16,6 +16,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.psi_univ.R;
+import com.example.psi_univ.backend.DataBaseHelper;
 import com.example.psi_univ.models.Event;
 import com.example.psi_univ.models.Room;
 import com.google.android.material.navigation.NavigationView;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.setCheckedItem(R.id.homepage);
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
 
 
         SearchView searchView = findViewById(R.id.searchView);
@@ -56,8 +58,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         room.setEmptyView(findViewById(R.id.empty));
 
-        List<Room> rooms = new ArrayList<Room>();
-        rooms.add(new Room("i- 50", "B12D","0"));
+        List<Room> rooms = dataBaseHelper.getAllRooms();
 
         arrayAdapter = new ArrayAdapter<Room>(this, android.R.layout.simple_list_item_1,rooms);
         room.setAdapter(arrayAdapter);

@@ -173,6 +173,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return new Building(buildingName, getLevels(buildingName));
     }
 
+    /**
+     * @return List<Room> : List of all rooms
+     */
+    public List<Room> getAllRooms() {
+        List<Building> b = getBuildings();
+        List<Room> result = new ArrayList<>();
+        for(Building i : b){
+            for(Level j : i.getLevelList()){
+                result.addAll(getRooms(i.getName(),j.getLevelName()));
+            }
+        }
+        return result;
+    }
+
     public void intitBuildingTest(SQLiteDatabase db) {
         String query = "INSERT INTO `" + ROOMS_TABLE + "` (`" + COLUMN_BUILDING + "`, `" + COLUMN_NUMBER + "`, `" + COLUMN_FLOOR + "`, `" + COLUMN_TYPE + "`, `" + COLUMN_SIZE + "`) VALUES\n" +
                 "('B12D', 'Amphi P', 0, 2, 200),\n" +
