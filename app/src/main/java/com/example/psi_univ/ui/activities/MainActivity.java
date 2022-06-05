@@ -105,13 +105,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.advancedSearch:
-                startActivity(new Intent(this,AdvancedSearchActivity.class));
-                break;
-            case R.id.settings:
+        if(item.getItemId()==R.id.advancedSearch) {
+            startActivity(new Intent(this, AdvancedSearchActivity.class));
+        }
+        if(item.getItemId()==R.id.settings) {
                 startActivity(new Intent(this,SettingsActivity.class));
-                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

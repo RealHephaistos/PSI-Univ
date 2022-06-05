@@ -3,32 +3,41 @@ package com.example.psi_univ.ui.activities;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.psi_univ.R;
 import com.example.psi_univ.ui.fragments.AdvancedSearchFragment;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.Calendar;
 import java.util.Locale;
 
 
-public class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickListener{
+public class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     TextView timer;
     SwitchCompat availableRoom;
     SwitchCompat unavailableRoom;
     Button dateButton;
     DatePickerDialog datePickerDialog;
     int timerHour, timerMinute;
+    private ImageView imageView;
+    private DrawerLayout drawerLayout;
 
 
     @Override
@@ -48,6 +57,16 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
         dateButton = findViewById(R.id.date_button);
 
 
+        //Drawer
+        imageView = findViewById(R.id.imageViewHome);
+        drawerLayout = findViewById(R.id.advancedSearchContainer);
+
+        NavigationView navigationView = findViewById(R.id.navigationView);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        navigationView.setCheckedItem(R.id.advancedSearch);
+
+
         //Calendar for the Date Picker
         Calendar cal = Calendar.getInstance();
         int mYear = cal.get(Calendar.YEAR);
@@ -63,6 +82,13 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
         unavailableRoom.setOnClickListener(this);
         timer.setOnClickListener(this);
         dateButton.setOnClickListener(this);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
 
     }
 
@@ -177,4 +203,25 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
     }
 
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.homepage) {
+            startActivity(new Intent(this, MainActivity.class));
+        }
+        if(item.getItemId()==R.id.settings) {
+            startActivity(new Intent(this,SettingsActivity.class));
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
 }
