@@ -11,6 +11,13 @@ public class Room {
         this.levelName = levelName;
     }
 
+    public String getLevelName() {
+        return levelName;
+    }
+    public String getBuildingName() {
+        return buildingName;
+    }
+
     public String getRoomName() {
         return roomName;
     }

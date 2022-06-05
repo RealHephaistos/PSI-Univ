@@ -46,19 +46,22 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
 
         SearchView searchView = findViewById(R.id.searchView);
+        List<Room> rooms = dataBaseHelper.getAllRooms();
         ListView room = findViewById(R.id.listRoom);
         Intent resultIntent = new Intent(this,BuildingActivity.class);
         room.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                resultIntent.putExtra("building", parent.getItemAtPosition(position).toString().split(" ")[0]);
+                resultIntent.putExtra("building", rooms.get(position).getBuildingName());
+                resultIntent.putExtra("level", rooms.get(position).getLevelName());
+                resultIntent.putExtra("room", rooms.get(position).getRoomName());
                 startActivity(resultIntent);
             }
         });
 
         room.setEmptyView(findViewById(R.id.empty));
 
-        List<Room> rooms = dataBaseHelper.getAllRooms();
+
 
         arrayAdapter = new ArrayAdapter<Room>(this, android.R.layout.simple_list_item_1,rooms);
         room.setAdapter(arrayAdapter);
