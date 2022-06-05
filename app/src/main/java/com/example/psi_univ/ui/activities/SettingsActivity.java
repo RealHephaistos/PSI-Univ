@@ -74,7 +74,7 @@ public class SettingsActivity extends AppCompatActivity  implements NavigationVi
             startActivity(new Intent(this,AdvancedSearchActivity.class));
         }
         drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
+        return false;
     }
     @Override
     public void onBackPressed() {

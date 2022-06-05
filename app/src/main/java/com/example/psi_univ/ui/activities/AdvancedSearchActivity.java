@@ -212,7 +212,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
             startActivity(new Intent(this,SettingsActivity.class));
         }
         drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
+        return false;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.psi_univ.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.setCheckedItem(R.id.homepage);
+
+
         DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
 
 
@@ -102,6 +105,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             drawerLayout.closeDrawer(GravityCompat.START);
         }
         else {
+
             super.onBackPressed();
         }
     }
@@ -115,6 +119,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 startActivity(new Intent(this,SettingsActivity.class));
         }
         drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
+
+        return false;
     }
+
+
 }
