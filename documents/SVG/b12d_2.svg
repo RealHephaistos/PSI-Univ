@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_-3" data-name="2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 657.91 1000.14">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: none;
-        stroke: #9f9f9e;
-        stroke-miterlimit: 10;
-        stroke-width: 4px;
-      }
-    </style>
-  </defs>
-  <polygon class="cls-1" points="47.31 404.31 277.53 404.31 277.53 991.42 433.53 991.42 433.53 401.64 603.75 401.64 603.75 275.42 417.98 275.42 417.98 14.08 294.86 14.08 294.86 278.97 47.31 278.97 47.31 404.31"/>
+<svg data-name="2" id="_-3" viewBox="0 0 657.91 1000.14" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+            .cls-1 {
+            fill: none;
+            stroke: #9f9f9e;
+            stroke-miterlimit: 10;
+            stroke-width: 4px;
+            }
+        </style>
+    </defs>
+    <polygon class="cls-1"
+        points="47.31 404.31 277.53 404.31 277.53 991.42 433.53 991.42 433.53 401.64 603.75 401.64 603.75 275.42 417.98 275.42 417.98 14.08 294.86 14.08 294.86 278.97 47.31 278.97 47.31 404.31" />
 </svg>

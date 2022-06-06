@@ -2,7 +2,6 @@ package com.example.psi_univ.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,18 +17,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.psi_univ.R;
 import com.example.psi_univ.backend.DataBaseHelper;
-import com.example.psi_univ.models.Event;
 import com.example.psi_univ.models.Room;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    ArrayAdapter<Room> arrayAdapter;
     private ImageView imageView;
     private DrawerLayout drawerLayout;
-    ArrayAdapter<Room> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +48,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         SearchView searchView = findViewById(R.id.searchView);
         List<Room> rooms = dataBaseHelper.getAllRooms();
         ListView room = findViewById(R.id.listRoom);
-        Intent resultIntent = new Intent(this,BuildingActivity.class);
+        Intent resultIntent = new Intent(this, BuildingActivity.class);
         room.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -65,8 +62,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         room.setEmptyView(findViewById(R.id.empty));
 
 
-
-        arrayAdapter = new ArrayAdapter<Room>(this, android.R.layout.simple_list_item_1,rooms);
+        arrayAdapter = new ArrayAdapter<Room>(this, android.R.layout.simple_list_item_1, rooms);
         room.setAdapter(arrayAdapter);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -85,7 +81,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 View listLayout = findViewById(R.id.list_layout);
-                if(hasFocus) listLayout.setVisibility(View.VISIBLE);
+                if (hasFocus) listLayout.setVisibility(View.VISIBLE);
                 else listLayout.setVisibility(View.GONE);
             }
         });
@@ -101,10 +97,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
 
             super.onBackPressed();
         }
@@ -112,11 +107,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.advancedSearch) {
+        if (item.getItemId() == R.id.advancedSearch) {
             startActivity(new Intent(this, AdvancedSearchActivity.class));
         }
-        if(item.getItemId()==R.id.settings) {
-                startActivity(new Intent(this,SettingsActivity.class));
+        if (item.getItemId() == R.id.settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
         }
         drawerLayout.closeDrawer(GravityCompat.START);
 

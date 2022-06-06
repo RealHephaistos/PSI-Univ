@@ -41,20 +41,20 @@ public class RoomDialogFragment extends DialogFragment {
 
         TextView availableTextView = fragment.findViewById(R.id.availableTextView);
         if (bundle.getBoolean("available")) {
-            availableTextView.setText("Available");
+            availableTextView.setText(R.string.available);
         } else {
-            availableTextView.setText("Not Available");
+            availableTextView.setText(R.string.unavailable);
         }
 
         String nextDate = bundle.getString("nextDate");
         String nextTime = bundle.getString("nextTime");
         TextView dateNextClassTextView = fragment.findViewById(R.id.dateNextClassTextView);
         TextView timeNextClassTextView = fragment.findViewById(R.id.timeNextClassTextView);
-        if(nextDate != null && nextTime != null) {
+        if (nextDate != null && nextTime != null) {
             dateNextClassTextView.setText(nextDate);
             timeNextClassTextView.setText(nextTime);
-        }else{
-            dateNextClassTextView.setText("No Next Class");
+        } else {
+            dateNextClassTextView.setText(R.string.no_next_class);
             timeNextClassTextView.setText("");
         }
 

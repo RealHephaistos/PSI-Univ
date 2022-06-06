@@ -14,6 +14,7 @@ public class Room {
     public String getLevelName() {
         return levelName;
     }
+
     public String getBuildingName() {
         return buildingName;
     }
@@ -21,8 +22,9 @@ public class Room {
     public String getRoomName() {
         return roomName;
     }
+
     @Override
     public String toString() {
-        return buildingName + ' ' +roomName;
+        return buildingName + ' ' + roomName;
     }
 }

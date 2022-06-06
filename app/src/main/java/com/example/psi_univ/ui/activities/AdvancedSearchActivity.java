@@ -22,7 +22,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.psi_univ.R;
-import com.example.psi_univ.ui.fragments.AdvancedSearchFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Calendar;
@@ -205,11 +204,11 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.homepage) {
+        if (item.getItemId() == R.id.homepage) {
             startActivity(new Intent(this, MainActivity.class));
         }
-        if(item.getItemId()==R.id.settings) {
-            startActivity(new Intent(this,SettingsActivity.class));
+        if (item.getItemId() == R.id.settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return false;
@@ -217,10 +216,9 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
     }

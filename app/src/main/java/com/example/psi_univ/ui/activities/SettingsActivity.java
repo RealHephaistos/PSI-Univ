@@ -1,6 +1,5 @@
 package com.example.psi_univ.ui.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,14 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 
 import com.example.psi_univ.R;
 import com.example.psi_univ.ui.fragments.SettingsFragment;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class SettingsActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
+public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView imageView;
     private DrawerLayout drawerLayout;
 
@@ -67,21 +65,21 @@ public class SettingsActivity extends AppCompatActivity  implements NavigationVi
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.homepage) {
+        if (item.getItemId() == R.id.homepage) {
             startActivity(new Intent(this, MainActivity.class));
         }
-        if(item.getItemId()==R.id.advancedSearch) {
-            startActivity(new Intent(this,AdvancedSearchActivity.class));
+        if (item.getItemId() == R.id.advancedSearch) {
+            startActivity(new Intent(this, AdvancedSearchActivity.class));
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return false;
     }
+
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
     }

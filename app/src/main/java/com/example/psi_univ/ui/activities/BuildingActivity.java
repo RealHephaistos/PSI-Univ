@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.psi_univ.backend.DataBaseHelper;
 import com.example.psi_univ.R;
-import com.example.psi_univ.ui.adapters.LevelMapRecycler;
-import com.example.psi_univ.ui.adapters.LevelMapAdapter;
-import com.example.psi_univ.ui.adapters.LevelNameAdapter;
-import com.example.psi_univ.ui.adapters.LevelNameRecycler;
+import com.example.psi_univ.backend.DataBaseHelper;
 import com.example.psi_univ.models.Building;
 import com.example.psi_univ.models.Level;
+import com.example.psi_univ.ui.adapters.LevelMapAdapter;
+import com.example.psi_univ.ui.adapters.LevelMapRecycler;
+import com.example.psi_univ.ui.adapters.LevelNameAdapter;
+import com.example.psi_univ.ui.adapters.LevelNameRecycler;
 
 import java.util.List;
 
@@ -62,12 +62,12 @@ public class BuildingActivity extends AppCompatActivity {
             }
         });
 
-        //Advanced search
+        //Scroll to the selected level and/or open the room
         String level = intent.getStringExtra("level");
         String room = intent.getStringExtra("room");
-        if(level != null){
+        if (level != null) {
             int position = mapRecycler.scrollToLevel(level, room);
-            //nameRecycler.scrollToPosition(position); //TODO pas sure d'en avoir besoin
+            nameRecycler.scrollToPosition(position);
         }
     }
 }

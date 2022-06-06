@@ -17,18 +17,16 @@ public class Level {
         int levelnbr = Integer.parseInt(levelName); //TODO: levelName en int dans la db
         this.levelName = levelName;
         this.rooms = rooms;
-        String levelMapName = "ic_"+buildingName+"_";
-        if(levelnbr< 0){
-            levelMapName +="s"+levelnbr;
-        }
-        else{
-            levelMapName +=levelnbr;
+        String levelMapName = "ic_" + buildingName + "_";
+        if (levelnbr < 0) {
+            levelMapName += "s" + levelnbr;
+        } else {
+            levelMapName += levelnbr;
         }
         int id = context.getResources().getIdentifier(levelMapName.toLowerCase(), "drawable", context.getPackageName());
-        if(id == 0){
+        if (id == 0) {
             this.levelMap = R.drawable.ic_b12d_s1; //TODO: truc par défaut
-        }
-        else {
+        } else {
             this.levelMap = id;
         }
     }
@@ -53,7 +51,7 @@ public class Level {
         this.rooms = rooms;
     }
 
-    public String getBuildingName(){
+    public String getBuildingName() {
         return buildingName;
     }
 }

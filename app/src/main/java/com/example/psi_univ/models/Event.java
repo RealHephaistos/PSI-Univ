@@ -16,6 +16,10 @@ public class Event {
         this.next = null;
     }
 
+    /**
+     * @param d the date to compare to
+     * @return true if d is between start and end
+     */
     public boolean isOverlapping(Calendar d) {
         return d.after(start) && d.before(end);
     }
@@ -32,11 +36,11 @@ public class Event {
         return subject;
     }
 
-    public void setNext(Event next) {
-        this.next = next;
-    }
-
     public Event getNext() {
         return next;
+    }
+
+    public void setNext(Event next) {
+        this.next = next;
     }
 }

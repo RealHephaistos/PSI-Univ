@@ -21,7 +21,6 @@
     <string name="advanced_search_unavailable_rooms_toast_on">Unavailable rooms will be shown</string>
     <string name="advanced_search_unavailable_rooms_toast_of">Unavailable rooms will not be shown</string>
 
-
     <!-- English strings for the toolbar -->
     <string name="ToolBar">PSI-Univ</string>
     <string name="ToolBarSearch">Research</string>
@@ -54,6 +53,11 @@
     <string name="dateFormat">Date Format</string>
     <string name="dateFormat_summary">Change date format</string>
     <string name="Language_Summary">Change language</string>
+
+    <!-- English string for the room dialog fragment-->
+    <string name="available">Available</string>
+    <string name="unavailable">Unavailable</string>
+    <string name="no_next_class">Next class not found</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

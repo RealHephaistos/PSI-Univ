@@ -1,12 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/topAppMenu"
         android:icon="@drawable/ic_baseline_menu_24"
-        android:title="@string/ToolBarSearch"
         android:iconTint="@color/white"
+        android:title="@string/ToolBarSearch"
         app:showAsAction="collapseActionView|ifRoom" />
 
 </menu>

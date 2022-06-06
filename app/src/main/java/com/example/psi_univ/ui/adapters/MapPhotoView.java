@@ -82,7 +82,15 @@ public class MapPhotoView extends PhotoView {
             return name;
         }
 
+        /**
+         * @param x      the x coordinate of the point the user touched
+         * @param y      the y coordinate of the point the user touched
+         * @param width  the width of the image
+         * @param height the height of the image
+         * @return true if the point is inside the polygon, false otherwise
+         */
         public boolean isInsidePolygon(float x, float y, float width, float height) {
+            //Translate the point to the image's coordinate system
             float trueX = x * width;
             float trueY = y * height;
             boolean inside = false;

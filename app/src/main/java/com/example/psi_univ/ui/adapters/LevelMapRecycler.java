@@ -18,6 +18,13 @@ public class LevelMapRecycler extends RecyclerView {
         setHasFixedSize(true);
     }
 
+    /**
+     * Scroll to the level with the given name, open the corresponding room if roomName is not null.
+     *
+     * @param levelName the level name to be displayed
+     * @param roomName  the room name to be displayed can be null
+     * @return the position of the level name in the recycler view
+     */
     public int scrollToLevel(String levelName, String roomName) {
         Calendar currentTime = Calendar.getInstance();//TODO: change to lookup date
         Calendar endTime = Calendar.getInstance();
@@ -28,7 +35,7 @@ public class LevelMapRecycler extends RecyclerView {
         assert adapter != null;
         int position = adapter.getPosition(levelName);
         scrollToPosition(position);
-        if(roomName != null){
+        if (roomName != null) {
             adapter.openRoomFragment(roomName, currentTime, endTime, ((AppCompatActivity) getContext()).getSupportFragmentManager());
         }
 

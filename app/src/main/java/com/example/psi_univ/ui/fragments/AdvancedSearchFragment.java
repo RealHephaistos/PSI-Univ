@@ -14,7 +14,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -33,7 +32,6 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
     DatePickerDialog datePickerDialog;
     int timerHour, timerMinute;
     private Toolbar toolbar;
-
 
 
     @Nullable
