@@ -497,46 +497,35 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     /**
      * @param buildingName : The name of the building you search
      * @param roomName     : The name of the room you search
-     * @param startTime    : Date of first event (String format yyyy-MM-dd)
-     * @param endTime      : Date of last event (String format yyyy-MM-dd)
-     * @return List<Event> : A list of all event in a room
+     * @param at    : Date of the event
+     * @return The event if it exists, null otherwise
      */
-    public List<Event> getEvents(String buildingName, String roomName, String startTime, String endTime) throws ParseException {
-        List<Event> returnEvents = new ArrayList<>();
-
+    public Event getEventAt(String buildingName, String roomName, String at) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String queryStringEvent = "SELECT " + COLUMN_START_EVENT + ", " + COLUMN_END_EVENT + ", " + COLUMN_SUBJECT + " FROM " + EVENTS_TABLE
                 + " WHERE " + COLUMN_BUILDING + " = '" + buildingName + "'"
                 + " AND " + COLUMN_NAME + " = '" + roomName + "'"
-                + " AND " + COLUMN_START_EVENT + " >= '" + startTime + " 00:00:00'"
-                + " AND " + COLUMN_END_EVENT + " <= '" + endTime + " 24:00:00'"
-                + " ORDER BY " + COLUMN_BUILDING + " ASC, "
-                + COLUMN_NAME + " ASC";
+                + " AND " + COLUMN_START_EVENT + " <= '" + at + ":00'"
+                + " AND " + COLUMN_END_EVENT + " >= '" + at + ":00'"
+                + " OR " + COLUMN_START_EVENT + " >= '" + at + ":00'"
+                + " ORDER BY " + COLUMN_START_EVENT + " ASC"
+                + " LIMIT 2";
+
         Cursor cursorEvent = db.rawQuery(queryStringEvent, null);
+        Event result = null;
 
         Log.i("test1", "true");
         if (cursorEvent.moveToFirst()) {
             Log.i("test2", "true");
-            do {
-                String eventStart = cursorEvent.getString(0);
-                String eventEnd = cursorEvent.getString(1);
-                String eventSubject = cursorEvent.getString(2);
-
-                Calendar calendarStart = Calendar.getInstance();
-                Calendar calendarEnd = Calendar.getInstance();
-                @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.FRANCE);
-                Log.i("Temps", eventStart);
-                calendarStart.setTime(dateFormat.parse(eventStart));
-                calendarEnd.setTime(dateFormat.parse(eventEnd));
-                Event event = new Event(calendarStart, calendarEnd, eventSubject); //TODO : revoir ça
-                returnEvents.add(event);
-
-            } while (cursorEvent.moveToNext());
+            result = new Event(cursorEvent.getString(0), cursorEvent.getString(1), cursorEvent.getString(2));
+            if(cursorEvent.moveToNext()) {
+                result.setNext(new Event(cursorEvent.getString(0), cursorEvent.getString(1), cursorEvent.getString(2)));
+            }
         }
 
         cursorEvent.close();
-        return returnEvents;
+        return result;
     }
 
 

@@ -40,7 +40,7 @@ public class BuildingActivity extends AppCompatActivity {
 
         //Set the map recycler view
         LevelMapRecycler mapRecycler = findViewById(R.id.mapRecycler);
-        mapRecycler.setAdapter(new LevelMapAdapter(levels));
+        mapRecycler.setAdapter(new LevelMapAdapter(levels, this, intent.getStringExtra("time")));
         PagerSnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(mapRecycler);
 

@@ -34,14 +34,14 @@
         android:strokeWidth="4"
         android:strokeColor="#d7d7d6" />
     <path
-        android:name="i-55"
+        android:name="i-55 Anglais"
         android:fillAlpha="0"
         android:fillColor="#ffffff"
         android:pathData="M314.7,906.7h99.1v79.4h-99.1z"
         android:strokeWidth="4"
         android:strokeColor="#d7d7d6" />
     <path
-        android:name="i-54"
+        android:name="i-54 Anglais"
         android:fillAlpha="0"
         android:fillColor="#ffffff"
         android:pathData="M314.4,786.1h105.2v94.3h-105.2z"

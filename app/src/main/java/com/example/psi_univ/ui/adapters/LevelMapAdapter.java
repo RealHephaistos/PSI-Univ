@@ -1,6 +1,7 @@
 package com.example.psi_univ.ui.adapters;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,21 +22,47 @@ import com.example.psi_univ.ui.fragments.RoomDialogFragment;
 import com.richpath.RichPath;
 import com.richpath.RichPathView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelViewHolders> {
 
     private final List<Level> levels;
-    @SuppressLint("SimpleDateFormat")
-    private final SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-    @SuppressLint("SimpleDateFormat")
-    private final SimpleDateFormat time = new SimpleDateFormat("HH:mm");
-    private DataBaseHelper db;
+    private final String buildingName;
+    private final FragmentManager fragmentManager;
+    private final DataBaseHelper db;
+    private final Calendar lookup;
+    private final String lookupDate;
+    private final String lookupTime;
 
-    public LevelMapAdapter(List<Level> levels) {
+
+    public LevelMapAdapter(List<Level> levels, Context context, String date) {
         this.levels = levels;
+        this.buildingName = levels.get(0).getBuildingName();
+        this.fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+        this.db = new DataBaseHelper(context);
+        this.lookup = Calendar.getInstance();
+        String[] tmp = new String[2];
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        if(date != null) {
+            try {
+                this.lookup.setTime(Objects.requireNonNull(sdf.parse(date)));
+                tmp = date.split(" ");
+                
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            tmp = sdf.format(Calendar.getInstance().getTime()).split(" ");
+        }
+        
+        this.lookupDate = tmp[0];
+        this.lookupTime = tmp[1];
     }
 
     @NonNull
@@ -49,9 +76,6 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
     public void onBindViewHolder(@NonNull LevelViewHolders holder, int position) {
         Level level = levels.get(position);
         holder.richPathViewMap.setVectorDrawable(level.getLevelMap());
-
-        db = new DataBaseHelper(holder.itemView.getContext());
-        FragmentManager fm = ((AppCompatActivity) holder.richPathViewMap.getContext()).getSupportFragmentManager();
 
         Calendar currentTime = Calendar.getInstance();//TODO: change to lookup date
         Calendar endTime = Calendar.getInstance();
@@ -67,7 +91,7 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
                 path.setOnPathClickListener(new RichPath.OnPathClickListener() {
                     @Override
                     public void onClick() {
-                        openRoomFragment(room.getRoomName(), currentTime, endTime, fm);
+                        openRoomFragment(room.getRoomName());
                     }
                 });
             }
@@ -101,33 +125,31 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
      * Opens a dialog fragment with the room's events
      *
      * @param roomName    name of the room
-     * @param currentTime current time
-     * @param endTime     end time
-     * @param fm          fragment manager
      */
-    public void openRoomFragment(String roomName, Calendar currentTime, Calendar endTime, FragmentManager fm) {
+    public void openRoomFragment(String roomName) {
         Bundle bundle = new Bundle();
         bundle.putString("roomName", roomName);
-        bundle.putString("currentDate", date.format(currentTime.getTime()));
-        bundle.putString("currentTime", time.format(currentTime.getTime()));
+        bundle.putString("lookupDate", lookupDate);
+        bundle.putString("lookupTime", lookupTime);
 
-        //Event event = db.getEventsAt(level.getBuildingName(), room.getRoomName(), currentTime);
-        //Event event = new Event(currentTime, endTime, "test");
-        Event event = null;
+        Event event = db.getEventAt(buildingName, roomName, lookupDate + " " + lookupTime);
         if (event == null) {
+
             bundle.putBoolean("available", true);
         } else {
-            bundle.putBoolean("available", event.isOverlapping(currentTime));
-            if (event.getNext() != null) {
-                Calendar next = event.getNext().getStart();
-                bundle.putString("nextDate", date.format(next.getTime()));
-                bundle.putString("nextTime", time.format(next.getTime()));
+            bundle.putBoolean("available", !event.isOverlapping(lookup));
+            String test = event.getStart();
+            Event next =event.getNext();
+            if (next != null) {
+                String[] tmp = next.getStart().split(" ");
+                bundle.putString("nextDate", tmp[0]);
+                bundle.putString("nextTime", tmp[1]);
             }
         }
 
         RoomDialogFragment roomDialogFragment = new RoomDialogFragment();
         roomDialogFragment.setArguments(bundle);
-        roomDialogFragment.show(fm, "roomDialog_" + roomName);
+        roomDialogFragment.show(fragmentManager, "roomDialog_" + roomName);
     }
 
     public static class LevelViewHolders extends RecyclerView.ViewHolder {

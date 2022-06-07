@@ -26,17 +26,12 @@ public class LevelMapRecycler extends RecyclerView {
      * @return the position of the level name in the recycler view
      */
     public int scrollToLevel(String levelName, String roomName) {
-        Calendar currentTime = Calendar.getInstance();//TODO: change to lookup date
-        Calendar endTime = Calendar.getInstance();
-        endTime.set(Calendar.HOUR_OF_DAY, 23);
-        endTime.set(Calendar.MINUTE, 59);
-        endTime.set(Calendar.SECOND, 59);
         LevelMapAdapter adapter = (LevelMapAdapter) getAdapter();
         assert adapter != null;
         int position = adapter.getPosition(levelName);
         scrollToPosition(position);
         if (roomName != null) {
-            adapter.openRoomFragment(roomName, currentTime, endTime, ((AppCompatActivity) getContext()).getSupportFragmentManager());
+            adapter.openRoomFragment(roomName);
         }
 
         return position;
