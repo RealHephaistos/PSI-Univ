@@ -1,6 +1,5 @@
 package com.example.psi_univ.ui.activities;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -15,6 +14,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
@@ -136,7 +136,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                int style = AlertDialog.THEME_HOLO_LIGHT;
+                int style = 3;
 
                 datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
 

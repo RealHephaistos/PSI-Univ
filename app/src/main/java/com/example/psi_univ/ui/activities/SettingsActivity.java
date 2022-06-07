@@ -59,7 +59,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 return;
             }
 
-            getFragmentManager().beginTransaction().add(R.id.settings_container, new SettingsFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.settings_container, new SettingsFragment()).commit();
         }
     }
 

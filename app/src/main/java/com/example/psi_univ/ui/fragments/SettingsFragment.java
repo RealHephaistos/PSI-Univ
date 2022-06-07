@@ -1,65 +1,58 @@
 package com.example.psi_univ.ui.fragments;
 
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.util.DisplayMetrics;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
 
 import com.example.psi_univ.R;
 
-import java.util.Locale;
+import java.util.Objects;
 
-public class SettingsFragment extends PreferenceFragment {
+public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private Preference.OnPreferenceChangeListener listener = new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
-            String value = newValue.toString();
-            if (preference instanceof ListPreference) {
-                ListPreference listPreference = (ListPreference) preference;
-                int index = listPreference.findIndexOfValue(value);
-                preference.setSummary(listPreference.getEntries()[index]);
-            }
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(preference.getContext());
-            if (sharedPreferences.getString("key_language", "").compareTo("FRE") == 0) {
-                Toast.makeText(getContext(), sharedPreferences.getString("key_language", ""), Toast.LENGTH_SHORT).show();
 
-                setLocal("fr");
-            }
+    @Override
+    public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
+        setPreferencesFromResource(R.xml.preferences,rootKey);
+        Objects.requireNonNull(getPreferenceScreen().getSharedPreferences()).registerOnSharedPreferenceChangeListener(this);
 
-            return true;
-        }
-    };
-
-    private void bind(Preference preference) {
-        preference.setOnPreferenceChangeListener(listener);
-        listener.onPreferenceChange(preference, PreferenceManager.getDefaultSharedPreferences(preference.getContext()).getString(preference.getKey(), ""));
-    }
-
-    private void setLocal(String code) {
-        Resources resources = Resources.getSystem();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        Configuration configuration = resources.getConfiguration();
-        configuration.setLocale(new Locale(code));
-        resources.updateConfiguration(configuration, metrics);
-        onConfigurationChanged(configuration);
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences);
+    public void onResume() {
+        Objects.requireNonNull(getPreferenceScreen().getSharedPreferences()).registerOnSharedPreferenceChangeListener(this);
+        super.onResume();
+    }
 
-        bind(findPreference("key_language"));
-        bind(findPreference("key_date_format"));
+    @Override
+    public void onPause() {
+        Objects.requireNonNull(getPreferenceScreen().getSharedPreferences()).registerOnSharedPreferenceChangeListener(this);
+        super.onPause();
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        Preference preference = findPreference(key);
+        int index;
+        switch (key){
+            case "key_language":
+                androidx.preference.ListPreference listPreferenceLanguage = (androidx.preference.ListPreference) preference;
+                assert listPreferenceLanguage != null;
+                index = listPreferenceLanguage.findIndexOfValue(sharedPreferences.getString(key," "));
+                preference.setSummary(listPreferenceLanguage.getEntries()[index]);
+                Toast.makeText(getActivity(), "Changement d'heure", Toast.LENGTH_SHORT).show();
+                break;
+            case "key_date_format":
+                androidx.preference.ListPreference listPreferenceDate = (androidx.preference.ListPreference) preference;
+                assert listPreferenceDate != null;
+                index = listPreferenceDate.findIndexOfValue(sharedPreferences.getString(key," "));
+                preference.setSummary(listPreferenceDate.getEntries()[index]);
+                break;
+        }
 
     }
 }
