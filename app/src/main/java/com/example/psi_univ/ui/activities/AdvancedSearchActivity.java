@@ -3,18 +3,17 @@ package com.example.psi_univ.ui.activities;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
@@ -35,7 +34,6 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
     Button dateButton;
     DatePickerDialog datePickerDialog;
     int timerHour, timerMinute;
-    private ImageView imageView;
     private DrawerLayout drawerLayout;
 
 
@@ -57,7 +55,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
 
 
         //Drawer
-        imageView = findViewById(R.id.imageViewHome);
+        ImageView imageView = findViewById(R.id.imageViewHome);
         drawerLayout = findViewById(R.id.advancedSearchContainer);
 
         NavigationView navigationView = findViewById(R.id.navigationView);
@@ -74,7 +72,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
 
         //Current date as Hint in the Button
         dateButton.setHint(
-                new StringBuilder().append(mDay).append('/').append(mMonth + 1).append('/').append(mYear));
+                makeDateString(mDay, mMonth, mYear));
 
         //On click listener in the fragment view
         availableRoom.setOnClickListener(this);
@@ -82,83 +80,83 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
         timer.setOnClickListener(this);
         dateButton.setOnClickListener(this);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
+        imageView.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
     }
 
 
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.time_select://Timer Picker
-                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        timerHour = hourOfDay;
-                        timerMinute = minute;
-                        timer.setText(String.format(Locale.getDefault(), "%02d:%02d", timerHour, timerMinute));
-                    }
-                };
 
-                TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, timerHour, timerMinute, true);
-                timePickerDialog.setTitle(R.string.drawer_close);
-                timePickerDialog.show();
-                break;
-            case R.id.switch_available_room://Message shown with the available rooms switch button
-                if (availableRoom.isChecked()) {
-                    Toast.makeText(this, "OU", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, R.string.advanced_search_available_rooms_toast_of, Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.switch_unavailable_room://Message shown with the available rooms switch button
-                if (unavailableRoom.isChecked()) {
-                    Toast.makeText(this, R.string.advanced_search_unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, R.string.advanced_search_unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.date_button://Date Picker
-                DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        month = month + 1;
-                        String date = makeDateString(dayOfMonth, month, year);
-                        dateButton.setHint(date);
-                    }
-                };
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+        if (v.getId() == R.id.time_select) {
+            //Timer Picker
+            TimePickerDialog.OnTimeSetListener onTimeSetListener = (view, hourOfDay, minute) -> {
+                timerHour = hourOfDay;
+                timerMinute = minute;
+                timer.setText(String.format(Locale.getDefault(), "%02d:%02d", timerHour, timerMinute));
+            };
 
-                int style = 3;
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, timerHour, timerMinute, true);
+            timePickerDialog.setTitle(R.string.drawer_close);
+            timePickerDialog.show();
+        }
+        if (v.getId() == R.id.switch_available_room) {
+            //Message shown with the available rooms switch button
+            if (availableRoom.isChecked()) {
+                Toast.makeText(this, R.string.advanced_search_unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, R.string.advanced_search_available_rooms_toast_of, Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (v.getId() == R.id.switch_unavailable_room) {
+            //Message shown with the available rooms switch button
+            if (unavailableRoom.isChecked()) {
+                Toast.makeText(this, R.string.advanced_search_unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, R.string.advanced_search_unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (v.getId() == R.id.date_button) {
+            //Date Picker
+            DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
+                month = month + 1;
+                String date = makeDateString(dayOfMonth, month, year);
+                dateButton.setHint(date);
+            };
+            Calendar cal = Calendar.getInstance();
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
 
-                datePickerDialog.show();
-                break;
+            int style = 0;
+
+            datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+
+            datePickerDialog.show();
         }
     }
 
     /**
      * Date to String
      *
-     * @param dayOfMonth
-     * @param month
-     * @param year
+     * @param dayOfMonth the day of the month
+     * @param month      the month
+     * @param year       the year
      * @return A date in a string format
      */
     private String makeDateString(int dayOfMonth, int month, int year) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sharedPreferences.getString("key_date_format", " ").equals("dd/mm/yyyy")) {
+            return dayOfMonth + " " + getMonthFormat(month) + " " + year;
+        }
+        if (sharedPreferences.getString("key_date_format", " ").equals("yyyy/mm/dd")) {
+            return year + " " + getMonthFormat(month) + " " + dayOfMonth;
+        }
         return getMonthFormat(month) + " " + dayOfMonth + " " + year;
     }
 
     /**
-     * @param month
+     * @param month the month
      * @return The month's name in a string format
      */
     private String getMonthFormat(int month) {

@@ -1,7 +1,10 @@
 package com.example.psi_univ.ui.fragments;
 
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -10,6 +13,7 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.example.psi_univ.R;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -44,7 +48,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 assert listPreferenceLanguage != null;
                 index = listPreferenceLanguage.findIndexOfValue(sharedPreferences.getString(key," "));
                 preference.setSummary(listPreferenceLanguage.getEntries()[index]);
-                Toast.makeText(getActivity(), "Changement d'heure", Toast.LENGTH_SHORT).show();
+                if (sharedPreferences.getString("key_language", "").compareTo("FRE") == 0) {
+                    Toast.makeText(getContext(), sharedPreferences.getString("key_language", " "), Toast.LENGTH_SHORT).show();
+                    setLocal("fr");
+                }
+                else {
+                    setLocal("eng");
+                }
                 break;
             case "key_date_format":
                 androidx.preference.ListPreference listPreferenceDate = (androidx.preference.ListPreference) preference;
@@ -53,6 +63,18 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 preference.setSummary(listPreferenceDate.getEntries()[index]);
                 break;
         }
+
+    }
+
+    private void setLocal(String code) {
+        Locale locale = new Locale(code);
+        Locale.setDefault(locale);
+
+        Configuration configuration = getContext().getResources().getConfiguration();
+        configuration.setLocale(locale);
+        configuration.setLayoutDirection(locale);
+
+        getContext().getResources().updateConfiguration(configuration,getContext().getResources().getDisplayMetrics());
 
     }
 }

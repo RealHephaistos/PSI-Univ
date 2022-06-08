@@ -1,9 +1,10 @@
 package com.example.psi_univ.ui.fragments;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,7 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
 
         //Current date as Hint in the Button
         dateButton.setHint(
-                new StringBuilder().append(mDay).append('/').append(mMonth + 1).append('/').append(mYear));
+                makeDateString(mDay, mMonth, mYear));
 
         //On click listener in the fragment view
         availableRoom.setOnClickListener(this);
@@ -68,72 +69,81 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.time_select://Timer Picker
-                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        timerHour = hourOfDay;
-                        timerMinute = minute;
-                        timer.setText(String.format(Locale.getDefault(), "%02d:%02d", timerHour, timerMinute));
-                    }
-                };
-
-                TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), onTimeSetListener, timerHour, timerMinute, true);
-                timePickerDialog.setTitle(R.string.drawer_close);
-                timePickerDialog.show();
-                break;
-            case R.id.switch_available_room://Message shown with the available rooms switch button
-                if (availableRoom.isChecked()) {
-                    Toast.makeText(getActivity(), R.string.advanced_search_available_rooms_toast_on, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getActivity(), R.string.advanced_search_available_rooms_toast_of, Toast.LENGTH_SHORT).show();
+        if (v.getId() == R.id.time_select) {
+            //Timer Picker
+            TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    timerHour = hourOfDay;
+                    timerMinute = minute;
+                    timer.setText(String.format(Locale.getDefault(), "%02d:%02d", timerHour, timerMinute));
                 }
-                break;
-            case R.id.switch_unavailable_room://Message shown with the available rooms switch button
-                if (unavailableRoom.isChecked()) {
-                    Toast.makeText(getActivity(), R.string.advanced_search_unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getActivity(), R.string.advanced_search_unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
+            };
+
+            TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), onTimeSetListener, timerHour, timerMinute, true);
+            timePickerDialog.setTitle(R.string.drawer_close);
+            timePickerDialog.show();
+        }
+
+        if (v.getId() == R.id.switch_available_room) {
+            //Message shown with the available rooms switch button
+            if (availableRoom.isChecked()) {
+                Toast.makeText(getActivity(), R.string.advanced_search_available_rooms_toast_on, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), R.string.advanced_search_available_rooms_toast_of, Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (v.getId() == R.id.switch_unavailable_room) {//Message shown with the available rooms switch button
+            if (unavailableRoom.isChecked()) {
+                Toast.makeText(getActivity(), R.string.advanced_search_unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), R.string.advanced_search_unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (v.getId() == R.id.date_button) {
+            //Date Picker
+            DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    month = month + 1;
+                    String date = makeDateString(dayOfMonth, month, year);
+                    dateButton.setHint(date);
                 }
-                break;
-            case R.id.date_button://Date Picker
-                DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        month = month + 1;
-                        String date = makeDateString(dayOfMonth, month, year);
-                        dateButton.setHint(date);
-                    }
-                };
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+            };
+            Calendar cal = Calendar.getInstance();
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                int style = AlertDialog.THEME_HOLO_LIGHT;
+            int style = 3;
 
-                datePickerDialog = new DatePickerDialog(getActivity(), style, dateSetListener, year, month, day);
+            datePickerDialog = new DatePickerDialog(getActivity(), style, dateSetListener, year, month, day);
 
-                datePickerDialog.show();
-                break;
+            datePickerDialog.show();
         }
     }
 
     /**
      * Date to String
      *
-     * @param dayOfMonth
-     * @param month
-     * @param year
+     * @param dayOfMonth the day of the month
+     * @param month      the month
+     * @param year       the year
      * @return A date in a string format
      */
     private String makeDateString(int dayOfMonth, int month, int year) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if (sharedPreferences.getString("key_date_format"," ").equals("dd/mm/yyyy")){
+            return dayOfMonth + " " + getMonthFormat(month) + " " + year;
+        }
+        if (sharedPreferences.getString("key_date_format"," ").equals("yyyy/mm/dd")){
+            return year + " " + getMonthFormat(month) + " " + dayOfMonth;
+        }
         return getMonthFormat(month) + " " + dayOfMonth + " " + year;
     }
 
     /**
-     * @param month
+     * @param month the month
      * @return The month's name in a string format
      */
     private String getMonthFormat(int month) {
