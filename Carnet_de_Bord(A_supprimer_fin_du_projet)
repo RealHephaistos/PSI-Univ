@@ -148,3 +148,81 @@ Travail sur la partie FrontEnd et BackEnd
 	---27/05/2022---
 
 -Pont
+
+	---30/05/2022---
+
+Réunion globale sur discord afin de parler du projet
+	-Mise en commun / relation FrontEnd et BackEnd 
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine : Fin de la création et manipulation de la carte, et mise en commun averc Guillaume pour la suite
+	-Tony : Création d'une activité pour les paramètres et création des premiers paramètres dans un fichier préférence (possibilité de changer la langue de l'application : Anglais et Français) et modification sommaire lorsque changement de paramètre
+	-Morvan : 
+	-Guillaume : Mise a jour de la base de données SGLite, ajout de la fonction getBuilding(String buildingName) , fonction qui initialise la db avec des valeur de test,fonctin delete qui supprime toutes les tables,
+
+	---31/05/2022---
+
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine :
+	-Tony : Refonte graphique de la page d'accueil (barre de recherche et icone de menu), non fonctionnel avec les autres pannels pour le moment
+	-Morvan : 
+	-Guillaume : 
+
+	---01/06/2022---
+
+Réunion avec le professeur suiveur pour parler de l'avancer du projet
+	-Toujours en attente pour l'autorisation de l'utilisation des données de l'emploi du temps
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine : Résolution de bugs avec les salles vides
+	-Tony : Mise a jour de la page d'acceuil pour avoir accès au menu
+	-Morvan : 
+	-Guillaume : ajout fonction getEvents (String buildingName, String roomName, String startTime, String endTime)
+
+	---02/06/2022---
+
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine :
+	-Tony : Menu tiroir : suppresion des fragments pour passer uniquement sur des activités
+	-Morvan : Création d'une liste des salle lors de la recherche simple
+	-Guillaume : 
+
+	---03/06/2022---
+
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine :
+	-Tony : Toutes les activités autres que celle de la page d'acceuil on une barre d'action
+	-Morvan : Filtre sur la liste de recherche et remplacement des anciennes classes par la partie serveur et le fihcier .ics a utiliser pour ne pas a avoir a telécharger d'autres fichiers
+	-Guillaume : 
+
+	---06/06/2022---
+
+-Férié
+
+	---07/06/2022---
+
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine : Resolution du bug par rapport à la carte (cliquable partout), modificaton des niveaux,ajout du Logo, modification de room et event qui affiche un message si il n'y a pas de cours après,Possibilité de ciblé un level / une room, correction bug ou l'amphi P n'était pas clicable,accès à la db terminé, retrait de la bar de statu, pour cherche à une date spécifique il faut appeler la class BuildingActivity avec un intent "time" tq "yyyy-MM-dd HH:mm"
+	-Tony :  Navigation entres toutes les activités terminé avec bouton de navigation fonctionnel et affichage du logo dans le menu tirroir, Settings : changement du sommaire lorsque celui-ci est modifié
+	-Morvan : Une salle à son niveau et son batiment, la recherche ouvre la bonne activité + Room.toString(), la barre de recherche contient toutes les salles de la Data Base et méthode getAllRooms dans dbHelper, fin de la barre de recherhe et un getter pour Room
+	-Guillaume : 
+
+	---08/06/2022---
+
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine :
+	-Tony : Modification des options, le format des dates peut être changé (ne fonctionne pas pour le menu de sélection de date), choix de langues possibles mais encore quelques erreurs
+	-Morvan :
+	-Guillaume : 
+
+	---09/06/2022---
+
+	---10/06/2022---
+
+	---13/06/2022---
+
+	---14/06/2022---
+
+	---15/06/2022---
+
+	---16/06/2022---
+
+	---17/06/2022---
