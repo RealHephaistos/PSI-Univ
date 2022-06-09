@@ -43,9 +43,8 @@ dependencies {
     implementation 'com.github.tarek360.RichPath:richpath:0.0.9'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'com.github.chrisbanes:PhotoView:2.1.4'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.fragment:fragment:1.4.1'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment:2.4.2'
@@ -53,10 +52,12 @@ dependencies {
     implementation files('libs/jsoup-1.14.3.jar')
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation('com.googlecode.json-simple:json-simple:1.1.1') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
     }
+    implementation 'com.akexorcist:localization:1.2.10'
+
 }

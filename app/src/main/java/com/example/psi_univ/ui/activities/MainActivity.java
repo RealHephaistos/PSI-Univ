@@ -145,4 +145,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+
+    }
 }

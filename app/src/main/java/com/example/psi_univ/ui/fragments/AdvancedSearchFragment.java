@@ -31,8 +31,10 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
     SwitchCompat unavailableRoom;
     Button dateButton;
     DatePickerDialog datePickerDialog;
-    int timerHour, timerMinute;
     private Toolbar toolbar;
+    int timerHour, timerMinute;
+    boolean isAvailableRoomShown = false;
+    boolean isUnavailableRoomShown = true;
 
 
     @Nullable
@@ -89,15 +91,19 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
             //Message shown with the available rooms switch button
             if (availableRoom.isChecked()) {
                 Toast.makeText(getActivity(), R.string.advanced_search_available_rooms_toast_on, Toast.LENGTH_SHORT).show();
+                isAvailableRoomShown = true;
             } else {
                 Toast.makeText(getActivity(), R.string.advanced_search_available_rooms_toast_of, Toast.LENGTH_SHORT).show();
+                isAvailableRoomShown = false;
             }
         }
         if (v.getId() == R.id.switch_unavailable_room) {//Message shown with the available rooms switch button
             if (unavailableRoom.isChecked()) {
                 Toast.makeText(getActivity(), R.string.advanced_search_unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
+                isUnavailableRoomShown = true;
             } else {
                 Toast.makeText(getActivity(), R.string.advanced_search_unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
+                isUnavailableRoomShown = false;
             }
         }
         if (v.getId() == R.id.date_button) {
@@ -115,7 +121,7 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
             int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
 
-            int style = 3;
+            int style = 1;
 
             datePickerDialog = new DatePickerDialog(getActivity(), style, dateSetListener, year, month, day);
 

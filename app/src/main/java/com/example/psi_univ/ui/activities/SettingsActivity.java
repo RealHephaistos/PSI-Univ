@@ -24,6 +24,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_settings);
 
         //Drawer
@@ -83,6 +84,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
             super.onBackPressed();
         }
     }
+
 
 
 }
