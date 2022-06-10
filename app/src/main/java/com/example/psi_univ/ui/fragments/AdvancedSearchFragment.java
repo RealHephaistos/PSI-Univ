@@ -9,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -33,6 +31,7 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
     DatePickerDialog datePickerDialog;
     private Toolbar toolbar;
     int timerHour, timerMinute;
+    String datePicker;
     boolean isAvailableRoomShown = false;
     boolean isUnavailableRoomShown = true;
 
@@ -61,25 +60,26 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
         dateButton.setHint(
                 makeDateString(mDay, mMonth, mYear));
 
+
+        String dateTimePicker = datePicker + " " + timerHour + ":" +timerMinute;
+
         //On click listener in the fragment view
         availableRoom.setOnClickListener(this);
         unavailableRoom.setOnClickListener(this);
         timer.setOnClickListener(this);
         dateButton.setOnClickListener(this);
         return myView;
+
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.time_select) {
             //Timer Picker
-            TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    timerHour = hourOfDay;
-                    timerMinute = minute;
-                    timer.setText(String.format(Locale.getDefault(), "%02d:%02d", timerHour, timerMinute));
-                }
+            TimePickerDialog.OnTimeSetListener onTimeSetListener = (view, hourOfDay, minute) -> {
+                timerHour = hourOfDay;
+                timerMinute = minute;
+                timer.setText(String.format(Locale.getDefault(), "%02d:%02d", timerHour, timerMinute));
             };
 
             TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), onTimeSetListener, timerHour, timerMinute, true);
@@ -108,18 +108,18 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
         }
         if (v.getId() == R.id.date_button) {
             //Date Picker
-            DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    month = month + 1;
-                    String date = makeDateString(dayOfMonth, month, year);
-                    dateButton.setHint(date);
-                }
+            DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
+                month = month + 1;
+                String date = makeDateString(dayOfMonth, month, year);
+                datePicker = year+"-"+month+"-"+dayOfMonth;
+                dateButton.setHint(date);
             };
             Calendar cal = Calendar.getInstance();
             int year = cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
+            datePicker = year+"-"+month+"-"+day;
+
 
             int style = 1;
 
@@ -191,4 +191,5 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
         }
         return getString(R.string.January);
     }
+
 }
