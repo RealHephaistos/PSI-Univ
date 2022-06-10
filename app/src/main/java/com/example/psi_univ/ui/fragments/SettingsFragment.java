@@ -1,5 +1,6 @@
 package com.example.psi_univ.ui.fragments;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -49,12 +51,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 index = listPreferenceLanguage.findIndexOfValue(sharedPreferences.getString(key," "));
                 preference.setSummary(listPreferenceLanguage.getEntries()[index]);
                 if (sharedPreferences.getString("key_language", "").compareTo("FRE") == 0) {
-                    Toast.makeText(getContext(), sharedPreferences.getString("key_language", " "), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), sharedPreferences.getString("key_language", " "), Toast.LENGTH_SHORT).show();
                     setLocal("fr");
                 }
                 else {
                     setLocal("eng");
                 }
+
                 break;
             case "key_date_format":
                 androidx.preference.ListPreference listPreferenceDate = (androidx.preference.ListPreference) preference;
@@ -67,14 +70,18 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     }
 
     private void setLocal(String code) {
-        Locale locale = new Locale(code);
-        Locale.setDefault(locale);
+        if (isAdded()) {
+            Locale locale = new Locale(code);
+            Resources resources = getResources();
+            DisplayMetrics metrics = resources.getDisplayMetrics();
+            Configuration configuration = resources.getConfiguration();
 
-        Configuration configuration = getContext().getResources().getConfiguration();
-        configuration.setLocale(locale);
-        configuration.setLayoutDirection(locale);
+            configuration.setLocale(locale);
 
-        getContext().getResources().updateConfiguration(configuration,getContext().getResources().getDisplayMetrics());
-
+            resources.updateConfiguration(configuration, metrics);
+        }
     }
+
+
 }
+
