@@ -1,17 +1,22 @@
 # PSI-Univ
 
-Application android qui affiche les salles disponibles sur un plan du campus en se basant sur le
+(ENG) Android application that displays the rooms available on a campus plan based on the
+Planning of college. This application would allow students to find more quickly what
+rooms are available and in which buildings.
+
+(FR) Application android qui affiche les salles disponibles sur un plan du campus en se basant sur le
 planning de la fac. Cette application permettrait aux élèves de trouver plus rapidement quelles
 salles sont disponibles et dans quels bâtiments.
 
-# Les participants
+# Developed By
 
 - Berrouche Issameddine 
 - Buan Tony 
 - Hamono Morvan 
 - Vachez Guillaume 
 
-# Technologies utilisées
+# Technologies used
+
 Android Studio (Java)
   -Librairie AndroidX
   -Librairie RicPath (https://github.com/tarek360/RichPath)
@@ -25,10 +30,10 @@ Android Studio (Java)
   -Librairie Localization (https://github.com/akexorcist/Localization)
    
 
-# Fonctionnalités supportées
+# Features
 
-# Fonctionnalités à développer
+# TODO
 
 # Licence
 
-# Lien screencast
+# Installation / Presentation
