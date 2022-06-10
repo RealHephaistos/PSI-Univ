@@ -18,7 +18,7 @@ salles sont disponibles et dans quels bâtiments.
 # Technologies used
 
 Android Studio (Java)
-  - Librairie AndroidX
+  - Librairie AndroidX (https://developer.android.com/jetpack/androidx)
   - Librairie RicPath (https://github.com/tarek360/RichPath)
   - Librairie Material Design (https://material.io/)
   - Librairie PhotoView (https://github.com/Baseflow/PhotoView)
@@ -34,6 +34,12 @@ Android Studio (Java)
 
 # TODO
 
+- Language Change : updateConfiguration() is deprecated. Find another way to change the language of the app
+- Improve the application to all the Uiversity of Rennes 1 and not only the ISTIC
+- Add others university which can be add in the drawer menu for the selection
+- More options
+
+# ScreenCast
+
 # Licence
 
-# Installation / Presentation
