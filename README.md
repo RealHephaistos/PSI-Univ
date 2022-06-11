@@ -36,19 +36,21 @@ Github (https://github.com/)
 # Features
 
 - All menu are availbale via the drawer menu (Hamburger icon or left to right swap)
-  - Homepage
-   - Complete map of the University of Rennes 1 redisigned
-   - Clickable map for the differents builings (only istic)
-   - Simplified plan of the buildings to know if a room is empty or not
-   - Search bar for an easiest navigation which put you direct one the room you want
-  - Advanced Search
-   - Search bar for the room
-   - Time picker if you want to choose a precise time
-   - Date picker if you want to choose a precise date
-   - Search button to launch the research
-  - Settings
-   - Can choose a language (English, French)
-   - Can choose the date format
+
+- Homepage
+  - Complete map of the University of Rennes 1 redisigned
+  - Clickable map for the differents builings (only istic)
+  - Simplified plan of the buildings to know if a room is empty or not
+  - Search bar for an easiest navigation which put you direct one the room you want
+- Advanced Search
+  - Search bar for the room
+  - Time picker if you want to choose a precise time
+  - Date picker if you want to choose a precise date
+  - Search button to launch the research
+- Settings
+  - Can choose a language (English, French)
+  - Can choose the date format
+
 
 # TODO
 
