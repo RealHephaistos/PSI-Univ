@@ -8,33 +8,42 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.psi_univ.R;
+import com.example.psi_univ.backend.DataBaseHelper;
+import com.example.psi_univ.models.Room;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 
 public class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     TextView timer;
-    SwitchCompat availableRoom;
-    SwitchCompat unavailableRoom;
+    //SwitchCompat availableRoom;
+    //SwitchCompat unavailableRoom;
     Button dateButton;
+    Button searchButton;
     DatePickerDialog datePickerDialog;
+    String datePicker;
     int timerHour, timerMinute;
+    ArrayAdapter<Room> arrayAdapter;
     private DrawerLayout drawerLayout;
+    int mapPosition;
 
 
     @Override
@@ -42,6 +51,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advanced_search);
 
+        //Toolbar Initialisation
         Toolbar toolbar = findViewById(R.id.ToolBarAdvancedSearch);
         setSupportActionBar(toolbar);
 
@@ -49,13 +59,12 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
 
         //Variables initialisations
         timer = findViewById(R.id.time_select);
-        availableRoom = findViewById(R.id.switch_available_room);
-        unavailableRoom = findViewById(R.id.switch_unavailable_room);
+        //availableRoom = findViewById(R.id.switch_available_room);
+        //unavailableRoom = findViewById(R.id.switch_unavailable_room);
         dateButton = findViewById(R.id.date_button);
 
 
         //Drawer
-        ImageView imageView = findViewById(R.id.imageViewHome);
         drawerLayout = findViewById(R.id.advancedSearchContainer);
 
         NavigationView navigationView = findViewById(R.id.navigationView);
@@ -74,14 +83,78 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
         dateButton.setHint(
                 makeDateString(mDay, mMonth, mYear));
 
+        datePicker = datePicker + " " + timerHour + ":" +timerMinute;
+
+
         //On click listener in the fragment view
-        availableRoom.setOnClickListener(this);
-        unavailableRoom.setOnClickListener(this);
+        //availableRoom.setOnClickListener(this);
+        //unavailableRoom.setOnClickListener(this);
         timer.setOnClickListener(this);
         dateButton.setOnClickListener(this);
 
+        //Home button
+        ImageView imageView = findViewById(R.id.imageViewHome);
         imageView.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
+        //Search view
+
+        SearchView searchView = findViewById(R.id.advanced_search_bar);
+
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+        List<Room> rooms = dataBaseHelper.getAllRooms();
+        ListView room = findViewById(R.id.listRoom);
+        Intent resultIntent = new Intent(this, BuildingActivity.class);
+        room.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                searchView.setQuery(rooms.get(position).getBuildingName() + " " + rooms.get(position).getRoomName(),true);
+                searchView.clearFocus();
+                mapPosition = position;
+
+            }
+        });
+
+        room.setEmptyView(findViewById(R.id.empty));
+
+
+        arrayAdapter = new ArrayAdapter<Room>(this, android.R.layout.simple_list_item_1, rooms);
+        room.setAdapter(arrayAdapter);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                arrayAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                View listLayout = findViewById(R.id.list_layout);
+                if (hasFocus) listLayout.setVisibility(View.VISIBLE);
+                else listLayout.setVisibility(View.GONE);
+            }
+        });
+
+
+        //Search Button
+        searchButton = findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resultIntent.putExtra("building", rooms.get(mapPosition).getBuildingName());
+                resultIntent.putExtra("level", rooms.get(mapPosition).getLevelName());
+                resultIntent.putExtra("room", rooms.get(mapPosition).getRoomName());
+                resultIntent.putExtra("time",datePicker);
+                startActivity(resultIntent);
+            }
+        });
     }
 
 
@@ -99,6 +172,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
             timePickerDialog.setTitle(R.string.drawer_close);
             timePickerDialog.show();
         }
+        /*
         if (v.getId() == R.id.switch_available_room) {
             //Message shown with the available rooms switch button
             if (availableRoom.isChecked()) {
@@ -107,6 +181,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
                 Toast.makeText(this, R.string.advanced_search_available_rooms_toast_of, Toast.LENGTH_SHORT).show();
             }
         }
+
         if (v.getId() == R.id.switch_unavailable_room) {
             //Message shown with the available rooms switch button
             if (unavailableRoom.isChecked()) {
@@ -115,10 +190,12 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
                 Toast.makeText(this, R.string.advanced_search_unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
             }
         }
+        */
         if (v.getId() == R.id.date_button) {
             //Date Picker
             DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
                 month = month + 1;
+                datePicker = year+"-"+month+"-"+dayOfMonth;
                 String date = makeDateString(dayOfMonth, month, year);
                 dateButton.setHint(date);
             };
@@ -126,7 +203,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
             int year = cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
-
+            datePicker = year+"-"+month+"-"+day;
 
             int style = 0;
 
