@@ -50,11 +50,13 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
     int formatMonth ;
     int formatDay ;
 
+boolean def;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advanced_search);
+
 
         //Toolbar Initialisation
         Toolbar toolbar = findViewById(R.id.ToolBarAdvancedSearch);
@@ -111,10 +113,12 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
         DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
         List<Room> rooms = dataBaseHelper.getAllRooms();
         ListView room = findViewById(R.id.listRoom);
+        def= true;
         Intent resultIntent = new Intent(this, BuildingActivity.class);
         room.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                def = false;
                 searchView.setQuery(rooms.get(position).getBuildingName() + " " + rooms.get(position).getRoomName(),true);
                 searchView.clearFocus();
                 mapPosition = position;
@@ -157,11 +161,18 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
             @Override
             public void onClick(View v) {
                 String dateTimePicker = makeTimeFormat(formatYear,formatMonth,formatDay,timerHour,timerMinute);
-                resultIntent.putExtra("building", rooms.get(mapPosition).getBuildingName());
-                resultIntent.putExtra("level", rooms.get(mapPosition).getLevelName());
-                resultIntent.putExtra("room", rooms.get(mapPosition).getRoomName());
+
+                if(!def) {
+                    resultIntent.putExtra("building", rooms.get(mapPosition).getBuildingName());
+                    resultIntent.putExtra("level", rooms.get(mapPosition).getLevelName());
+                    resultIntent.putExtra("room", rooms.get(mapPosition).getRoomName());
+                }
+                else {
+                    resultIntent.putExtra("building", "B12D");
+                    resultIntent.putExtra("level", "0");
+                }
                 resultIntent.putExtra("time",dateTimePicker);
-                Toast.makeText(AdvancedSearchActivity.this, dateTimePicker, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(AdvancedSearchActivity.this, dateTimePicker, Toast.LENGTH_SHORT).show();
                 startActivity(resultIntent);
             }
         });
@@ -187,8 +198,7 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
             minute = "0"+minute;
         }
 
-        String timeFormat= year+"-"+month+"-"+day+" "+hour+":"+minute;
-        return timeFormat;
+        return year+"-"+month+"-"+day+" "+hour+":"+minute;
     }
 
 
