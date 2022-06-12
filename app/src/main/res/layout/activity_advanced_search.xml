@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".ui.activities.SettingsActivity"
-    tools:openDrawer="start">
+    >
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -65,8 +65,7 @@
                 app:iconifiedByDefault="false"
                 app:queryHint="@string/advanced_search_search_bar" /><!--xml comments-->
 
-            <!--
-             //Switch for available rooms
+            <!-- Switch for available rooms -->
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_available_room"
                 android:layout_width="wrap_content"
@@ -79,7 +78,7 @@
                 android:minHeight="48dp"
                 android:text="@string/advanced_search_available_roms" />
 
-            //Switch for unavailable rooms
+            <!-- Switch for unavailable rooms -->
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_unavailable_room"
                 android:layout_width="wrap_content"
@@ -90,14 +89,14 @@
                 android:checked="true"
                 android:minHeight="48dp"
                 android:text="@string/advanced_search_unavailable_roms" />
-            -->
+
 
             <!-- Time Picker -->
             <TextView
                 android:id="@+id/time_select"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/advanced_search_bar"
+                android:layout_below="@id/switch_unavailable_room"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/edit_background"

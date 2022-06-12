@@ -14,10 +14,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -34,16 +36,19 @@ import java.util.Locale;
 
 public class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     TextView timer;
-    //SwitchCompat availableRoom;
-    //SwitchCompat unavailableRoom;
+    SwitchCompat availableRoom;
+    SwitchCompat unavailableRoom;
     Button dateButton;
     Button searchButton;
     DatePickerDialog datePickerDialog;
-    String datePicker;
     int timerHour, timerMinute;
     ArrayAdapter<Room> arrayAdapter;
     private DrawerLayout drawerLayout;
     int mapPosition;
+
+    int formatYear ;
+    int formatMonth ;
+    int formatDay ;
 
 
     @Override
@@ -59,8 +64,8 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
 
         //Variables initialisations
         timer = findViewById(R.id.time_select);
-        //availableRoom = findViewById(R.id.switch_available_room);
-        //unavailableRoom = findViewById(R.id.switch_unavailable_room);
+        availableRoom = findViewById(R.id.switch_available_room);
+        unavailableRoom = findViewById(R.id.switch_unavailable_room);
         dateButton = findViewById(R.id.date_button);
 
 
@@ -83,12 +88,15 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
         dateButton.setHint(
                 makeDateString(mDay, mMonth, mYear));
 
-        datePicker = datePicker + " " + timerHour + ":" +timerMinute;
-
+        formatYear =cal.get(Calendar.YEAR);
+        formatMonth =cal.get(Calendar.MONTH) ;
+        formatDay =cal.get(Calendar.DAY_OF_MONTH)+1;
+        timerHour =cal.get(Calendar.HOUR);
+        timerMinute =cal.get(Calendar.MINUTE);
 
         //On click listener in the fragment view
-        //availableRoom.setOnClickListener(this);
-        //unavailableRoom.setOnClickListener(this);
+        availableRoom.setOnClickListener(this);
+        unavailableRoom.setOnClickListener(this);
         timer.setOnClickListener(this);
         dateButton.setOnClickListener(this);
 
@@ -148,13 +156,39 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String dateTimePicker = makeTimeFormat(formatYear,formatMonth,formatDay,timerHour,timerMinute);
                 resultIntent.putExtra("building", rooms.get(mapPosition).getBuildingName());
                 resultIntent.putExtra("level", rooms.get(mapPosition).getLevelName());
                 resultIntent.putExtra("room", rooms.get(mapPosition).getRoomName());
-                resultIntent.putExtra("time",datePicker);
+                resultIntent.putExtra("time",dateTimePicker);
+                Toast.makeText(AdvancedSearchActivity.this, dateTimePicker, Toast.LENGTH_SHORT).show();
                 startActivity(resultIntent);
             }
         });
+    }
+
+    private String makeTimeFormat(int formatYear, int formatMonth, int formatDay, int timerHour, int timerMinute) {
+        String year = formatYear+"";
+        String month= formatMonth +"";
+        String day = formatDay+"";
+        String hour= timerHour +"";
+        String minute = timerMinute + "";
+
+        if (formatMonth < 10){
+            month = "0"+month;
+        }
+        if (formatDay < 10){
+            day = "0"+day;
+        }
+        if (timerHour < 10){
+            hour = "0"+hour;
+        }
+        if (timerMinute < 10){
+            minute = "0"+minute;
+        }
+
+        String timeFormat= year+"-"+month+"-"+day+" "+hour+":"+minute;
+        return timeFormat;
     }
 
 
@@ -166,13 +200,14 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
                 timerHour = hourOfDay;
                 timerMinute = minute;
                 timer.setText(String.format(Locale.getDefault(), "%02d:%02d", timerHour, timerMinute));
+
             };
 
             TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, timerHour, timerMinute, true);
             timePickerDialog.setTitle(R.string.drawer_close);
             timePickerDialog.show();
         }
-        /*
+
         if (v.getId() == R.id.switch_available_room) {
             //Message shown with the available rooms switch button
             if (availableRoom.isChecked()) {
@@ -190,12 +225,14 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
                 Toast.makeText(this, R.string.advanced_search_unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
             }
         }
-        */
+
         if (v.getId() == R.id.date_button) {
             //Date Picker
             DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
                 month = month + 1;
-                datePicker = year+"-"+month+"-"+dayOfMonth;
+                formatYear =year;
+                formatMonth =month;
+                formatDay =dayOfMonth;
                 String date = makeDateString(dayOfMonth, month, year);
                 dateButton.setHint(date);
             };
@@ -203,7 +240,8 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
             int year = cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
-            datePicker = year+"-"+month+"-"+day;
+
+
 
             int style = 0;
 
@@ -296,5 +334,13 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+
     }
 }
