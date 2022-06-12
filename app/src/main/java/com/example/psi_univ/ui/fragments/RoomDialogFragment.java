@@ -36,8 +36,8 @@ public class RoomDialogFragment extends DialogFragment {
 
         TextView dateTextView = fragment.findViewById(R.id.dateTextView);
         TextView timeTextView = fragment.findViewById(R.id.timeTextView);
-        dateTextView.setText(bundle.getString("currentDate"));
-        timeTextView.setText(bundle.getString("currentTime"));
+        dateTextView.setText(bundle.getString("lookupDate"));
+        timeTextView.setText(bundle.getString("lookupTime"));
 
         TextView availableTextView = fragment.findViewById(R.id.availableTextView);
         if (bundle.getBoolean("available")) {

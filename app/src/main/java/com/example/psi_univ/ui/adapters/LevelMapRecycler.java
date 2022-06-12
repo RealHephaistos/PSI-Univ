@@ -31,7 +31,7 @@ public class LevelMapRecycler extends RecyclerView {
         int position = adapter.getPosition(levelName);
         scrollToPosition(position);
         if (roomName != null) {
-            adapter.openRoomFragment(roomName);
+            adapter.openRoomFragment(roomName, adapter.getEvent(roomName));
         }
 
         return position;

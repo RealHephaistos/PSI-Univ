@@ -1,6 +1,5 @@
 package com.example.psi_univ.ui.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +16,6 @@ import com.example.psi_univ.R;
 import com.example.psi_univ.backend.DataBaseHelper;
 import com.example.psi_univ.models.Event;
 import com.example.psi_univ.models.Level;
-import com.example.psi_univ.models.Room;
 import com.example.psi_univ.ui.fragments.RoomDialogFragment;
 import com.richpath.RichPath;
 import com.richpath.RichPathView;
@@ -38,6 +36,9 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
     private final Calendar lookup;
     private final String lookupDate;
     private final String lookupTime;
+
+    private final int fillAvailableColor;
+    private final int fillUnavailableColor;
 
 
     public LevelMapAdapter(List<Level> levels, Context context, String date) {
@@ -63,6 +64,9 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
         
         this.lookupDate = tmp[0];
         this.lookupTime = tmp[1];
+
+        this.fillAvailableColor = context.getResources().getColor(R.color.rennes_gray2);
+        this.fillUnavailableColor = context.getResources().getColor(R.color.rennes_red);
     }
 
     @NonNull
@@ -77,21 +81,22 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
         Level level = levels.get(position);
         holder.richPathViewMap.setVectorDrawable(level.getLevelMap());
 
-        Calendar currentTime = Calendar.getInstance();//TODO: change to lookup date
-        Calendar endTime = Calendar.getInstance();
-        endTime.set(Calendar.HOUR_OF_DAY, 23);
-        endTime.set(Calendar.MINUTE, 59);
-        endTime.set(Calendar.SECOND, 59);
-
         for (int i = 0; i < level.getRoomCount(); i++) {
-            Room room = level.getRoomAt(i);
+            String roomName = level.getRoomAt(i).getRoomName();
 
-            RichPath path = holder.richPathViewMap.findRichPathByName(room.getRoomName());
+            RichPath path = holder.richPathViewMap.findRichPathByName(roomName);
             if (path != null) {
+                Event event = getEvent(roomName);
+                path.setFillAlpha(0.3f);
+                if (event == null || !event.isOverlapping(lookup)) {
+                    path.setFillColor(fillAvailableColor);
+                } else {
+                    path.setFillColor(fillUnavailableColor);
+                }
                 path.setOnPathClickListener(new RichPath.OnPathClickListener() {
                     @Override
                     public void onClick() {
-                        openRoomFragment(room.getRoomName());
+                        openRoomFragment(roomName, event);
                     }
                 });
             }
@@ -122,23 +127,21 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
     }
 
     /**
-     * Opens a dialog fragment with the room's events
-     *
-     * @param roomName    name of the room
+     * open the room fragment with the given room name
+     * @param roomName name of the room
+     * @param event event to be added to the room
      */
-    public void openRoomFragment(String roomName) {
+    public void openRoomFragment(String roomName, Event event) {
         Bundle bundle = new Bundle();
         bundle.putString("roomName", roomName);
         bundle.putString("lookupDate", lookupDate);
         bundle.putString("lookupTime", lookupTime);
 
-        Event event = db.getEventAt(buildingName, roomName, lookupDate + " " + lookupTime);
         if (event == null) {
 
             bundle.putBoolean("available", true);
         } else {
             bundle.putBoolean("available", !event.isOverlapping(lookup));
-            String test = event.getStart();
             Event next =event.getNext();
             if (next != null) {
                 String[] tmp = next.getStart().split(" ");
@@ -161,5 +164,14 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
             richPathViewMap = itemView.findViewById(R.id.map);
             fragmentContainer = itemView.findViewById(R.id.roomFragmentContainerView);
         }
+    }
+
+    /**
+     *
+     * @param roomName name of the room
+     * @return the event of the room at the lookup date and time
+     */
+    public Event getEvent(String roomName) {
+        return db.getEventAt(buildingName, roomName, lookupDate + " " + lookupTime);
     }
 }
