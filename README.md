@@ -32,9 +32,9 @@ salles sont disponibles.
   
 # Technologies used
 
-  -Android Studio (java)
-  -SQLite (https://www.sqlite.org/index.html) 
-  -Github (https://github.com/)
+  - Android Studio (java)
+  - SQLite (https://www.sqlite.org/index.html)
+  - Github (https://github.com/)
    
 # Features
 
