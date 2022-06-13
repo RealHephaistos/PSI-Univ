@@ -18,16 +18,10 @@ salles sont disponibles.
 
 # Libraries used
 
-  - Android Studio (Java) (https://developer.android.com/studio)
-  - AndroidX (https://developer.android.com/jetpack/androidx)
   - RichPath (https://github.com/tarek360/RichPath)
   - Material Design (https://material.io/)
   - PhotoView (https://github.com/Baseflow/PhotoView)
   - Jsoup (https://jsoup.org/download)
-  - Play-services-maps (https://developers.google.com/android)
-  - Core (https://developer.android.com/jetpack/androidx/releases/core)
-  - Junit (https://mvnrepository.com/artifact/junit/junit/4.13.2)
-  - Json (https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple/1.1.1)
   - Localization (https://github.com/akexorcist/Localization)
   
 # Technologies used
