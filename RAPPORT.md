@@ -43,12 +43,16 @@ Utilisation de Discord (https://discord.com/) pour pouvoir discuter entre tous l
 Utilisation d'Android Studio (https://developer.android.com/studio) afin de réaliser le projet car il s'agit d'un des IDE les plus connus et utlisé pour réaliser des application androids. De plus, une documentation importante et de nombreuses librairies sur internet qui nous permet d'avoir plus d'outils à disposition pour répondre aux problèmes rencontrés ou encore de ne pas écrire du code trop complexe qui nous prendrait trop de temps pour un projet de 6 semaines.
 Sachant que les deux seules langages de programmation disponibles sur Android Studio sont java et kotlyn, nous avons décidé d'utiliser java.En effet, il s'agit d'un language de programmation que nous avons étudié ces trois dernères années et donc dont nous disposons de bases solides contraiment à kotlyn.
 
-Utilisation de Github (https://github.com/) qui a permis de partager le code entre toutes les personnes du groupes. Nous savions déjà utilisé la plateforme grâce aux cours que nous avions eu sur Gitlab. Nous avons cependant préféré utilisé GitHub afin de garder une trace de notre travail après nos études (ne sachant pas mais supposant que nos comtes Gitlab allaient âtre supprimés). De plus, une extension était disponible dans Android Studio ce qui nous a permis de fair le lien entre les deux très facilement. Enfin, un système de hiérarchie très pratique grâce aux commits qui nous a permis de retourner sur d'ancienne version en cas de problème avec le code actuelle.
+Utilisation de Github (https://github.com/) qui a permis de partager le code entre toutes les personnes du groupes. Nous savions déjà utilisé la plateforme grâce aux cours que nous avions eu sur Gitlab (GEN). Nous avons cependant préféré utilisé GitHub afin de garder une trace de notre travail après nos études (ne sachant pas mais supposant que nos comtes Gitlab allaient âtre supprimés). De plus, une extension était disponible dans Android Studio ce qui nous a permis de fair le lien entre les deux très facilement. Enfin, un système de hiérarchie très pratique grâce aux commits qui nous a permis de retourner sur d'ancienne version en cas de problème avec le code actuelle.
 - Berrouche Issameddine (RealHephaistos)
 - Buan Tony (tbuan, NoctTB)
 	- tbuan (commits réalisé depuis Android Studio) ->  N'est pas un compte GithHub donc les commits n'apparaissent pas dans les statistiques
 - Hamono Morvan (MorvanH)
 - Vachez Guillaume (xelphire)
+
+Utilisation de SQLite (https://www.sqlite.org/index.html) afin de pouvoir stocker les données nécessaires pour le bon fonctionnement de l'application, c'est à dire les données de l'emploi du temps. Nous avons décidé d'utiliser SQLite car nous savions déjà utlisé mySQL (DSN) et afin de pouvoir garder notre travail pour le futur et car nous n'avions pas besoin d'une table de données composé d'un nombre de données très importants nous avons favorisé SQLite a SQL.
+
+Utilisation d'Azure (https://azure.microsoft.com/fr-fr/) afin de stocker la base de donnée en ligne et de ne pas avoir besoin de la stocké sur l'application et donc réduire la taille de celle-ci. Nous avons utilisé Azure car cela est géré par microsoft et qu'un compte gratuit était disponible car nous somme étudiants. De plus des caractéeistiques largement suffisante pour notre base de donnée (débit,...).
 
 ## Mise en Oeuvre
 
