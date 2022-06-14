@@ -90,19 +90,19 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
         if (v.getId() == R.id.switch_available_room) {
             //Message shown with the available rooms switch button
             if (availableRoom.isChecked()) {
-                Toast.makeText(getActivity(), R.string.advanced_search_available_rooms_toast_on, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.available_rooms_toast_on, Toast.LENGTH_SHORT).show();
                 isAvailableRoomShown = true;
             } else {
-                Toast.makeText(getActivity(), R.string.advanced_search_available_rooms_toast_of, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.available_rooms_toast_of, Toast.LENGTH_SHORT).show();
                 isAvailableRoomShown = false;
             }
         }
         if (v.getId() == R.id.switch_unavailable_room) {//Message shown with the available rooms switch button
             if (unavailableRoom.isChecked()) {
-                Toast.makeText(getActivity(), R.string.advanced_search_unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
                 isUnavailableRoomShown = true;
             } else {
-                Toast.makeText(getActivity(), R.string.advanced_search_unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
                 isUnavailableRoomShown = false;
             }
         }

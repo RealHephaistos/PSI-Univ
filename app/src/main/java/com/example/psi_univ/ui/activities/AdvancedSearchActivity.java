@@ -36,8 +36,6 @@ import java.util.Locale;
 
 public class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     TextView timer;
-    SwitchCompat availableRoom;
-    SwitchCompat unavailableRoom;
     Button dateButton;
     Button searchButton;
     DatePickerDialog datePickerDialog;
@@ -66,8 +64,6 @@ boolean def;
 
         //Variables initialisations
         timer = findViewById(R.id.time_select);
-        availableRoom = findViewById(R.id.switch_available_room);
-        unavailableRoom = findViewById(R.id.switch_unavailable_room);
         dateButton = findViewById(R.id.date_button);
 
 
@@ -97,8 +93,6 @@ boolean def;
         timerMinute =cal.get(Calendar.MINUTE);
 
         //On click listener in the fragment view
-        availableRoom.setOnClickListener(this);
-        unavailableRoom.setOnClickListener(this);
         timer.setOnClickListener(this);
         dateButton.setOnClickListener(this);
 
@@ -217,25 +211,6 @@ boolean def;
             timePickerDialog.setTitle(R.string.drawer_close);
             timePickerDialog.show();
         }
-
-        if (v.getId() == R.id.switch_available_room) {
-            //Message shown with the available rooms switch button
-            if (availableRoom.isChecked()) {
-                Toast.makeText(this, R.string.advanced_search_unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, R.string.advanced_search_available_rooms_toast_of, Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        if (v.getId() == R.id.switch_unavailable_room) {
-            //Message shown with the available rooms switch button
-            if (unavailableRoom.isChecked()) {
-                Toast.makeText(this, R.string.advanced_search_unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, R.string.advanced_search_unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
-            }
-        }
-
         if (v.getId() == R.id.date_button) {
             //Date Picker
             DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {

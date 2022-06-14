@@ -20,6 +20,18 @@
             android:summary="@string/dateFormat_summary"
             android:title="@string/dateFormat"></ListPreference>
 
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:title="@string/advanced_search_available_roms"
+            android:key="keyAvailableRoom"
+            android:summary="@string/availableSettingsSummary"></CheckBoxPreference>
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:title="@string/advanced_search_unavailable_roms"
+            android:key="keyUnavailableRoom"
+            android:summary="@string/unavailableSettingsSummary"></CheckBoxPreference>
+
     </PreferenceCategory>
 
 </PreferenceScreen>

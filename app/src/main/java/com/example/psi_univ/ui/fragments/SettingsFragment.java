@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
@@ -61,6 +62,22 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 assert listPreferenceDate != null;
                 index = listPreferenceDate.findIndexOfValue(sharedPreferences.getString(key," "));
                 preference.setSummary(listPreferenceDate.getEntries()[index]);
+                break;
+            case "keyAvailableRoom":
+                if (sharedPreferences.getBoolean("keyAvailableRoom", false)) {
+                    Toast.makeText(getActivity(), R.string.available_rooms_toast_on, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getActivity(), R.string.available_rooms_toast_of, Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case "keyUnavailableRoom":
+                if (sharedPreferences.getBoolean("keyUnavailableRoom", false)) {
+                    Toast.makeText(getActivity(), R.string.unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getActivity(), R.string.unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
 

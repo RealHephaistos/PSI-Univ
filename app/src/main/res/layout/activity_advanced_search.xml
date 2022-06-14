@@ -65,30 +65,6 @@
                 app:iconifiedByDefault="false"
                 app:queryHint="@string/advanced_search_search_bar" /><!--xml comments-->
 
-            <!-- Switch for available rooms -->
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_available_room"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/advanced_search_bar"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:checked="true"
-
-                android:minHeight="48dp"
-                android:text="@string/advanced_search_available_roms" />
-
-            <!-- Switch for unavailable rooms -->
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_unavailable_room"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/switch_available_room"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:checked="true"
-                android:minHeight="48dp"
-                android:text="@string/advanced_search_unavailable_roms" />
 
 
             <!-- Time Picker -->
@@ -96,9 +72,9 @@
                 android:id="@+id/time_select"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/switch_unavailable_room"
+                android:layout_below="@id/advanced_search_bar"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:background="@drawable/edit_background"
                 android:drawablePadding="2dp"
                 android:gravity="center"
@@ -114,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/time_select"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="45dp"
+                android:layout_marginTop="50dp"
                 android:background="@drawable/edit_background"
                 android:gravity="center">
 
@@ -149,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Date"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:backgroundTint="@color/white"
                 android:gravity="center"
                 android:hint="@string/advanced_search_research_button"
