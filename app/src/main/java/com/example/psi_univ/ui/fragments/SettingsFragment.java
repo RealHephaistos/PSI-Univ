@@ -64,19 +64,21 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 preference.setSummary(listPreferenceDate.getEntries()[index]);
                 break;
             case "keyAvailableRoom":
-                if (sharedPreferences.getBoolean("keyAvailableRoom", false)) {
-                    Toast.makeText(getActivity(), R.string.available_rooms_toast_on, Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Toast.makeText(getActivity(), R.string.available_rooms_toast_of, Toast.LENGTH_SHORT).show();
+                if(isAdded()) {
+                    if (sharedPreferences.getBoolean("keyAvailableRoom", false)) {
+                        Toast.makeText(getContext(), R.string.available_rooms_toast_on, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), R.string.available_rooms_toast_of, Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
             case "keyUnavailableRoom":
-                if (sharedPreferences.getBoolean("keyUnavailableRoom", false)) {
-                    Toast.makeText(getActivity(), R.string.unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Toast.makeText(getActivity(), R.string.unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
+                if(isAdded()) {
+                    if (sharedPreferences.getBoolean("keyUnavailableRoom", false)) {
+                        Toast.makeText(getContext(), R.string.unavailable_rooms_toast_on, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), R.string.unavailable_rooms_toast_of, Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
         }
