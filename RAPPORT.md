@@ -51,7 +51,11 @@ Séparation du groupe de 4 en 2 groupes de 2
 ## Paramettres
 ## Recherche avancée
 ## Vue de la carte du campus
-  Pour satisfaire le cahier des charges, l'utilisateur doit pouvoir zoomer et déplacer la carte du campus, ainsi que cliquer sur les batiments. Android n'offrant pas de solutions natives permettant de gérer le déplacement sur des images, nous avions initiallement pensé à programmer nous même  
+  Afin de satisfaire le cahier des charges, l'utilisateur doit pouvoir zoomer et déplacer la carte du campus (idéalement avec un défilement fluide), ainsi que cliquer sur les batiments. La carte du campus étant trop grande et trop complexe pour etre stocké sous format SVG, nous n'avons pas pu utiliser la même méthode que pour la vue des bâtiments.
+  
+  Pour le déplacement de la carte, Android Studio n'offrant pas de solutions natives permettant de gérer le déplacement sur des images, nous avions initiallement pensé à programmer nous même un composant permettant de zoomer de de scroller dans deux dimmentions. Mais après une version beta techniquement fonctionnelle, bien que sans mouvement fluide, nous nous sommes rendus compte qu'il serait plus facile d'implémenter la librarie [PhotoView](https://github.com/Baseflow/PhotoView).
+  
+  Pour rendre certaines parties de la cartes intéractives, nous avons utilisé [un outils permettant de créer des imagemap](https://www.image-map.net/). Ce site permet de tracer des formes sur une image et génère automatiquement un fichier XML contenant les coordonés des points du polygone. La classe MapPhotoView (notre implémentation de PhotoView) utilise ce fichier pour créer une liste de polygones. Quand le composant MapPhotoView de l'activité principale détecte un click, il parcour la liste des polygones pour vérifier si l'utilisateur a cliquer sur un batiment, et ouvre la vue batiment correspondante si c'est le cas. 
 ## Vue des batiments
 ## Validation de l'implémentation
 
