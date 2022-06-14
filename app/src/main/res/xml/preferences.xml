@@ -10,7 +10,7 @@
             android:entryValues="@array/languageListValue"
             android:key="key_language"
             android:summary="@string/Language_Summary"
-            android:title="@string/Language"></ListPreference>
+            android:title="@string/Language" />
 
         <ListPreference
             android:defaultValue="@string/defaultDateFormat"
@@ -18,19 +18,19 @@
             android:entryValues="@array/dateFormatListValue"
             android:key="key_date_format"
             android:summary="@string/dateFormat_summary"
-            android:title="@string/dateFormat"></ListPreference>
+            android:title="@string/dateFormat" />
 
         <CheckBoxPreference
             android:defaultValue="true"
             android:title="@string/advanced_search_available_roms"
             android:key="keyAvailableRoom"
-            android:summary="@string/availableSettingsSummary"></CheckBoxPreference>
+            android:summary="@string/availableSettingsSummary" />
 
         <CheckBoxPreference
             android:defaultValue="true"
             android:title="@string/advanced_search_unavailable_roms"
             android:key="keyUnavailableRoom"
-            android:summary="@string/unavailableSettingsSummary"></CheckBoxPreference>
+            android:summary="@string/unavailableSettingsSummary" />
 
     </PreferenceCategory>
 

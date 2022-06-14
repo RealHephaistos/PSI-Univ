@@ -35,6 +35,7 @@
         <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/menu/top_app_bar.xml" value="0.22706209453197404" />
         <entry key="..\:/Users/Utilisateur/StudioProjects/PSI-Univ/app/src/main/res/xml/preferences.xml" value="0.2" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/drawable/b12d_s1.xml" value="0.1145" />
+        <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/drawable/edit_background.xml" value="0.2675" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/drawable/ic_arrow.xml" value="0.317" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/drawable/ic_b12d_0.xml" value="0.1865" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/drawable/ic_b12d_1.xml" value="0.1865" />
@@ -47,10 +48,12 @@
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/drawable/level_s1.xml" value="0.221" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/activity_building.xml" value="0.1" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/activity_settings.xml" value="0.21195652173913043" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/cardview_level_plan.xml" value="0.1" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/dialog_room.xml" value="0.1" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/fragment_advanced_search.xml" value="0.15881458966565348" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/fragment_room.xml" value="0.24793388429752067" />
+        <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/fragment_settings.xml" value="0.21195652173913043" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/level_plan.xml" value="0.2463768115942029" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/layout/text_view.xml" value="0.1" />
         <entry key="..\:/Users/issam/AndroidStudioProjects/PSIUniv/app/src/main/res/xml/preferences.xml" value="0.2625" />

@@ -77,7 +77,7 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
         this.lookupTime = tmp[1];
 
         this.fillUnavailableColor = context.getResources().getColor(R.color.rennes_red);
-        this.fillAvailableColor = context.getResources().getColor(R.color.rennes_gray3);
+        this.fillAvailableColor = context.getResources().getColor(R.color.rennes_gray2);
     }
 
     @NonNull
@@ -99,11 +99,11 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
             if (path != null) {
                 Event event = getEvent(roomName);
 
-                if (event != null && !event.isOverlapping(lookup) && !showUnavailable) {
+                if (event != null && event.isOverlapping(lookup) && showUnavailable) {
                     path.setFillAlpha(0.3f);
                     path.setFillColor(fillUnavailableColor);
                 }
-                else if(!showAvailable){
+                else if(showAvailable){
                     path.setFillAlpha(0.3f);
                     path.setFillColor(fillAvailableColor);
                 }

@@ -44,7 +44,7 @@
 
     <!-- English string for the settings-->
     <string name="defaultLanguage">English</string>
-    <string name="defaultDateFormat">Day/Months/Years</string>
+    <string name="defaultDateFormat">dd-mm-yyyy HH:mm</string>
     <string name="User">User</string>
     <string name="Language">Language</string>
     <string name="dateFormat">Date Format</string>
