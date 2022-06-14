@@ -1,6 +1,7 @@
 package com.example.psi_univ.ui.adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.psi_univ.R;
@@ -38,6 +40,9 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
     private final String lookupTime;
 
     private final int fillUnavailableColor;
+    private final int fillAvailableColor;
+    private final boolean showUnavailable;
+    private final boolean showAvailable;
 
 
     public LevelMapAdapter(List<Level> levels, Context context, String date) {
@@ -46,8 +51,15 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
         this.fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
         this.db = new DataBaseHelper(context);
         this.lookup = Calendar.getInstance();
+
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        this.showUnavailable = prefs.getBoolean("keyUnavailableRoom", false);
+        this.showAvailable = prefs.getBoolean("keyAvailableRoom", false);
+
+        String dateFormat = prefs.getString("key_date_format", "yyyy-MM-dd HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.getDefault());
         String[] tmp = new String[2];
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         if(date != null) {
             try {
                 this.lookup.setTime(Objects.requireNonNull(sdf.parse(date)));
@@ -65,6 +77,7 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
         this.lookupTime = tmp[1];
 
         this.fillUnavailableColor = context.getResources().getColor(R.color.rennes_red);
+        this.fillAvailableColor = context.getResources().getColor(R.color.rennes_gray3);
     }
 
     @NonNull
@@ -86,10 +99,15 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
             if (path != null) {
                 Event event = getEvent(roomName);
 
-                if (event != null && !event.isOverlapping(lookup)) {
+                if (event != null && !event.isOverlapping(lookup) && showUnavailable) {
                     path.setFillAlpha(0.3f);
                     path.setFillColor(fillUnavailableColor);
                 }
+                else if(showAvailable){
+                    path.setFillAlpha(0.3f);
+                    path.setFillColor(fillAvailableColor);
+                }
+
                 path.setOnPathClickListener(new RichPath.OnPathClickListener() {
                     @Override
                     public void onClick() {

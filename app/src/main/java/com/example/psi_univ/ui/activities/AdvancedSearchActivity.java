@@ -246,10 +246,10 @@ boolean def;
      */
     private String makeDateString(int dayOfMonth, int month, int year) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPreferences.getString("key_date_format", " ").equals("dd/mm/yyyy")) {
+        if (sharedPreferences.getString("key_date_format", " ").equals("dd-mm-yyyy HH:mm")) {
             return dayOfMonth + " " + getMonthFormat(month) + " " + year;
         }
-        if (sharedPreferences.getString("key_date_format", " ").equals("yyyy/mm/dd")) {
+        if (sharedPreferences.getString("key_date_format", " ").equals("yyyy-mm-dd HH:mm")) {
             return year + " " + getMonthFormat(month) + " " + dayOfMonth;
         }
         return getMonthFormat(month) + " " + dayOfMonth + " " + year;

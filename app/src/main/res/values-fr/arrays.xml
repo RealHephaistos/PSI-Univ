@@ -11,15 +11,15 @@
     </string-array>
 
     <string-array name="dateFormatList">
-        <item>Jour/Mois/Année</item>
-        <item>Mois/Jour/Année</item>
-        <item>Année/Mois/Jour</item>
+        <item>Jours-Mois-Années Heures:Minutes</item>
+        <item>Mois-Jours-Années Heures:Minutes</item>
+        <item>Années-Mois-Jours Heures:Minutes</item>
     </string-array>
 
     <string-array name="dateFormatListValue">
-        <item>dd/mm/yyyy</item>
-        <item>mm/dd/yyyy</item>
-        <item>yyyy/mm/dd</item>
+        <item>dd-mm-yyyy HH:mm</item>
+        <item>mm-dd-yyyy HH:mm</item>
+        <item>yyyy-mm-dd HH:mm</item>
     </string-array>
 
 </resources>

@@ -52,7 +52,7 @@ public class MapPhotoView extends PhotoView {
             System.exit(1);
         }
 
-        //Set the onTouchListener
+        //Set the onTapListener
         setOnPhotoTapListener((view, x, y) -> {
             for (Polygon poly : polygons) {
                 if (poly.isInsidePolygon(x, y, width, height)) {
