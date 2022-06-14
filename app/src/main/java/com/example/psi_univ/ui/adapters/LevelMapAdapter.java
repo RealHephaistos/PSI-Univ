@@ -37,7 +37,6 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
     private final String lookupDate;
     private final String lookupTime;
 
-    private final int fillAvailableColor;
     private final int fillUnavailableColor;
 
 
@@ -65,7 +64,6 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
         this.lookupDate = tmp[0];
         this.lookupTime = tmp[1];
 
-        this.fillAvailableColor = context.getResources().getColor(R.color.rennes_gray2);
         this.fillUnavailableColor = context.getResources().getColor(R.color.rennes_red);
     }
 
@@ -87,10 +85,9 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
             RichPath path = holder.richPathViewMap.findRichPathByName(roomName);
             if (path != null) {
                 Event event = getEvent(roomName);
-                path.setFillAlpha(0.3f);
-                if (event == null || !event.isOverlapping(lookup)) {
-                    path.setFillColor(fillAvailableColor);
-                } else {
+
+                if (event != null && !event.isOverlapping(lookup)) {
+                    path.setFillAlpha(0.3f);
                     path.setFillColor(fillUnavailableColor);
                 }
                 path.setOnPathClickListener(new RichPath.OnPathClickListener() {

@@ -1,0 +1,235 @@
+@startuml
+class com.example.psi_univ.models.Building {
+- String buildingName
+- List<Level> levelList
++ String getName()
++ List<Level> getLevelList()
+}
+class com.example.psi_univ.models.Level {
+- String levelName
+- String buildingName
+- int levelMap
+- List<Room> rooms
++ String getLevelName()
++ int getLevelMap()
++ int getRoomCount()
++ Room getRoomAt(int)
++ void setRooms(List<Room>)
++ String getBuildingName()
+}
+class com.example.psi_univ.ui.adapters.LevelNameRecycler {
+# boolean isPaddingOffsetRequired()
+# int getTopPaddingOffset()
+# int getBottomPaddingOffset()
+}
+class com.example.psi_univ.backend.Background {
+- Context context
+# Void doInBackground(String)
++ Void getData(String)
+}
+class com.example.psi_univ.models.Room {
+- String roomName
+- String levelName
+- String buildingName
++ String getLevelName()
++ String getBuildingName()
++ String getRoomName()
++ String toString()
+}
+class com.example.psi_univ.ServerMySQLUpdate {
++ {static} void main(String[])
++ {static} void getICS(String,String)
++ {static} void getRooms()
+- {static} void parsingError(int)
+}
+class com.example.psi_univ.ui.activities.BuildingActivity {
+# void onCreate(Bundle)
+}
+class com.example.psi_univ.ui.fragments.AdvancedSearchFragment {
+~ TextView timer
+~ SwitchCompat availableRoom
+~ SwitchCompat unavailableRoom
+~ Button dateButton
+~ DatePickerDialog datePickerDialog
+- Toolbar toolbar
+~ int timerHour
+~ String datePicker
+~ boolean isAvailableRoomShown
+~ boolean isUnavailableRoomShown
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onClick(View)
+- String makeDateString(int,int,int)
+- String getMonthFormat(int)
+}
+class com.example.psi_univ.ui.activities.MainActivity {
+~ ArrayAdapter<Room> arrayAdapter
+- ImageView imageView
+- DrawerLayout drawerLayout
+# void onCreate(Bundle)
++ void onBackPressed()
++ boolean onNavigationItemSelected(MenuItem)
+- void setLocal(String)
+# void onRestart()
+}
+class com.example.psi_univ.ui.adapters.LevelNameAdapter {
+- List<Level> levels
++ LevelNameViewHolders onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(LevelNameViewHolders,int)
++ int getItemCount()
+}
+class com.example.psi_univ.ui.adapters.LevelNameAdapter.LevelNameViewHolders {
+~ TextView levelNameTextView
+}
+class com.example.psi_univ.ui.adapters.LevelMapAdapter {
+- List<Level> levels
+- String buildingName
+- FragmentManager fragmentManager
+- DataBaseHelper db
+- Calendar lookup
+- String lookupDate
+- String lookupTime
+- int fillUnavailableColor
++ LevelMapAdapter.LevelViewHolders onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(LevelViewHolders,int)
++ int getItemCount()
++ void onAttachedToRecyclerView(RecyclerView)
++ int getPosition(String)
++ void openRoomFragment(String,Event)
++ Event getEvent(String)
+}
+class com.example.psi_univ.ui.adapters.LevelMapAdapter.LevelViewHolders {
+~ RichPathView richPathViewMap
+~ FragmentContainerView fragmentContainer
+}
+class com.example.psi_univ.ui.adapters.LevelMapRecycler {
++ int scrollToLevel(String,String)
+}
+class com.example.psi_univ.backend.DataBaseHelper {
++ {static} String COLUMN_BUILDING
++ {static} String COLUMN_FLOOR
++ {static} String COLUMN_NUMBER
++ {static} String COLUMN_TYPE
++ {static} String COLUMN_SIZE
++ {static} String COLUMN_START_EVENT
++ {static} String COLUMN_END_EVENT
++ {static} String COLUMN_SUBJECT
++ {static} String COLUMN_NAME
++ {static} String ROOMS_TABLE
++ {static} String EVENTS_TABLE
++ {static} String COLUMN_TIME
++ {static} String TIME_TABLE
++ {static} String COLUMN_ID
+- Context context
++ void onCreate(SQLiteDatabase)
++ void onUpgrade(SQLiteDatabase,int,int)
++ List<Building> getBuildings()
+- List<Level> getLevels(String)
+- List<Room> getRooms(String,String)
++ Building getBuilding(String)
++ List<Room> getAllRooms()
++ Event getEventAt(String,String,String)
++ void addOneBuilding(String,String,String,int,int)
++ boolean addOneEvent(String,String,String,String,String)
++ boolean addOneTime(SQLiteDatabase,String)
++ void update()
++ void delete()
+}
+class com.example.psi_univ.ui.adapters.MapPhotoView {
+- List<Polygon> polygons
+- float width
+- float height
+}
+class com.example.psi_univ.ui.adapters.MapPhotoView.Polygon {
+- List<Vertex> vertices
+- String name
++ String getName()
++ boolean isInsidePolygon(float,float,float,float)
+}
+class com.example.psi_univ.ui.adapters.MapPhotoView.Polygon.Vertex {
+- int x
+- int y
+}
+class com.example.psi_univ.models.Event {
+- Calendar start
+- Calendar end
+- String subject
+- Event next
++ boolean isOverlapping(Calendar)
++ String getStart()
++ String getSubject()
++ Event getNext()
++ void setNext(Event)
+}
+class com.example.psi_univ.ui.fragments.SettingsFragment {
++ void onCreatePreferences(Bundle,String)
++ void onResume()
++ void onPause()
++ void onSharedPreferenceChanged(SharedPreferences,String)
+- void setLocal(String)
+}
+class com.example.psi_univ.ui.activities.AdvancedSearchActivity {
+~ TextView timer
+~ SwitchCompat availableRoom
+~ SwitchCompat unavailableRoom
+~ Button dateButton
+~ Button searchButton
+~ DatePickerDialog datePickerDialog
+~ int timerHour
+~ ArrayAdapter<Room> arrayAdapter
+- DrawerLayout drawerLayout
+~ int mapPosition
+~ int formatYear
+~ int formatMonth
+~ int formatDay
+~ boolean def
+# void onCreate(Bundle)
+- String makeTimeFormat(int,int,int,int,int)
++ void onClick(View)
+- String makeDateString(int,int,int)
+- String getMonthFormat(int)
++ boolean onNavigationItemSelected(MenuItem)
++ void onBackPressed()
+# void onRestart()
+}
+class com.example.psi_univ.ui.activities.SettingsActivity {
+- ImageView imageView
+- DrawerLayout drawerLayout
+# void onCreate(Bundle)
++ boolean onNavigationItemSelected(MenuItem)
++ void onBackPressed()
+- void setLocal(String)
+# void onRestart()
+}
+class com.example.psi_univ.ui.fragments.RoomDialogFragment {
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onAttach(Context)
+}
+
+
+androidx.recyclerview.widget.RecyclerView <|-- com.example.psi_univ.ui.adapters.LevelNameRecycler
+android.os.AsyncTask <|-- com.example.psi_univ.backend.Background
+androidx.appcompat.app.AppCompatActivity <|-- com.example.psi_univ.ui.activities.BuildingActivity
+com.example.psi_univ.ui.fragments.OnClickListener <|.. com.example.psi_univ.ui.fragments.AdvancedSearchFragment
+androidx.fragment.app.Fragment <|-- com.example.psi_univ.ui.fragments.AdvancedSearchFragment
+com.example.psi_univ.ui.activities.OnNavigationItemSelectedListener <|.. com.example.psi_univ.ui.activities.MainActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.psi_univ.ui.activities.MainActivity
+com.example.psi_univ.ui.adapters.Adapter <|-- com.example.psi_univ.ui.adapters.LevelNameAdapter
+com.example.psi_univ.ui.adapters.LevelNameAdapter +.. com.example.psi_univ.ui.adapters.LevelNameAdapter.LevelNameViewHolders
+com.example.psi_univ.ui.adapters.ViewHolder <|-- com.example.psi_univ.ui.adapters.LevelNameAdapter.LevelNameViewHolders
+com.example.psi_univ.ui.adapters.Adapter <|-- com.example.psi_univ.ui.adapters.LevelMapAdapter
+com.example.psi_univ.ui.adapters.LevelMapAdapter +.. com.example.psi_univ.ui.adapters.LevelMapAdapter.LevelViewHolders
+com.example.psi_univ.ui.adapters.ViewHolder <|-- com.example.psi_univ.ui.adapters.LevelMapAdapter.LevelViewHolders
+androidx.recyclerview.widget.RecyclerView <|-- com.example.psi_univ.ui.adapters.LevelMapRecycler
+android.database.sqlite.SQLiteOpenHelper <|-- com.example.psi_univ.backend.DataBaseHelper
+com.github.chrisbanes.photoview.PhotoView <|-- com.example.psi_univ.ui.adapters.MapPhotoView
+com.example.psi_univ.ui.adapters.MapPhotoView +.. com.example.psi_univ.ui.adapters.MapPhotoView.Polygon
+com.example.psi_univ.ui.adapters.MapPhotoView.Polygon +.. com.example.psi_univ.ui.adapters.MapPhotoView.Polygon.Vertex
+com.example.psi_univ.ui.fragments.OnSharedPreferenceChangeListener <|.. com.example.psi_univ.ui.fragments.SettingsFragment
+androidx.preference.PreferenceFragmentCompat <|-- com.example.psi_univ.ui.fragments.SettingsFragment
+com.example.psi_univ.ui.activities.OnClickListener <|.. com.example.psi_univ.ui.activities.AdvancedSearchActivity
+com.example.psi_univ.ui.activities.OnNavigationItemSelectedListener <|.. com.example.psi_univ.ui.activities.AdvancedSearchActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.psi_univ.ui.activities.AdvancedSearchActivity
+com.example.psi_univ.ui.activities.OnNavigationItemSelectedListener <|.. com.example.psi_univ.ui.activities.SettingsActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.psi_univ.ui.activities.SettingsActivity
+androidx.fragment.app.DialogFragment <|-- com.example.psi_univ.ui.fragments.RoomDialogFragment
+@enduml
