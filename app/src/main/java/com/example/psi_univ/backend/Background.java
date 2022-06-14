@@ -17,6 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -96,6 +97,8 @@ public class Background extends AsyncTask<String, Void, Void> {
             e.getMessage();
         } catch (IOException e) {
             e.getMessage();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
         return null;
     }

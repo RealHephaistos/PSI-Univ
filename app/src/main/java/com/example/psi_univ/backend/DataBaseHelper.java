@@ -16,10 +16,12 @@ import com.example.psi_univ.models.Level;
 import com.example.psi_univ.models.Room;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -260,15 +262,23 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     /**
      * @param event : List of all the data for the database
      */
-    public void addOneEvent (List<String[]> event){
+    public void addOneEvent (List<String[]> event) throws ParseException {
         SQLiteDatabase db = this.getReadableDatabase();
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         String query = "INSERT INTO `" + EVENTS_TABLE + "` (`" + COLUMN_START_EVENT + "`, `" + COLUMN_END_EVENT + "`, `" + COLUMN_SUBJECT + "`, `" + COLUMN_BUILDING + "`, `" + COLUMN_NAME + "`) VALUES\n";
         for(int i = 0; i < event.size(); i++) {
             String[] eventInfo = event.get(i);
-            if (i == event.size()-1)
-                query += "('" + eventInfo[0] + "', '" + eventInfo[1] + "', '" + eventInfo[2] + "', '" + eventInfo[3] + "', '" + eventInfo[4] + "')";
-            else{
-                query += "('" + eventInfo[0] + "', '" + eventInfo[1] + "', '" + eventInfo[2].replace("'"," ") + "', '" + eventInfo[3] + "', '" + eventInfo[4] + "'),\n";
+            dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Date start = dateFormat.parse(eventInfo[0]);
+            Date end = dateFormat.parse(eventInfo[1]);
+            dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Paris"));
+
+            if (i == event.size()-1) {
+
+                query += "('" + dateFormat.format(start) + "', '" + dateFormat.format(end) + "', '" + eventInfo[2].replace("'"," ") + "', '" + eventInfo[3] + "', '" + eventInfo[4] + "')";
+            }else{
+                query += "('" + dateFormat.format(start) + "', '" + dateFormat.format(end) + "', '" + eventInfo[2].replace("'"," ") + "', '" + eventInfo[3] + "', '" + eventInfo[4] + "'),\n";
             }
         }
         db.execSQL(query);
