@@ -3,6 +3,7 @@ package com.example.psi_univ.backend;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,12 +17,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @SuppressLint("StaticFieldLeak")
 public class Background extends AsyncTask<String, Void, Void> {
 
-    private final Context context;
+    Context context;
     public Background(Context context) {
         this.context = context;
     }
@@ -34,8 +37,9 @@ public class Background extends AsyncTask<String, Void, Void> {
             getData(voids[1]);
         }
         else if (voids.length == 1) {
-           getData(voids[0]);
+            getData(voids[0]);
         }
+        Log.i("Fini", "Fini");
         return null;
     }
 
@@ -67,19 +71,20 @@ public class Background extends AsyncTask<String, Void, Void> {
             InputStream ips = http.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(ips, StandardCharsets.ISO_8859_1));
             String line;
+            List<String[]> separated = new ArrayList<>();
             if(Objects.equals(table, "rooms")) {
 
                 while ((line = reader.readLine()) != null) {
-                    String[] separated = line.split("!");
-                    dataBaseHelper.addOneBuilding(separated[0],separated[1],separated[2],Integer.parseInt(separated[3]),Integer.parseInt(separated[4]));
+                    separated.add(line.split("!"));
                 }
+                dataBaseHelper.addOneBuilding(separated);
             }
             else if(Objects.equals(table, "events")) {
 
                 while ((line = reader.readLine()) != null) {
-                    String[] separated = line.split("!");
-                    dataBaseHelper.addOneEvent(separated[0],separated[1],separated[2],separated[3],separated[4]);
+                    separated.add(line.split("!"));
                 }
+                dataBaseHelper.addOneEvent(separated);
             }
             reader.close();
             ips.close();

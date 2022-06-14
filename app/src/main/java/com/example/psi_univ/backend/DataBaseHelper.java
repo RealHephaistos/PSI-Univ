@@ -78,8 +78,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         String newDate = dateFormat.format(new Date());
         addOneTime(db,newDate);
 
+        Log.i("testDebut", "onCreate: ");
         Background background = new Background(this.context);
         background.execute(ROOMS_TABLE,EVENTS_TABLE);
+        Log.i("testFin", "onCreate: ");
     }
 
     @Override
@@ -228,46 +230,48 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    //passer tableau de string en paramètre
     /**
-     * @param buildingName : The name of the building you add
-     * @param floorNumber : The number of the floor you add
-     * @param roomName : The name of the room you add
-     * @param type : The type of the room you add
-     * @param capacity : The capacity of the room you add
+        * @param building : List of all the data for the database
      */
-    public void addOneBuilding(String buildingName, String floorNumber, String roomName, int type, int capacity)
+    public void addOneBuilding(List<String[]> building)
     {
         SQLiteDatabase db = this.getWritableDatabase();
+        String query = "INSERT INTO `"+ROOMS_TABLE+"` (`"+COLUMN_BUILDING+"`, `"+COLUMN_NUMBER+"`, `"+COLUMN_FLOOR+"`, `"+COLUMN_TYPE+"`, `"+COLUMN_SIZE+"`) VALUES\n";
 
-        String query = "INSERT INTO `"+ROOMS_TABLE+"` (`"+COLUMN_BUILDING+"`, `"+COLUMN_NUMBER+"`, `"+COLUMN_FLOOR+"`, `"+COLUMN_TYPE+"`, `"+COLUMN_SIZE+"`) VALUES\n" +
-                "('"+buildingName+"', '"+floorNumber+"', '"+roomName+"', "+type+", "+capacity+")";
+        for(int i = 0; i < building.size(); i++)
+        {
+            String[] buildingInfo = building.get(i);
 
+            if(i == building.size() - 1)
+            {
+                query += "('"+buildingInfo[0]+"', '"+buildingInfo[1]+"', '"+buildingInfo[2]+"', "+buildingInfo[3]+", "+buildingInfo[4]+")";
+            }
+            else
+            {
+                query += "('"+buildingInfo[0]+"', '"+buildingInfo[1]+"', '"+buildingInfo[2]+"', "+buildingInfo[3]+", "+buildingInfo[4]+"),";
+            }
+
+        }
         db.execSQL(query);
-
     }
 
+    //passer tableau de string en paramètre
     /**
-     * @param start : The start date of the event
-     * @param end : The end date of the event
-     * @param subject : The subject of the event
-     * @param building : The building of the event
-     * @param room : The room of the event
-     * @return boolean : true if the event is added, false otherwise
+     * @param event : List of all the data for the database
      */
-    public boolean addOneEvent(String start, String end, String subject, String building, String room)
-    {
+    public void addOneEvent (List<String[]> event){
         SQLiteDatabase db = this.getReadableDatabase();
-        ContentValues cv = new ContentValues();
-
-        cv.put(COLUMN_START_EVENT,start);
-        cv.put(COLUMN_END_EVENT,end);
-        cv.put(COLUMN_SUBJECT, subject);
-        cv.put(COLUMN_BUILDING, building);
-        cv.put(COLUMN_NAME, room);
-
-        long insert = db.insert(EVENTS_TABLE, null, cv);
-        return insert != -1;
-
+        String query = "INSERT INTO `" + EVENTS_TABLE + "` (`" + COLUMN_START_EVENT + "`, `" + COLUMN_END_EVENT + "`, `" + COLUMN_SUBJECT + "`, `" + COLUMN_BUILDING + "`, `" + COLUMN_NAME + "`) VALUES\n";
+        for(int i = 0; i < event.size(); i++) {
+            String[] eventInfo = event.get(i);
+            if (i == event.size()-1)
+                query += "('" + eventInfo[0] + "', '" + eventInfo[1] + "', '" + eventInfo[2] + "', '" + eventInfo[3] + "', '" + eventInfo[4] + "')";
+            else{
+                query += "('" + eventInfo[0] + "', '" + eventInfo[1] + "', '" + eventInfo[2].replace("'"," ") + "', '" + eventInfo[3] + "', '" + eventInfo[4] + "'),\n";
+            }
+        }
+        db.execSQL(query);
     }
 
     /**
