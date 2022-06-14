@@ -38,6 +38,18 @@ Séparation du groupe de 4 en 2 groupes de 2
 
 ## Outils utilisés (+raisons)
 
+Utilisation de Discord (https://discord.com/) pour pouvoir discuter entre tous les membres du groupe et de notre professeur tuteur à l'aide du chat vocal et avoir une  note écrite des idées / problèmes rencontrés avec le chat. Nous n'avons pas choisi une autre plateforme car discord est une plateforme que tous les membres du groupe connaisaient et utlisaient régulièrement contrairement à d'autre plateforme.
+
+Utilisation d'Android Studio (https://developer.android.com/studio) afin de réaliser le projet car il s'agit d'un des IDE les plus connus et utlisé pour réaliser des application androids. De plus, une documentation importante et de nombreuses librairies sur internet qui nous permet d'avoir plus d'outils à disposition pour répondre aux problèmes rencontrés ou encore de ne pas écrire du code trop complexe qui nous prendrait trop de temps pour un projet de 6 semaines.
+Sachant que les deux seules langages de programmation disponibles sur Android Studio sont java et kotlyn, nous avons décidé d'utiliser java.En effet, il s'agit d'un language de programmation que nous avons étudié ces trois dernères années et donc dont nous disposons de bases solides contraiment à kotlyn.
+
+Utilisation de Github (https://github.com/) qui a permis de partager le code entre toutes les personnes du groupes. Nous savions déjà utilisé la plateforme grâce aux cours que nous avions eu sur Gitlab. Nous avons cependant préféré utilisé GitHub afin de garder une trace de notre travail après nos études (ne sachant pas mais supposant que nos comtes Gitlab allaient âtre supprimés). De plus, une extension était disponible dans Android Studio ce qui nous a permis de fair le lien entre les deux très facilement. Enfin, un système de hiérarchie très pratique grâce aux commits qui nous a permis de retourner sur d'ancienne version en cas de problème avec le code actuelle.
+- Berrouche Issameddine (RealHephaistos)
+- Buan Tony (tbuan, NoctTB)
+	- tbuan (commits réalisé depuis Android Studio) ->  N'est pas un compte GithHub donc les commits n'apparaissent pas dans les statistiques
+- Hamono Morvan (MorvanH)
+- Vachez Guillaume (xelphire)
+
 ## Mise en Oeuvre
 
 - Carnet de Bord
@@ -48,6 +60,7 @@ Séparation du groupe de 4 en 2 groupes de 2
 ## Base de donnée
 ## Base de donnée locale
 ## Barre de recherche
+## Menu
 ## Paramettres
 ## Recherche avancée
 ## Vue de la carte du campus
@@ -63,6 +76,8 @@ Séparation du groupe de 4 en 2 groupes de 2
 
 ## Issam
 ## Tony
+
+Un projet que j'ai fortement apprécié réalisé. Un projet libre sur un sujet qui me plaisait et dont les objectifs finaux ont été réalisé. N'étant pas spécialement adepte de la création de code j'ai beacoup aimé réalisé l'interface graphique de l'application grâce aux outils fournis par Android Studio. De nombreux petits détails qui posent souvent problèmes mais que j'ai trouvé satisfaisant à résoudre. Un projet totalement libre qui a cependant quelques contraintes. En effet je trouve que l'on peut perdre facilement la notion du temps de travail, ne pas savoir si on a travaillé assez, cependant ces doutes soont souvent remis en cause lors des réunions avec le professeur tuteur ce qui je trouve est une bonne chose. Enfin, comme dans tous projets ils est difficile de savoir par ou commencé car contrairement aux projets réalisés en cours nous ne sommes pas guidé.
 ## Morvan
 ## Guillaume
 ## Globale
