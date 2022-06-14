@@ -66,6 +66,7 @@
       }
     </style>
   </defs>
+  <rect class="cls-5" x="-602" y="-403.61" width="2954" height="1170"/>
   <g id="adapters">
     <g id="cluster_com.example.psi_univ.ui.adapters" data-name="cluster com.example.psi univ.ui.adapters">
       <path class="cls-4" d="M4.84,174.46H100.86c.48,.15,.85,.52,1,1l2.8,8.45h472.7c.55,0,1,.45,1,1v393.08c0,.55-.45,1-1,1H4.84c-.55,0-1-.45-1-1V175.46c0-.55,.45-1,1-1"/>
