@@ -31,6 +31,7 @@ salles sont disponibles.
   - Android Studio (java)
   - SQLite (https://www.sqlite.org/index.html)
   - Github (https://github.com/)
+  - Azure (https://azure.microsoft.com/fr-fr/)
    
 # Features
 
