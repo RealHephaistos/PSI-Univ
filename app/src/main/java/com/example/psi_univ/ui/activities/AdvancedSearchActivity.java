@@ -111,6 +111,8 @@ boolean def;
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 def = false;
+                Object selectedRoom = parent.getAdapter().getItem(position);
+                position = rooms.indexOf(selectedRoom);
                 searchView.setQuery(rooms.get(position).getBuildingName() + " " + rooms.get(position).getRoomName(),true);
                 searchView.clearFocus();
                 mapPosition = position;

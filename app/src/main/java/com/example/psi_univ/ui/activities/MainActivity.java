@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         room.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object selectedRoom = parent.getAdapter().getItem(position);
+                position = rooms.indexOf(selectedRoom);
+                //Toast.makeText(MainActivity.this, selectedRoom.toString(), Toast.LENGTH_SHORT).show();
                 resultIntent.putExtra("building", rooms.get(position).getBuildingName());
                 resultIntent.putExtra("level", rooms.get(position).getLevelName());
                 resultIntent.putExtra("room", rooms.get(position).getRoomName());
