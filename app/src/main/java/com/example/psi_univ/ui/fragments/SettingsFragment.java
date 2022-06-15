@@ -63,6 +63,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 index = listPreferenceDate.findIndexOfValue(sharedPreferences.getString(key," "));
                 preference.setSummary(listPreferenceDate.getEntries()[index]);
                 break;
+
+                /*
             case "keyAvailableRoom":
                 if(isAdded()) {
                     if (sharedPreferences.getBoolean("keyAvailableRoom", false)) {
@@ -81,6 +83,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                     }
                 }
                 break;
+                */
+
         }
 
     }

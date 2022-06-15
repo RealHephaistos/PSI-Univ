@@ -14,12 +14,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -166,7 +164,7 @@ boolean def;
                     resultIntent.putExtra("level", "0");
                 }
                 resultIntent.putExtra("time",dateTimePicker);
-               // Toast.makeText(AdvancedSearchActivity.this, dateTimePicker, Toast.LENGTH_SHORT).show();
+               //Toast.makeText(AdvancedSearchActivity.this, dateTimePicker, Toast.LENGTH_SHORT).show();
                 startActivity(resultIntent);
             }
         });

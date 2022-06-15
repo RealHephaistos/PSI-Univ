@@ -37,7 +37,8 @@
                 android:fillViewport="false"
                 android:paddingTop="25dp"
                 android:paddingBottom="25dp"
-                android:requiresFadingEdge="vertical">
+                android:requiresFadingEdge="vertical"
+                >
 
             </com.example.psi_univ.ui.adapters.LevelNameRecycler>
 
