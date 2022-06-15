@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
-        dataBaseHelper.update();
 
         SearchView searchView = findViewById(R.id.searchView);
         List<Room> rooms = dataBaseHelper.getAllRooms();
