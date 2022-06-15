@@ -87,7 +87,7 @@ boolean def;
                 makeDateString(mDay, mMonth, mYear));
 
         formatYear =cal.get(Calendar.YEAR);
-        formatMonth =cal.get(Calendar.MONTH+1) ;
+        formatMonth =cal.get(Calendar.MONTH) + 1;
         formatDay =cal.get(Calendar.DAY_OF_MONTH);
         timerHour =cal.get(Calendar.HOUR);
         timerMinute =cal.get(Calendar.MINUTE);
