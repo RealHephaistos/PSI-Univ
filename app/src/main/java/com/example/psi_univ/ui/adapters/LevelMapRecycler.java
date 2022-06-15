@@ -5,11 +5,8 @@ import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.Calendar;
 
 public class LevelMapRecycler extends RecyclerView {
     public LevelMapRecycler(@NonNull Context context, @Nullable AttributeSet attrs) {

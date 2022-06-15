@@ -2,6 +2,7 @@
 class com.example.psi_univ.models.Building {
 - String buildingName
 - List<Level> levelList
++ <<Create>> Building(String,List<Level>)
 + String getName()
 + List<Level> getLevelList()
 }
@@ -10,6 +11,7 @@ class com.example.psi_univ.models.Level {
 - String buildingName
 - int levelMap
 - List<Room> rooms
++ <<Create>> Level(String,String,List<Room>,Context)
 + String getLevelName()
 + int getLevelMap()
 + int getRoomCount()
@@ -18,12 +20,14 @@ class com.example.psi_univ.models.Level {
 + String getBuildingName()
 }
 class com.example.psi_univ.ui.adapters.LevelNameRecycler {
++ <<Create>> LevelNameRecycler(Context,AttributeSet)
 # boolean isPaddingOffsetRequired()
 # int getTopPaddingOffset()
 # int getBottomPaddingOffset()
 }
 class com.example.psi_univ.backend.Background {
-- Context context
+~ Context context
++ <<Create>> Background(Context)
 # Void doInBackground(String)
 + Void getData(String)
 }
@@ -31,6 +35,7 @@ class com.example.psi_univ.models.Room {
 - String roomName
 - String levelName
 - String buildingName
++ <<Create>> Room(String,String,String)
 + String getLevelName()
 + String getBuildingName()
 + String getRoomName()
@@ -51,11 +56,11 @@ class com.example.psi_univ.ui.fragments.AdvancedSearchFragment {
 ~ SwitchCompat unavailableRoom
 ~ Button dateButton
 ~ DatePickerDialog datePickerDialog
-- Toolbar toolbar
 ~ int timerHour
 ~ String datePicker
 ~ boolean isAvailableRoomShown
 ~ boolean isUnavailableRoomShown
+- Toolbar toolbar
 + View onCreateView(LayoutInflater,ViewGroup,Bundle)
 + void onClick(View)
 - String makeDateString(int,int,int)
@@ -73,12 +78,14 @@ class com.example.psi_univ.ui.activities.MainActivity {
 }
 class com.example.psi_univ.ui.adapters.LevelNameAdapter {
 - List<Level> levels
++ <<Create>> LevelNameAdapter(List<Level>)
 + LevelNameViewHolders onCreateViewHolder(ViewGroup,int)
 + void onBindViewHolder(LevelNameViewHolders,int)
 + int getItemCount()
 }
 class com.example.psi_univ.ui.adapters.LevelNameAdapter.LevelNameViewHolders {
 ~ TextView levelNameTextView
++ <<Create>> LevelNameViewHolders(View)
 }
 class com.example.psi_univ.ui.adapters.LevelMapAdapter {
 - List<Level> levels
@@ -88,7 +95,8 @@ class com.example.psi_univ.ui.adapters.LevelMapAdapter {
 - Calendar lookup
 - String lookupDate
 - String lookupTime
-- int fillUnavailableColor
+- SimpleDateFormat sdf
++ <<Create>> LevelMapAdapter(List<Level>,Context,String)
 + LevelMapAdapter.LevelViewHolders onCreateViewHolder(ViewGroup,int)
 + void onBindViewHolder(LevelViewHolders,int)
 + int getItemCount()
@@ -100,8 +108,10 @@ class com.example.psi_univ.ui.adapters.LevelMapAdapter {
 class com.example.psi_univ.ui.adapters.LevelMapAdapter.LevelViewHolders {
 ~ RichPathView richPathViewMap
 ~ FragmentContainerView fragmentContainer
++ <<Create>> LevelViewHolders(View)
 }
 class com.example.psi_univ.ui.adapters.LevelMapRecycler {
++ <<Create>> LevelMapRecycler(Context,AttributeSet)
 + int scrollToLevel(String,String)
 }
 class com.example.psi_univ.backend.DataBaseHelper {
@@ -119,7 +129,9 @@ class com.example.psi_univ.backend.DataBaseHelper {
 + {static} String COLUMN_TIME
 + {static} String TIME_TABLE
 + {static} String COLUMN_ID
+- {static} SimpleDateFormat dataBaseFormat
 - Context context
++ <<Create>> DataBaseHelper(Context)
 + void onCreate(SQLiteDatabase)
 + void onUpgrade(SQLiteDatabase,int,int)
 + List<Building> getBuildings()
@@ -127,9 +139,9 @@ class com.example.psi_univ.backend.DataBaseHelper {
 - List<Room> getRooms(String,String)
 + Building getBuilding(String)
 + List<Room> getAllRooms()
-+ Event getEventAt(String,String,String)
-+ void addOneBuilding(String,String,String,int,int)
-+ boolean addOneEvent(String,String,String,String,String)
++ Event getEventAt(String,String,Calendar)
++ void addOneBuilding(List<String[]>)
++ void addOneEvent(List<String[]>)
 + boolean addOneTime(SQLiteDatabase,String)
 + void update()
 + void delete()
@@ -138,24 +150,31 @@ class com.example.psi_univ.ui.adapters.MapPhotoView {
 - List<Polygon> polygons
 - float width
 - float height
++ <<Create>> MapPhotoView(Context,AttributeSet)
 }
 class com.example.psi_univ.ui.adapters.MapPhotoView.Polygon {
 - List<Vertex> vertices
 - String name
++ <<Create>> Polygon(String,String)
 + String getName()
 + boolean isInsidePolygon(float,float,float,float)
 }
 class com.example.psi_univ.ui.adapters.MapPhotoView.Polygon.Vertex {
 - int x
 - int y
++ <<Create>> Vertex(int,int)
 }
 class com.example.psi_univ.models.Event {
 - Calendar start
 - Calendar end
 - String subject
 - Event next
++ <<Create>> Event(String,String,String)
++ <<Create>> Event()
++ boolean isEmpty()
 + boolean isOverlapping(Calendar)
-+ String getStart()
++ Calendar getStart()
++ Calendar getEnd()
 + String getSubject()
 + Event getNext()
 + void setNext(Event)
@@ -169,19 +188,17 @@ class com.example.psi_univ.ui.fragments.SettingsFragment {
 }
 class com.example.psi_univ.ui.activities.AdvancedSearchActivity {
 ~ TextView timer
-~ SwitchCompat availableRoom
-~ SwitchCompat unavailableRoom
 ~ Button dateButton
 ~ Button searchButton
 ~ DatePickerDialog datePickerDialog
 ~ int timerHour
 ~ ArrayAdapter<Room> arrayAdapter
-- DrawerLayout drawerLayout
 ~ int mapPosition
 ~ int formatYear
 ~ int formatMonth
 ~ int formatDay
 ~ boolean def
+- DrawerLayout drawerLayout
 # void onCreate(Bundle)
 - String makeTimeFormat(int,int,int,int,int)
 + void onClick(View)
@@ -214,16 +231,16 @@ androidx.fragment.app.Fragment <|-- com.example.psi_univ.ui.fragments.AdvancedSe
 com.example.psi_univ.ui.activities.OnNavigationItemSelectedListener <|.. com.example.psi_univ.ui.activities.MainActivity
 androidx.appcompat.app.AppCompatActivity <|-- com.example.psi_univ.ui.activities.MainActivity
 com.example.psi_univ.ui.adapters.Adapter <|-- com.example.psi_univ.ui.adapters.LevelNameAdapter
-com.example.psi_univ.ui.adapters.LevelNameAdapter +.. com.example.psi_univ.ui.adapters.LevelNameAdapter.LevelNameViewHolders
+com.example.psi_univ.ui.adapters.LevelNameAdapter <.. com.example.psi_univ.ui.adapters.LevelNameAdapter.LevelNameViewHolders
 com.example.psi_univ.ui.adapters.ViewHolder <|-- com.example.psi_univ.ui.adapters.LevelNameAdapter.LevelNameViewHolders
 com.example.psi_univ.ui.adapters.Adapter <|-- com.example.psi_univ.ui.adapters.LevelMapAdapter
-com.example.psi_univ.ui.adapters.LevelMapAdapter +.. com.example.psi_univ.ui.adapters.LevelMapAdapter.LevelViewHolders
+com.example.psi_univ.ui.adapters.LevelMapAdapter <.. com.example.psi_univ.ui.adapters.LevelMapAdapter.LevelViewHolders
 com.example.psi_univ.ui.adapters.ViewHolder <|-- com.example.psi_univ.ui.adapters.LevelMapAdapter.LevelViewHolders
 androidx.recyclerview.widget.RecyclerView <|-- com.example.psi_univ.ui.adapters.LevelMapRecycler
 android.database.sqlite.SQLiteOpenHelper <|-- com.example.psi_univ.backend.DataBaseHelper
 com.github.chrisbanes.photoview.PhotoView <|-- com.example.psi_univ.ui.adapters.MapPhotoView
-com.example.psi_univ.ui.adapters.MapPhotoView +.. com.example.psi_univ.ui.adapters.MapPhotoView.Polygon
-com.example.psi_univ.ui.adapters.MapPhotoView.Polygon +.. com.example.psi_univ.ui.adapters.MapPhotoView.Polygon.Vertex
+com.example.psi_univ.ui.adapters.MapPhotoView <.. com.example.psi_univ.ui.adapters.MapPhotoView.Polygon
+com.example.psi_univ.ui.adapters.MapPhotoView.Polygon <.. com.example.psi_univ.ui.adapters.MapPhotoView.Polygon.Vertex
 com.example.psi_univ.ui.fragments.OnSharedPreferenceChangeListener <|.. com.example.psi_univ.ui.fragments.SettingsFragment
 androidx.preference.PreferenceFragmentCompat <|-- com.example.psi_univ.ui.fragments.SettingsFragment
 com.example.psi_univ.ui.activities.OnClickListener <|.. com.example.psi_univ.ui.activities.AdvancedSearchActivity

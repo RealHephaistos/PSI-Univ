@@ -26,6 +26,7 @@ import java.util.Objects;
 public class Background extends AsyncTask<String, Void, Void> {
 
     Context context;
+
     public Background(Context context) {
         this.context = context;
     }
@@ -33,11 +34,10 @@ public class Background extends AsyncTask<String, Void, Void> {
 
     @Override
     protected Void doInBackground(String... voids) {
-        if(voids.length == 2) {
+        if (voids.length == 2) {
             getData(voids[0]);
             getData(voids[1]);
-        }
-        else if (voids.length == 1) {
+        } else if (voids.length == 1) {
             getData(voids[0]);
         }
         Log.i("Fini", "Fini");
@@ -51,7 +51,7 @@ public class Background extends AsyncTask<String, Void, Void> {
 
         String connection = "http://ifpop.fr/fetchDatabase.php";
 
-        try{
+        try {
             URL url = new URL(connection);
 
             HttpURLConnection http = (HttpURLConnection) url.openConnection();
@@ -62,7 +62,7 @@ public class Background extends AsyncTask<String, Void, Void> {
 
             OutputStream ops = http.getOutputStream();
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops, StandardCharsets.UTF_8));
-            String data = URLEncoder.encode("table","UTF-8")+"="+URLEncoder.encode(table,"UTF-8");
+            String data = URLEncoder.encode("table", "UTF-8") + "=" + URLEncoder.encode(table, "UTF-8");
             writer.write(data);
             writer.flush();
             writer.close();
@@ -73,14 +73,13 @@ public class Background extends AsyncTask<String, Void, Void> {
             BufferedReader reader = new BufferedReader(new InputStreamReader(ips, StandardCharsets.ISO_8859_1));
             String line;
             List<String[]> separated = new ArrayList<>();
-            if(Objects.equals(table, "rooms")) {
+            if (Objects.equals(table, "rooms")) {
 
                 while ((line = reader.readLine()) != null) {
                     separated.add(line.split("!"));
                 }
                 dataBaseHelper.addOneBuilding(separated);
-            }
-            else if(Objects.equals(table, "events")) {
+            } else if (Objects.equals(table, "events")) {
 
                 while ((line = reader.readLine()) != null) {
                     separated.add(line.split("!"));

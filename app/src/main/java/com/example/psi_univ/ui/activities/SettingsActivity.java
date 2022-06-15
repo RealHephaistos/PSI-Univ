@@ -33,8 +33,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         if (sharedPreferences.getString("key_language", "").compareTo("FRE") == 0) {
             //Toast.makeText(this, sharedPreferences.getString("key_language", " "), Toast.LENGTH_SHORT).show();
             setLocal("fr");
-        }
-        else {
+        } else {
             setLocal("eng");
         }
 
@@ -107,7 +106,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         Configuration configuration = this.getResources().getConfiguration();
         configuration.setLocale(locale);
         configuration.setLayoutDirection(locale);
-        this.getResources().updateConfiguration(configuration,this.getResources().getDisplayMetrics());
+        this.getResources().updateConfiguration(configuration, this.getResources().getDisplayMetrics());
 
     }
 
@@ -119,7 +118,6 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         startActivity(getIntent());
 
     }
-
 
 
 }

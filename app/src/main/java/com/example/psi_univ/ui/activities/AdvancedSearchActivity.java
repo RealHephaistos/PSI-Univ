@@ -39,14 +39,12 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
     DatePickerDialog datePickerDialog;
     int timerHour, timerMinute;
     ArrayAdapter<Room> arrayAdapter;
-    private DrawerLayout drawerLayout;
     int mapPosition;
-
-    int formatYear ;
-    int formatMonth ;
-    int formatDay ;
-
-boolean def;
+    int formatYear;
+    int formatMonth;
+    int formatDay;
+    boolean def;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,11 +82,11 @@ boolean def;
         dateButton.setHint(
                 makeDateString(mDay, mMonth, mYear));
 
-        formatYear =cal.get(Calendar.YEAR);
-        formatMonth =cal.get(Calendar.MONTH) + 1;
-        formatDay =cal.get(Calendar.DAY_OF_MONTH);
-        timerHour =cal.get(Calendar.HOUR_OF_DAY);
-        timerMinute =cal.get(Calendar.MINUTE);
+        formatYear = cal.get(Calendar.YEAR);
+        formatMonth = cal.get(Calendar.MONTH) + 1;
+        formatDay = cal.get(Calendar.DAY_OF_MONTH);
+        timerHour = cal.get(Calendar.HOUR_OF_DAY);
+        timerMinute = cal.get(Calendar.MINUTE);
 
         //On click listener in the fragment view
         timer.setOnClickListener(this);
@@ -105,7 +103,7 @@ boolean def;
         DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
         List<Room> rooms = dataBaseHelper.getAllRooms();
         ListView room = findViewById(R.id.listRoom);
-        def= true;
+        def = true;
         Intent resultIntent = new Intent(this, BuildingActivity.class);
         room.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -113,7 +111,7 @@ boolean def;
                 def = false;
                 Object selectedRoom = parent.getAdapter().getItem(position);
                 position = rooms.indexOf(selectedRoom);
-                searchView.setQuery(rooms.get(position).getBuildingName() + " " + rooms.get(position).getRoomName(),true);
+                searchView.setQuery(rooms.get(position).getBuildingName() + " " + rooms.get(position).getRoomName(), true);
                 searchView.clearFocus();
                 mapPosition = position;
 
@@ -154,45 +152,44 @@ boolean def;
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String dateTimePicker = makeTimeFormat(formatYear,formatMonth,formatDay,timerHour,timerMinute);
+                String dateTimePicker = makeTimeFormat(formatYear, formatMonth, formatDay, timerHour, timerMinute);
 
-                if(!def) {
+                if (!def) {
                     resultIntent.putExtra("building", rooms.get(mapPosition).getBuildingName());
                     resultIntent.putExtra("level", rooms.get(mapPosition).getLevelName());
                     resultIntent.putExtra("room", rooms.get(mapPosition).getRoomName());
-                }
-                else {
+                } else {
                     resultIntent.putExtra("building", "B12D");
                     resultIntent.putExtra("level", "0");
                 }
-                resultIntent.putExtra("time",dateTimePicker);
-               //Toast.makeText(AdvancedSearchActivity.this, dateTimePicker, Toast.LENGTH_SHORT).show();
+                resultIntent.putExtra("time", dateTimePicker);
+                //Toast.makeText(AdvancedSearchActivity.this, dateTimePicker, Toast.LENGTH_SHORT).show();
                 startActivity(resultIntent);
             }
         });
     }
 
     private String makeTimeFormat(int formatYear, int formatMonth, int formatDay, int timerHour, int timerMinute) {
-        String year = formatYear+"";
-        String month= formatMonth +"";
-        String day = formatDay+"";
-        String hour= timerHour +"";
+        String year = formatYear + "";
+        String month = formatMonth + "";
+        String day = formatDay + "";
+        String hour = timerHour + "";
         String minute = timerMinute + "";
 
-        if (formatMonth < 10){
-            month = "0"+month;
+        if (formatMonth < 10) {
+            month = "0" + month;
         }
-        if (formatDay < 10){
-            day = "0"+day;
+        if (formatDay < 10) {
+            day = "0" + day;
         }
-        if (timerHour < 10){
-            hour = "0"+hour;
+        if (timerHour < 10) {
+            hour = "0" + hour;
         }
-        if (timerMinute < 10){
-            minute = "0"+minute;
+        if (timerMinute < 10) {
+            minute = "0" + minute;
         }
 
-        return year+"-"+month+"-"+day+" "+hour+":"+minute;
+        return year + "-" + month + "-" + day + " " + hour + ":" + minute;
     }
 
 
@@ -215,9 +212,9 @@ boolean def;
             //Date Picker
             DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
                 month = month + 1;
-                formatYear =year;
-                formatMonth =month;
-                formatDay =dayOfMonth;
+                formatYear = year;
+                formatMonth = month;
+                formatDay = dayOfMonth;
                 String date = makeDateString(dayOfMonth, month, year);
                 dateButton.setHint(date);
             };
@@ -225,7 +222,6 @@ boolean def;
             int year = cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
-
 
 
             int style = 0;
