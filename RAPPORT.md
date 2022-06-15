@@ -103,26 +103,44 @@ débit,...).
 
 # Gestion du projet
 
-## Partie commune
+## BackEnd
 
-## Base de donnée
+### Base de donnée
 
-## Base de donnée locale
+### Base de donnée locale
 
-## Barre de recherche
+## FrontEnd
+
+### Barre de recherche
+
+- (Image)Barre Recherche 
+- (Image)Barre de recherche avancé
 
 Afin de satisfaire le cahier des charges, l'utlisateur doit pouvoir chercher une salle précise de
 façon simple et efficace. Pour cela nous avons utlisé l'outil d'Android Studio "SearchView" qui nous
 a permis d'implenter la fonction de recherche. Cette barre de recheche ne fonctionne qu'avec le clic
-sur la salle dans le menu deroulant.
+sur la salle dans le menu deroulant (identique dans les deux barres de recherche).
 
-## Menu
+...
 
-## Paramettres
+Les deux barres de recherche possède une icone de menu qui permet d'ouvrir un menu tiroir et de navigué entres toutes les activités possibles de l'application.
 
-## Recherche avancée
+### Menu
 
-## Vue de la carte du campus
+Le menu est séparé en deux parties. 
+
+- (Image)Menu
+- Le menu tiroir qui s'affiche lorsque l'on appuie sur l'icone du menu situé en haut des différentes pages. Celui-ci ci peut aussi être ouvert en réalisant un scroll de gauche à droite. Différentes options apparaissent tout d'abord l'option acceuil permettant de revenir à la page contenant le plan du batiments. Le(s) option(s) dans la catégorie lieux ne sont pas utilisé car notre application n'est centré que sur l'université de Rennes 1 mais ces otions pourraient être utilisé pour ajouté d'autes facultés. Enfin l'option paramètres permettant d'ouvrir une page de paramètre. Toutes les options sauf les options de la catégorie lieux sont clickables et permmettent la nivigation entre tous les éléments de l'application
+- (Image)ToolBar AdvancedSearch
+- (Image)ToolBar Settings
+- Les barres d'outils disponibles sur toutes les activités saauf celle d'accueil qui permettent un retout en arrière ainsi que l'ouverture du menu tiroit
+
+
+### Parametres
+
+### Recherche avancée
+
+### Vue de la carte du campus
 
 Afin de satisfaire le cahier des charges, l'utilisateur doit pouvoir zoomer et déplacer la carte du
 campus (idéalement avec un défilement fluide), ainsi que cliquer sur les batiments. La carte du
@@ -143,7 +161,9 @@ pour créer une liste de polygones. Quand le composant MapPhotoView de l'activit
 un click, il parcour la liste des polygones pour vérifier si l'utilisateur a cliquer sur un
 batiment, et ouvre la vue batiment correspondante si c'est le cas.
 
-## Vue des batiments
+### Vue des batiments
+
+## Partie commune
 
 ## Validation de l'implémentation
 
