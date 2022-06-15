@@ -89,7 +89,7 @@ boolean def;
         formatYear =cal.get(Calendar.YEAR);
         formatMonth =cal.get(Calendar.MONTH) + 1;
         formatDay =cal.get(Calendar.DAY_OF_MONTH);
-        timerHour =cal.get(Calendar.HOUR);
+        timerHour =cal.get(Calendar.HOUR_OF_DAY);
         timerMinute =cal.get(Calendar.MINUTE);
 
         //On click listener in the fragment view

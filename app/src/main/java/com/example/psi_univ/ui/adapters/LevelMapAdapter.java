@@ -39,10 +39,6 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
     private final String lookupDate;
     private final String lookupTime;
 
-    private final int fillUnavailableColor;
-    private final int fillAvailableColor;
-    private final boolean showUnavailable;
-    private final boolean showAvailable;
     private final SimpleDateFormat sdf;
 
 
@@ -55,15 +51,14 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
 
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        this.showUnavailable = prefs.getBoolean("keyUnavailableRoom", false);
-        this.showAvailable = prefs.getBoolean("keyAvailableRoom", false);
 
         String dateFormat = prefs.getString("key_date_format", "yyyy-MM-dd HH:mm");
-        sdf = new SimpleDateFormat(dateFormat);
+        sdf = new SimpleDateFormat(dateFormat, Locale.getDefault());
+        SimpleDateFormat databaseFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String[] tmp = new String[2];
         if(date != null) {
             try {
-                this.lookup.setTime(Objects.requireNonNull(sdf.parse(date)));
+                this.lookup.setTime(databaseFormat.parse(date));
                 tmp = date.split(" ");
                 
             } catch (ParseException e) {
@@ -76,9 +71,6 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
         
         this.lookupDate = tmp[0];
         this.lookupTime = tmp[1];
-
-        this.fillUnavailableColor = context.getResources().getColor(R.color.rennes_red);
-        this.fillAvailableColor = context.getResources().getColor(R.color.rennes_gray2);
     }
 
     @NonNull
@@ -99,15 +91,6 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
             RichPath path = holder.richPathViewMap.findRichPathByName(roomName);
             if (path != null) {
                 Event event = getEvent(roomName);
-
-                if (!event.isEmpty() && event.isOverlapping(lookup) && !showUnavailable) {
-                    path.setFillAlpha(0.3f);
-                    path.setFillColor(fillUnavailableColor);
-                }
-                else if(!showAvailable){
-                    path.setFillAlpha(0.3f);
-                    path.setFillColor(fillAvailableColor);
-                }
 
                 path.setOnPathClickListener(new RichPath.OnPathClickListener() {
                     @Override
