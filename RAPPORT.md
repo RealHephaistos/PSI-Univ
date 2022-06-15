@@ -64,6 +64,9 @@ Utilisation d'Azure (https://azure.microsoft.com/fr-fr/) afin de stocker la base
 ## Base de donnée
 ## Base de donnée locale
 ## Barre de recherche
+
+Afin de satisfaire le cahier des charges, l'utlisateur doit pouvoir chercher une salle précise de façon simple et efficace. Pour cela nous avons utlisé l'outil d'Android Studio "SearchView" qui nous a permis d'implenter la fonction de recherche. Cette barre de recheche ne fonctionne qu'avec le clic sur la salle dans le menu deroulant.
+
 ## Menu
 ## Paramettres
 ## Recherche avancée
