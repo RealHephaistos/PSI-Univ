@@ -2,23 +2,22 @@
 
 ## Context
 
-Actuellement en license 3 informatique à l'université de Rennes 1 nous passons beacoup de temps à
-recherche des salles (princpialement dans à l'ISTIC qui est notre lieu principal de travail) ,lors
-de notre temps libre et afin de travailler, avec l'aide de l'emploi du temps qui nous est fournis.
-Cependant, l'ergonomie de cet outil pour trouver des salles n'étant pas la principal priorité de
-l'application ne permet pas une recherche simple et efficace. En effet, il faut vérifier l'emploi du
-temps des salles afin de savoir si elles sont disponibles ou non.
+Actuellement en licence 3 informatique à l'université de Rennes 1 nous consacrons beaucoup de temps à
+rechercher des salles (essentiellement à l'ISTIC qui est notre lieu de travail principal). Pendant
+notre temps libre et dans le but de travailler, nous recherchons des salles à l'aide de l'emploi du temps qui nous est fournis.
+Cependant, l'ergonomie de cet outil pour trouver des salles n'étant pas la principale priorité de
+l'application ne permet pas une recherche simple et efficace. En effet, il faut vérifier l'emploi de chaque salle afin de déterminer si elles sont disponibles ou non.
 
 ## Problematique
 
-Nous nous sommes alors posé la question de savoir qi il n'éxiterait pas un moyen plus simple de
+Nous nous sommes alors posé la question de savoir s'il n'existerait pas un moyen plus simple de
 chercher et vérifier qu'une salle est disponible ou non ?
 
 ## Solution
 
-Nous avons décidé de créer une application android qui permetrait aux étudiants de pouvoir chercher
-ou de voir à l'aide d'une carte qu'elles sont les disponibles à un moment précis en utlisant les
-données de l'outil d'emploi du temps.
+Nous avons donc décidé de créer une application android qui permettrait aux étudiants de pouvoir chercher
+ou de voir à l'aide d'une carte interactive qu'elles sont les salles disponibles à un moment précis. Pour cela nous avons pensé à utiliser les
+données de l'outil d'emploi du temps qui nous est fournis.
 
 # Description du projet
 
@@ -28,55 +27,54 @@ salles sont disponibles et dans quels bâtiments.
 
 ## Cahier des charges
 
-- Réalisable dans les 6 semaines qui nous sont données
-- Réaliser une application Android fonctionnant sur un grand nombre d'appareil
-- Stockage des données à l'aide d'une base de données
-- Réaliser une carte manipulable : zoom et déplacement et click sur des zones représentant les
-  bâtimens
-- Réaliser le bâtiment de l'ISTIC complétement si posible (avec la possibilité de pouvoir étendre
-  l'application à l'ensemble de l'université et d'autres universités)
-- Réaliser une barre de recherche permettant de recherher une salle précise (dans les bâtiments
+- Réaliser une application mobile Android dans un délai de 6 semaines qui nous a été donné.
+- Réaliser une application mobile Android fonctionnant sur un grand nombre d'appareils.
+- Stockage les données nécessaires au fonctionnement de l'application dans une base de données.
+- Réaliser une carte manipulable et interactive : zoom, déplacement et click sur des zones précises (représentant les
+  bâtiments que nous allons traiter, en l'occurrence l'ISTIC). L'interaction avec cette carte devra afficher les plans de bâtiments avec les salles. Chaque salle pouvant être utilisée par les étudiants devra être cliquable et affichera alors si la salle est disponible ou non. De plus, le prochain cours qui se déroulera dans cette salle sera affichée afin de pouvoir déterminer la durée pendant laquelle la salle sera à disposition si elle est disponible.
+- Réaliser le bâtiment de l'ISTIC complètement si possible (avec la possibilité de pouvoir étendre
+  l'application à l'ensemble de l'université de Rennes 1 et d'autres universités)
+- Réaliser une barre de recherche permettant de rechercher une salle précise (dans les bâtiments
   traités)
-- Réaliser un menu permettant d'accèder à la page d'acceuil, recherche avancé et de paramètres
+- Réaliser un menu permettant d'accéder à la page d'accueil, recherche avancée et de paramètres
 - Réaliser un système de recherche avancé avec le choix de pouvoir choisir une date et une heure
   précise
 - Réaliser une page de paramètres permettant de changer la langue de l'application (au moins 2), le
-  format de la date et l'affichage ou non des salles indsiponibles / disponibles
+  format de la date
 
 ## Répartition des tâches
 
-Séparation du groupe de 4 en 2 groupes de 2
+Séparation du groupe de 4 en 2 groupes de 2 personnes
 
-- 2 sur la partie BackEnd, elle même séparé en 2
+- 2 personnes sur la partie Backend, elle-même séparé en 2 groupes individuels
     - Carte : Berrouche Issameddine
     - Navigation / Menu : Buan Tony
-- 2 sur la partie FrontEnd
+- 2 personnes sur la partie Frontend
     - Carte :  Traitement des données et de la base de données
 
 ## Outils utilisés (+raisons)
 
-Utilisation de Discord (https://discord.com/) pour pouvoir discuter entre tous les membres du groupe
-et de notre professeur tuteur à l'aide du chat vocal et avoir une note écrite des idées / problèmes
-rencontrés avec le chat. Nous n'avons pas choisi une autre plateforme car discord est une plateforme
-que tous les membres du groupe connaisaient et utlisaient régulièrement contrairement à d'autre
-plateforme.
+Utilisation de [Discord](https://discord.com/) pour pouvoir communiquer entre tous les membres du groupe
+et de notre professeur tuteur à l'aide du chat vocal pendant les réunions. Avoir une trace écrite des idées / problèmes
+rencontrés avec le système de message. Nous n'avons pas choisi une autre plateforme car discord est une plateforme
+que tous les membres du groupe connaissaient et utilisaient régulièrement contrairement à d'autres
+plateforme. 
 
-Utilisation d'Android Studio (https://developer.android.com/studio) afin de réaliser le projet car
-il s'agit d'un des IDE les plus connus et utlisé pour réaliser des application androids. De plus,
-une documentation importante et de nombreuses librairies sur internet qui nous permet d'avoir plus
-d'outils à disposition pour répondre aux problèmes rencontrés ou encore de ne pas écrire du code
+Utilisation d'[Android Studio](https://developer.android.com/studio) afin de réaliser le projet car
+il s'agit d'un des environnements de développement les plus connus et utilisé pour réaliser des applications mobiles Android.Une documentation importante et de nombreuses librairies sur internet qui nous ont permis d'avoir plus
+d'outils à disposition pour répondre à nos questions et aux problèmes rencontrés ou encore de ne pas écrire du code
 trop complexe qui nous prendrait trop de temps pour un projet de 6 semaines. Sachant que les deux
-seules langages de programmation disponibles sur Android Studio sont java et kotlyn, nous avons
-décidé d'utiliser java.En effet, il s'agit d'un language de programmation que nous avons étudié ces
-trois dernères années et donc dont nous disposons de bases solides contraiment à kotlyn.
+seuls langages de programmation disponibles dans Android Studio sont java et kotlyn, nous avons
+décidé d'utiliser java. En effet, il s'agit d'un language de programmation que nous avons étudié ces
+trois dernières années. Nous disposons donc de base solide avec ce langage de programmation.
 
-Utilisation de Github (https://github.com/) qui a permis de partager le code entre toutes les
-personnes du groupes. Nous savions déjà utilisé la plateforme grâce aux cours que nous avions eu sur
-Gitlab (GEN). Nous avons cependant préféré utilisé GitHub afin de garder une trace de notre travail
-après nos études (ne sachant pas mais supposant que nos comtes Gitlab allaient âtre supprimés). De
+Utilisation de [Github](https://github.com/) qui a permis de partager le code entre toutes les
+personnes du groupe ainsi que les professeurs. Ceci nous à aussi permis de travailler simultanément sur le projet sans devoir attendre que les personnes aient fini d'écrire leur code. Nous savions déjà utiliser la plateforme suite aux cours que nous avions eu sur
+Gitlab (GEN). Nous avons cependant préféré utiliser GitHub afin de garder une trace de notre travail
+après nos études (ne sachant pas mais supposant que nos comtes Gitlab allaient être supprimés). De
 plus, une extension était disponible dans Android Studio ce qui nous a permis de fair le lien entre
-les deux très facilement. Enfin, un système de hiérarchie très pratique grâce aux commits qui nous a
-permis de retourner sur d'ancienne version en cas de problème avec le code actuelle.
+les deux très facilement. Enfin, un système de hiérarchie très pratique grâce aux commits qui nous ont
+permis de retourner sur d'ancienne version en cas de problème avec le code actuel.
 
 - Berrouche Issameddine (RealHephaistos)
 - Buan Tony (tbuan, NoctTB)
@@ -85,17 +83,16 @@ permis de retourner sur d'ancienne version en cas de problème avec le code actu
 - Hamono Morvan (MorvanH)
 - Vachez Guillaume (xelphire)
 
-Utilisation de SQLite (https://www.sqlite.org/index.html) afin de pouvoir stocker les données
-nécessaires pour le bon fonctionnement de l'application, c'est à dire les données de l'emploi du
-temps. Nous avons décidé d'utiliser SQLite car nous savions déjà utlisé mySQL (DSN) et afin de
-pouvoir garder notre travail pour le futur et car nous n'avions pas besoin d'une table de données
-composé d'un nombre de données très importants nous avons favorisé SQLite a SQL.
+Utilisation de [SQLite](https://www.sqlite.org/index.html) afin de pouvoir stocker les données
+nécessaires pour le bon fonctionnement de l'application, c'est-à-dire les données de l'emploi du
+temps. Nous avons décidé d'utiliser SQLite car nous savions déjà utlisé mySQL (DSB) et nous voulions
+pouvoir garder notre travail pour le futur. Nous n'avions pas besoin d'une table de données
+composés d'un nombre de données très importantes donc nous avons favorisé SQLite a SQL.
 
-Utilisation d'Azure (https://azure.microsoft.com/fr-fr/) afin de stocker la base de donnée en ligne
-et de ne pas avoir besoin de la stocké sur l'application et donc réduire la taille de celle-ci. Nous
-avons utilisé Azure car cela est géré par microsoft et qu'un compte gratuit était disponible car
-nous somme étudiants. De plus des caractéeistiques largement suffisante pour notre base de donnée (
-débit,...).
+Utilisation d'[Azure](https://azure.microsoft.com/fr-fr/) afin de stocker la base de données en ligne
+et de ne pas avoir besoin de la stocker sur l'application et donc réduire la taille de celle-ci. Nous
+avons utilisé Azure car cela est géré par Microsoft et qu'un compte gratuit était disponible car
+nous sommes étudiants. De plus des caractéristiques largement suffisantes pour notre base de données (débit,...).
 
 ## Mise en Oeuvre
 
@@ -143,23 +140,23 @@ Le menu est séparé en deux parties.
 ### Vue de la carte du campus
 
 Afin de satisfaire le cahier des charges, l'utilisateur doit pouvoir zoomer et déplacer la carte du
-campus (idéalement avec un défilement fluide), ainsi que cliquer sur les batiments. La carte du
+campus (idéalement avec un défilement fluide), ainsi que cliquer sur les bâtiments. La carte du
 campus étant trop grande et trop complexe pour etre stocké sous format SVG, nous n'avons pas pu
 utiliser la même méthode que pour la vue des bâtiments.
 
 Pour le déplacement de la carte, Android Studio n'offrant pas de solutions natives permettant de
-gérer le déplacement sur des images, nous avions initiallement pensé à programmer nous même un
-composant permettant de zoomer de de scroller dans deux dimmentions. Mais après une version beta
-techniquement fonctionnelle, bien que sans mouvement fluide, nous nous sommes rendus compte qu'il
+gérer le déplacement sur des images, nous avions initialement pensé à programmer nous-mêmes un
+composant permettant de zoomer er de scroller dans deux dimmensions. Mais après une version bêta
+techniquement fonctionnelle, bien que sans mouvement fluide, nous nous sommes rendu compte qu'il
 serait plus facile d'implémenter la librarie [PhotoView](https://github.com/Baseflow/PhotoView).
 
 Pour rendre certaines parties de la cartes intéractives, nous avons
-utilisé [un outils permettant de créer des imagemap](https://www.image-map.net/). Ce site permet de
-tracer des formes sur une image et génère automatiquement un fichier XML contenant les coordonés des
+utilisé [un outil permettant de créer des imagemap](https://www.image-map.net/). Ce site permet de
+tracer des formes sur une image et génère automatiquement un fichier XML contenant les coordonnés des
 points du polygone. La classe MapPhotoView (notre implémentation de PhotoView) utilise ce fichier
 pour créer une liste de polygones. Quand le composant MapPhotoView de l'activité principale détecte
-un click, il parcour la liste des polygones pour vérifier si l'utilisateur a cliquer sur un
-batiment, et ouvre la vue batiment correspondante si c'est le cas.
+un click, il parcour la liste des polygones pour vérifier si l'utilisateur a cliqué sur un
+batiment, et ouvre la vue bâtiment correspondante si c'est le cas.
 
 ### Vue des batiments
 
