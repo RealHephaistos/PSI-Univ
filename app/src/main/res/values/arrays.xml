@@ -17,9 +17,9 @@
     </string-array>
 
     <string-array name="dateFormatListValue">
-        <item>dd-mm-yyyy HH:mm</item>
-        <item>mm-dd-yyyy HH:mm</item>
-        <item>yyyy-mm-dd HH:mm</item>
+        <item>dd-MM-yyyy HH:mm</item>
+        <item>MM-dd-yyyy HH:mm</item>
+        <item>yyyy-MM-dd HH:mm</item>
     </string-array>
 
 </resources>

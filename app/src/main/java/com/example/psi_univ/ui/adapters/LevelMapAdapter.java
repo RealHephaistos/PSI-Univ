@@ -43,6 +43,7 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
     private final int fillAvailableColor;
     private final boolean showUnavailable;
     private final boolean showAvailable;
+    private final SimpleDateFormat sdf;
 
 
     public LevelMapAdapter(List<Level> levels, Context context, String date) {
@@ -58,7 +59,7 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
         this.showAvailable = prefs.getBoolean("keyAvailableRoom", false);
 
         String dateFormat = prefs.getString("key_date_format", "yyyy-MM-dd HH:mm");
-        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.getDefault());
+        sdf = new SimpleDateFormat(dateFormat);
         String[] tmp = new String[2];
         if(date != null) {
             try {
@@ -99,7 +100,7 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
             if (path != null) {
                 Event event = getEvent(roomName);
 
-                if (event != null && event.isOverlapping(lookup) && showUnavailable) {
+                if (!event.isEmpty() && event.isOverlapping(lookup) && showUnavailable) {
                     path.setFillAlpha(0.3f);
                     path.setFillColor(fillUnavailableColor);
                 }
@@ -152,14 +153,14 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
         bundle.putString("lookupDate", lookupDate);
         bundle.putString("lookupTime", lookupTime);
 
-        if (event == null) {
+        if (event.isEmpty()) {
 
             bundle.putBoolean("available", true);
         } else {
             bundle.putBoolean("available", !event.isOverlapping(lookup));
-            Event next =event.getNext();
+            Event next = event.getNext();
             if (next != null) {
-                String[] tmp = next.getStart().split(" ");
+                String[] tmp = sdf.format(next.getStart().getTime()).split(" ");
                 bundle.putString("nextDate", tmp[0]);
                 bundle.putString("nextTime", tmp[1]);
             }
@@ -187,6 +188,6 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
      * @return the event of the room at the lookup date and time
      */
     public Event getEvent(String roomName) {
-        return db.getEventAt(buildingName, roomName, lookupDate + " " + lookupTime);
+        return db.getEventAt(buildingName, roomName, lookup);
     }
 }

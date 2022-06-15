@@ -16,11 +16,14 @@ import com.example.psi_univ.models.Level;
 import com.example.psi_univ.models.Room;
 
 import java.text.DateFormat;
+import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
@@ -41,6 +44,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "id";
 
     private final Context context;
+
+    private static final SimpleDateFormat dataBaseFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, "psi-univ.db", null, 1);
@@ -201,31 +206,46 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     /**
      * @param buildingName : The name of the building you search
      * @param roomName     : The name of the room you search
-     * @param at    : Date of the event
+     * @param time    : Date of the event
      * @return The event if it exists, null otherwise
      */
-    public Event getEventAt(String buildingName, String roomName, String at) {
+    public Event getEventAt(String buildingName, String roomName, Calendar time) {
+        String timeString = "'" +dataBaseFormat.format(time.getTime())+ "'";
         SQLiteDatabase db = this.getReadableDatabase();
 
         String queryStringEvent = "SELECT " + COLUMN_START_EVENT + ", " + COLUMN_END_EVENT + ", " + COLUMN_SUBJECT + " FROM " + EVENTS_TABLE
                 + " WHERE " + COLUMN_BUILDING + " = '" + buildingName + "'"
                 + " AND " + COLUMN_NAME + " = '" + roomName + "'"
-                + " AND " + COLUMN_START_EVENT + " <= '" + at + ":00'"
-                + " AND " + COLUMN_END_EVENT + " >= '" + at + ":00'"
-                + " OR " + COLUMN_START_EVENT + " >= '" + at + ":00'"
-                + " ORDER BY " + COLUMN_START_EVENT + " ASC"
-                + " LIMIT 2";
+                + " AND " + timeString  + " >= " + COLUMN_START_EVENT
+                + " AND " + timeString  + " <= "+ COLUMN_END_EVENT;
 
         Cursor cursorEvent = db.rawQuery(queryStringEvent, null);
-        Event result = null;
+        Event result;
 
-        Log.i("test1", "true");
         if (cursorEvent.moveToFirst()) {
-            Log.i("test2", "true");
             result = new Event(cursorEvent.getString(0), cursorEvent.getString(1), cursorEvent.getString(2));
-            if(cursorEvent.moveToNext()) {
-                result.setNext(new Event(cursorEvent.getString(0), cursorEvent.getString(1), cursorEvent.getString(2)));
-            }
+        }else {
+            result = new Event();
+        }
+        cursorEvent.close();
+
+        String nextDate;
+        if(!result.isEmpty()){
+            nextDate = "'" + dataBaseFormat.format(result.getEnd().getTime()) + "'";
+        }
+        else {
+            nextDate = timeString;
+        }
+
+        queryStringEvent = "SELECT " + COLUMN_START_EVENT + ", " + COLUMN_END_EVENT + ", " + COLUMN_SUBJECT + " FROM " + EVENTS_TABLE
+                + " WHERE " + COLUMN_BUILDING + " = '" + buildingName + "'"
+                + " AND " + COLUMN_NAME + " = '" + roomName + "'"
+                + " AND " + nextDate  + " >= " + COLUMN_END_EVENT
+                + " ORDER BY " + COLUMN_END_EVENT  + " ASC LIMIT 1";
+        cursorEvent = db.rawQuery(queryStringEvent, null);
+
+        if (cursorEvent.moveToFirst()) {
+            result.setNext(new Event(cursorEvent.getString(0), cursorEvent.getString(1), cursorEvent.getString(2)));
         }
 
         cursorEvent.close();

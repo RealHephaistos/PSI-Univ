@@ -12,10 +12,10 @@ public class Event {
     private Event next;
 
     public Event(String start, String end, String subject) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         this.start = Calendar.getInstance();
         this.end = Calendar.getInstance();
         try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
             this.start.setTime(Objects.requireNonNull(sdf.parse(start)));
             this.end.setTime(Objects.requireNonNull(sdf.parse(end)));
         } catch (Exception e) {
@@ -27,6 +27,20 @@ public class Event {
         this.next = null;
     }
 
+    public Event() {
+        this.start = null;
+        this.end = null;
+        this.subject = null;
+        this.next = null;
+    }
+
+    /**
+     * @return true if the event is empty
+     */
+    public boolean isEmpty() {
+        return this.start == null && this.end == null && this.subject == null;
+    }
+
     /**
      * @param d the date to compare to
      * @return true if d is between start and end
@@ -35,9 +49,12 @@ public class Event {
         return d.after(start) && d.before(end);
     }
 
-    public String getStart() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
-        return sdf.format(start.getTime());
+    public Calendar getStart() {
+        return start;
+    }
+
+    public Calendar getEnd() {
+        return end;
     }
 
     public String getSubject() {
