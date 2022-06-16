@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -82,10 +81,10 @@ boolean def;
 
         //Current date as Hint in the Button
         dateButton.setHint(
-                makeDateString(mDay, mMonth, mYear));
+                makeDateString(mDay, mMonth+1, mYear));
 
         formatYear =cal.get(Calendar.YEAR);
-        formatMonth =cal.get(Calendar.MONTH) + 1;
+        formatMonth =cal.get(Calendar.MONTH);
         formatDay =cal.get(Calendar.DAY_OF_MONTH);
         timerHour =cal.get(Calendar.HOUR_OF_DAY);
         timerMinute =cal.get(Calendar.MINUTE);
@@ -107,23 +106,20 @@ boolean def;
         ListView room = findViewById(R.id.listRoom);
         def= true;
         Intent resultIntent = new Intent(this, BuildingActivity.class);
-        room.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                def = false;
-                Object selectedRoom = parent.getAdapter().getItem(position);
-                position = rooms.indexOf(selectedRoom);
-                searchView.setQuery(rooms.get(position).getBuildingName() + " " + rooms.get(position).getRoomName(),true);
-                searchView.clearFocus();
-                mapPosition = position;
+        room.setOnItemClickListener((parent, view, position, id) -> {
+            def = false;
+            Object selectedRoom = parent.getAdapter().getItem(position);
+            position = rooms.indexOf(selectedRoom);
+            searchView.setQuery(rooms.get(position).getBuildingName() + " " + rooms.get(position).getRoomName(),true);
+            searchView.clearFocus();
+            mapPosition = position;
 
-            }
         });
 
         room.setEmptyView(findViewById(R.id.empty));
 
 
-        arrayAdapter = new ArrayAdapter<Room>(this, android.R.layout.simple_list_item_1, rooms);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, rooms);
         room.setAdapter(arrayAdapter);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -139,36 +135,30 @@ boolean def;
             }
         });
 
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                View listLayout = findViewById(R.id.list_layout);
-                if (hasFocus) listLayout.setVisibility(View.VISIBLE);
-                else listLayout.setVisibility(View.GONE);
-            }
+        searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
+            View listLayout = findViewById(R.id.list_layout);
+            if (hasFocus) listLayout.setVisibility(View.VISIBLE);
+            else listLayout.setVisibility(View.GONE);
         });
 
 
         //Search Button
         searchButton = findViewById(R.id.searchButton);
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String dateTimePicker = makeTimeFormat(formatYear,formatMonth,formatDay,timerHour,timerMinute);
+        searchButton.setOnClickListener(v -> {
+            String dateTimePicker = makeTimeFormat(formatYear,formatMonth,formatDay,timerHour,timerMinute);
 
-                if(!def) {
-                    resultIntent.putExtra("building", rooms.get(mapPosition).getBuildingName());
-                    resultIntent.putExtra("level", rooms.get(mapPosition).getLevelName());
-                    resultIntent.putExtra("room", rooms.get(mapPosition).getRoomName());
-                }
-                else {
-                    resultIntent.putExtra("building", "B12D");
-                    resultIntent.putExtra("level", "0");
-                }
-                resultIntent.putExtra("time",dateTimePicker);
-               //Toast.makeText(AdvancedSearchActivity.this, dateTimePicker, Toast.LENGTH_SHORT).show();
-                startActivity(resultIntent);
+            if(!def) {
+                resultIntent.putExtra("building", rooms.get(mapPosition).getBuildingName());
+                resultIntent.putExtra("level", rooms.get(mapPosition).getLevelName());
+                resultIntent.putExtra("room", rooms.get(mapPosition).getRoomName());
             }
+            else {
+                resultIntent.putExtra("building", "B12D");
+                resultIntent.putExtra("level", "0");
+            }
+            resultIntent.putExtra("time",dateTimePicker);
+           //Toast.makeText(AdvancedSearchActivity.this, dateTimePicker, Toast.LENGTH_SHORT).show();
+            startActivity(resultIntent);
         });
     }
 
