@@ -49,7 +49,7 @@ salles sont disponibles.
   the app
 - Extend coverage to every buildings in the Uiversity and not only the BD12
 - More options (dark theme, more languages, ...)
-- Show availiable ans unvavailbale room in different colors (code already exist in commentary but problems with RichPath and setFillColor)
+- Show available and unavailable room in different colors (code already exist in commentary but problems with RichPath and setFillColor)
 
 # Licence
 
