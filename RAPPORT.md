@@ -50,7 +50,8 @@ Séparation du groupe de 4 en 2 groupes de 2 personnes
     - Carte : Berrouche Issameddine
     - Navigation / Menu : Buan Tony
 - 2 personnes sur la partie Frontend
-    - Carte :  Traitement des données et de la base de données
+    - Traitement des données et de la base de données côté serveur : Hamono Morvan
+    - Récuperation des données et base de données côté client : Vachez Guillaume
 
 ## Outils utilisés (+raisons)
 
@@ -102,7 +103,37 @@ nous sommes étudiants. De plus des caractéristiques largement suffisantes pour
 
 ## BackEnd
 
+### Debut du project
+Notre première étape à été de ce mettre d'accord sur la forme que prendrait nos donnée pour les 
+manipuler de la même façon tout en travaillant séparement, tout cela en prévision de la mise en 
+commun de chacune de nos partie. Nous avons donc rapidement mis au point differentes  classes 
+representants un bâtiment, un étage, une salle et un cours. Toutes ces classes étant liée : un 
+bâtiment contient des étages, un étages des salles et une salles des cours. Afin de facilité 
+l'implementation, chaque classe a des information sous forme de String comme par exemple le nom et 
+chaque objet ce souvient des informations utiles de son parent. Ainsi une salle connait le nom de 
+son étage et de son bâtiment.
+
+### Récupération des ICS
+
+### Traitement des informations
+Les fichiers en .ics étant que du texte avec des mots clefs suivi de valeurs comme par exemple 
+"SUBJECT:Maths" pour exprimer que l'evenement est un cours de maths,nous avons du les transformer en
+un format utilisable. Pour cela nous avons essayer d'utiliser des librairies déjà existante mais aucune
+ne semblait faire de l'extraction de donnée comme nous le voulions. Nous avons donc fait un "parser"
+nous même qui extrait les données en forme de String. Nous n'avions plus qu'à faire utiliser ces 
+Strings pour créer des objets Java comme des salles ou des evenements. Afin que tous les clients aient
+accès aux données et pour que le serveur des emplois du temps ne soit pas surcharger, nous avons
+décider de récuperer les données et de faire ce traitement qu'une seule fois qui envoie les données 
+sur un serveur mySql oû tous les appareils pourraient ce connecté.
+
 ### Base de donnée
+La base de donnée a été élaborée grâce à un serveur wamp privé et local afin de faire des tests avant
+de passer sur Azure pour avoir une base de donnée commune et externe pour travaillé sur le projet 
+dans une situation réelle. A terme, si l'application devait être "produite", nous aurions un serveur 
+physique privé capable d'héberger ce serveur mySql et d'effectuer les mises à jours régulierement.
+
+- (Image)Schema bdd
+
 
 ### Base de donnée locale
 
@@ -116,7 +147,7 @@ nous sommes étudiants. De plus des caractéristiques largement suffisantes pour
 Afin de satisfaire le cahier des charges, l'utlisateur doit pouvoir chercher une salle précise de
 façon simple et efficace. Pour cela nous avons utlisé l'outil d'Android Studio "SearchView" qui nous
 a permis d'implenter la fonction de recherche. Cette barre de recheche ne fonctionne qu'avec le clic
-sur la salle dans le menu deroulant (identique dans les deux barres de recherche).
+sur la salle dans le menu deroulant (identique dans les deux barres de recherche). 
 
 ...
 
@@ -176,11 +207,21 @@ beacoup aimé réalisé l'interface graphique de l'application grâce aux outils
 Studio. De nombreux petits détails qui posent souvent problèmes mais que j'ai trouvé satisfaisant à
 résoudre. Un projet totalement libre qui a cependant quelques contraintes. En effet je trouve que
 l'on peut perdre facilement la notion du temps de travail, ne pas savoir si on a travaillé assez,
-cependant ces doutes soont souvent remis en cause lors des réunions avec le professeur tuteur ce qui
+cependant ces doutes sont souvent remis en cause lors des réunions avec le professeur tuteur ce qui
 je trouve est une bonne chose. Enfin, comme dans tous projets ils est difficile de savoir par ou
 commencé car contrairement aux projets réalisés en cours nous ne sommes pas guidé.
 
 ## Morvan
+Le fait de pouvoir choisir le thème, la techno et les gens avec qui ont travail procure un vrai 
+sentiment de liberté et permet de ce travaillé à fond dans quelque chose qui nous intéresse et nous
+appartient. Je pense d'ailleur que cela nous a permis de travaillé plus rapidement efficacement.
+Le fait de devoir apprendre un langage ou un logiciel est déroutant au début car on se dit que l'on 
+prends beaucoup de temps sans vraiment produire mais cela permet d'être en situation réelle. Sur un
+projet profesionnel, on ne peut pas connaître le logiciel proprietaire et on passe les premières 
+semaines de travail à se former dessus, ce projet nous a donc appris à se former nous même. La durée 
+du projet est assez longue pour cela même si cela passe très vite et qu'il y a forcements des choses
+que l'on ne peut pas implementer, on a quand même le temps d'arriver à une version fonctionnelle ou 
+vraiment pas loin. 
 
 ## Guillaume
 
