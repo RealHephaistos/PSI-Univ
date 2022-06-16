@@ -137,6 +137,10 @@ physique privé capable d'héberger ce serveur mySql et d'effectuer les mises à
 
 ### Base de donnée locale
 
+Nous avions besoins de regroupé toute les infromations directement sur l'appareil de l'utilisateur. Pour ce faire nous utilisons SQLite pour créer et gérer une base de donnée sous Android. La base de donnée SQLite fraichement créé récupère la base de donnée du serveur en passant par un lien php hebergé sur serveur qui renvoit une String de tout l'emploie du temps que l'on doit parser pour pouvoir la rerentrer dans la base de donnée SQLite. Ce processus de récupération se fera ensuite de façon quotidiennepour garder un emploie du temps à jour. Une fois la base de donnée SQLite complété et mis à jour, nous pouvons aller récupéré les informations dont nous avons besoin grâce à des recherches SQL nous permettant de recupéré tout un jeu de donnée ou seulement des données spécifiques comme par exemple des données corresspondant à une date et une heure spécifique du calendrier.
+
+Nous nous sommes heurtés à differentes difficultés pour faire fonctionner l'ensemble des bases de donée comme pour aller recupérer les diffents jeux de données sur le serveur externe MySQL. Nous utilisons du php pour pouvoir acceder à la base de donnée externe car c'est l'une des seule solution trouvé qui fonctionnait. La plupart n'était pas compatible avec ce que nous recherchions oupas entretenu et mis à jour. De plus nous devions faire attention à la durée du traitement de donnéeà cause du grand jeux de donnée que nous avons. Ajourd'hui la récupération des données mais ~45 secondes pour 7500 lignes de données. Cela est surement encore améliorable. Nous avons du faire attention a certaine choses découlant du travail avec des calendriers, les fuseauxhoraires, qui peuvent changer completmeent toutes les heures des emplois du temps, les rendant inutilisable.
+
 ## FrontEnd
 
 ### Barre de recherche
@@ -234,6 +238,9 @@ que l'on ne peut pas implementer, on a quand même le temps d'arriver à une ver
 vraiment pas loin. 
 
 ## Guillaume
+
+Ce projet aura été un réel moment de plaisir pour moi, avec ses hauts et ses bas, dans la construction comme dans la deconstruction, parce que tous ce qu'on crée ne marche pas forcement. Il est toujours agréable de créer quelque chose de ses propres mains. C'est ce que nous avons fait a travers ce projet. Le plus fastidieux a travers ce projet reste la mise en place, devoir ce familiarisé avec de nouveau concepts et outils peut rebuter au début mais une fois que le projet démarré tout ce met tres vite en place. Au tout début du projet, je pasais la plus part de mon temps en recherche et visionnage de tutoriel sur les différents point clé sur lesquels je devais travailler. Au final être confronté et devoir résoudre des problèmes est vraiment un point du projet que j'ai le plus apprécié même si ça en devient très vite frustrant et chronophage. 
+
 
 ## Globale
 
