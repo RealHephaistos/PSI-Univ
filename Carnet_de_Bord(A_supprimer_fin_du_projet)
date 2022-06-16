@@ -216,14 +216,49 @@ Travail sur la partie FrontEnd et BackEnd
 
 	---09/06/2022---
 
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine :
+	-Tony :  Avancé sur la partie changement dans langue dans les options. Mise à jour carnet de bord
+	-Morvan :
+	-Guillaume : 
+
 	---10/06/2022---
+
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine :
+	-Tony : Les options sont fonctionnels, trvail sur la partie code de la recherche avancée. Mise à jour du README
+	-Morvan :
+	-Guillaume : 
 
 	---13/06/2022---
 
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine : Affichage des salles disponibles. Ajout d'une license et d"une preview de l'application dans le README
+	-Tony : Avancement sur la recherche avancé qui est quasiment fonctionnel, avec comme recherche par défault (sans utiliser les filtes) le rez-de-chaussée de l'istic à la date et heure actuelle. Mise a jour du README
+	-Morvan :
+	-Guillaume : 
+
 	---14/06/2022---
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine : Modification du format des dates et de l'affichage des salles en fonction des paramètres pour l'affichage sur la carte. Ajout des diagrammes pour le fihcier DESIGN, création d'un fichier pour le rapport et mise a jour de celui-ci
+	-Tony : Suppresion du filtre de l'affichage des salles dans la recherche avancée, déplacer dans les paramètrs et réglage de bug. Mise à jour du rapport.
+	-Morvan,Guillaume  : Mise en commun afin d'avoir la connection à la base de donnée en ligne et pouvour l'utiliser et correction de Bug et ajout des fuseaux horaires.
 
 	---15/06/2022---
 
+Travail sur la partie FrontEnd et BackEnd
+	-Issameddine : Réglage des problèmes avec la base de donnée et le format des dates. Supression de l'affichage des salles à cause de la libraire utilisé qui ne fonctionne pas correctement. Création de l'apk et mise a jour du fichier DESIGN
+	-Tony : Suppresion des paramètres pour l'affichage des salles dans le fragment. Résolution du problème sur les filtres lors de l'utilisation de la barre de recherche. Mise a jour du rapport
+	-Morvan :
+	-Guillaume : 
+
 	---16/06/2022---
 
+	-Issameddine : Mise a jour de la preview dans le README et vidéo de présentation
+	-Tony : Correction du bug pour l'affichage de la date. Mise a jour du rapport et du README
+	-Morvan :Mise a jour du rapport
+	-Guillaume : Mise a jour du rapport
+
 	---17/06/2022---
+
+Finalisation : Dernier élement du rapport et rédaction de celui-ci et mise a jour du carnet de bord.
