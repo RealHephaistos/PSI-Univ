@@ -15,7 +15,9 @@
         android:layout_marginTop="100dp"
         android:ems="10"
         android:hint="@string/advanced_search_search_bar"
-        android:minHeight="48dp" /><!--xml comments-->
+        android:minHeight="48dp"
+        android:inputType="text"
+        android:importantForAutofill="no" /><!--xml comments-->
 
 
     <!-- Switch for available rooms-->
@@ -27,7 +29,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:checked="true"
-
         android:minHeight="48dp"
         android:text="@string/advanced_search_available_roms" />
 
