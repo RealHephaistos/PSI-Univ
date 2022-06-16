@@ -6,11 +6,9 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +28,6 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ArrayAdapter<Room> arrayAdapter;
-    private ImageView imageView;
     private DrawerLayout drawerLayout;
 
     @Override
@@ -48,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imageView = findViewById(R.id.imageViewHome);
+        ImageView imageView = findViewById(R.id.imageViewHome);
         drawerLayout = findViewById(R.id.drawerLayout);
 
         NavigationView navigationView = findViewById(R.id.navigationView);
@@ -63,23 +60,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         List<Room> rooms = dataBaseHelper.getAllRooms();
         ListView room = findViewById(R.id.listRoom);
         Intent resultIntent = new Intent(this, BuildingActivity.class);
-        room.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object selectedRoom = parent.getAdapter().getItem(position);
-                position = rooms.indexOf(selectedRoom);
-                //Toast.makeText(MainActivity.this, selectedRoom.toString(), Toast.LENGTH_SHORT).show();
-                resultIntent.putExtra("building", rooms.get(position).getBuildingName());
-                resultIntent.putExtra("level", rooms.get(position).getLevelName());
-                resultIntent.putExtra("room", rooms.get(position).getRoomName());
-                startActivity(resultIntent);
-            }
+        room.setOnItemClickListener((parent, view, position, id) -> {
+            Object selectedRoom = parent.getAdapter().getItem(position);
+            position = rooms.indexOf(selectedRoom);
+            //Toast.makeText(MainActivity.this, selectedRoom.toString(), Toast.LENGTH_SHORT).show();
+            resultIntent.putExtra("building", rooms.get(position).getBuildingName());
+            resultIntent.putExtra("level", rooms.get(position).getLevelName());
+            resultIntent.putExtra("room", rooms.get(position).getRoomName());
+            startActivity(resultIntent);
         });
 
         room.setEmptyView(findViewById(R.id.empty));
 
 
-        arrayAdapter = new ArrayAdapter<Room>(this, android.R.layout.simple_list_item_1, rooms);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, rooms);
         room.setAdapter(arrayAdapter);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -94,21 +88,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return true;
             }
         });
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                View listLayout = findViewById(R.id.list_layout);
-                if (hasFocus) listLayout.setVisibility(View.VISIBLE);
-                else listLayout.setVisibility(View.GONE);
-            }
+        searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
+            View listLayout = findViewById(R.id.list_layout);
+            if (hasFocus) listLayout.setVisibility(View.VISIBLE);
+            else listLayout.setVisibility(View.GONE);
         });
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
+        imageView.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
     }
 

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -23,7 +22,6 @@ import java.util.Locale;
 
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private ImageView imageView;
     private DrawerLayout drawerLayout;
 
     @Override
@@ -43,7 +41,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         setContentView(R.layout.activity_settings);
 
         //Drawer
-        imageView = findViewById(R.id.imageViewHome);
+        ImageView imageView = findViewById(R.id.imageViewHome);
         drawerLayout = findViewById(R.id.settingsDrawer);
 
         NavigationView navigationView = findViewById(R.id.navigationView);
@@ -52,23 +50,13 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         navigationView.setCheckedItem(R.id.settings);
 
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
+        imageView.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
         //Toolbar
         Toolbar toolbar = findViewById(R.id.ToolBar);
         setSupportActionBar(toolbar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         if (findViewById(R.id.settings_container) != null) {
             if (savedInstanceState != null) {

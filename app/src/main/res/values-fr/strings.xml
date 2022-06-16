@@ -15,6 +15,8 @@
     <string name="advanced_search_date_select">Sélectionner une date</string>
     <string name="advanced_search_search_bar">Mots</string>
     <string name="advanced_search_research_button">Rechercher</string>
+    <string name="result">Pas de résultat</string>
+
 
 
     <!-- English strings for the toolbar -->
@@ -26,6 +28,8 @@
     <string name="drawer_advanced_search">Recherche Avancée</string>
     <string name="drawer_open">Ouvert</string>
     <string name="drawer_close">Fermé</string>
+    <string name="PSILogo">PSI Logo</string>
+
 
     <!-- English string for the month name-->
     <string name="January">Janvier</string>
