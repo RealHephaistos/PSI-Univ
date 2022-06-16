@@ -1,7 +1,7 @@
-
 # Class Diagram
-![](documents/PNG/diagram_models.png)
-![](documents/PNG/diagram_activities.png)
-![](documents/PNG/diagram_adapters.png)
-![](documents/PNG/diagram_backend.png)
-![](documents/PNG/diagram_fragments.png)
+
+![](documents/SVG/diagram_models.svg)
+![](documents/SVG/diagram_activities.svg)
+![](documents/SVG/diagram_adapters.svg)
+![](documents/SVG/diagram_backend.svg)
+![](documents/SVG/diagram_fragments.svg)

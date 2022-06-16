@@ -20,7 +20,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
-        setPreferencesFromResource(R.xml.preferences,rootKey);
+        setPreferencesFromResource(R.xml.preferences, rootKey);
         Objects.requireNonNull(getPreferenceScreen().getSharedPreferences()).registerOnSharedPreferenceChangeListener(this);
 
     }
@@ -41,17 +41,16 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference preference = findPreference(key);
         int index;
-        switch (key){
+        switch (key) {
             case "key_language":
                 androidx.preference.ListPreference listPreferenceLanguage = (androidx.preference.ListPreference) preference;
                 assert listPreferenceLanguage != null;
-                index = listPreferenceLanguage.findIndexOfValue(sharedPreferences.getString(key," "));
+                index = listPreferenceLanguage.findIndexOfValue(sharedPreferences.getString(key, " "));
                 preference.setSummary(listPreferenceLanguage.getEntries()[index]);
                 if (sharedPreferences.getString("key_language", "").compareTo("FRE") == 0) {
                     //Toast.makeText(getContext(), sharedPreferences.getString("key_language", " "), Toast.LENGTH_SHORT).show();
                     setLocal("fr");
-                }
-                else {
+                } else {
                     setLocal("eng");
                 }
 
@@ -59,7 +58,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             case "key_date_format":
                 androidx.preference.ListPreference listPreferenceDate = (androidx.preference.ListPreference) preference;
                 assert listPreferenceDate != null;
-                index = listPreferenceDate.findIndexOfValue(sharedPreferences.getString(key," "));
+                index = listPreferenceDate.findIndexOfValue(sharedPreferences.getString(key, " "));
                 preference.setSummary(listPreferenceDate.getEntries()[index]);
                 break;
 

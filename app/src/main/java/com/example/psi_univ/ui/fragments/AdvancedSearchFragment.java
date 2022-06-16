@@ -29,12 +29,11 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
     SwitchCompat unavailableRoom;
     Button dateButton;
     DatePickerDialog datePickerDialog;
-    private Toolbar toolbar;
     int timerHour, timerMinute;
     String datePicker;
     boolean isAvailableRoomShown = false;
     boolean isUnavailableRoomShown = true;
-
+    private Toolbar toolbar;
 
     @Nullable
     @Override
@@ -61,7 +60,7 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
                 makeDateString(mDay, mMonth, mYear));
 
 
-        String dateTimePicker = datePicker + " " + timerHour + ":" +timerMinute;
+        String dateTimePicker = datePicker + " " + timerHour + ":" + timerMinute;
 
         //On click listener in the fragment view
         availableRoom.setOnClickListener(this);
@@ -111,14 +110,14 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
             DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
                 month = month + 1;
                 String date = makeDateString(dayOfMonth, month, year);
-                datePicker = year+"-"+month+"-"+dayOfMonth;
+                datePicker = year + "-" + month + "-" + dayOfMonth;
                 dateButton.setHint(date);
             };
             Calendar cal = Calendar.getInstance();
             int year = cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
-            datePicker = year+"-"+month+"-"+day;
+            datePicker = year + "-" + month + "-" + day;
 
 
             int style = 1;
@@ -139,10 +138,10 @@ public class AdvancedSearchFragment extends Fragment implements View.OnClickList
      */
     private String makeDateString(int dayOfMonth, int month, int year) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        if (sharedPreferences.getString("key_date_format"," ").equals("dd-MM-yyyy HH:mm")){
+        if (sharedPreferences.getString("key_date_format", " ").equals("dd-MM-yyyy HH:mm")) {
             return dayOfMonth + " " + getMonthFormat(month) + " " + year;
         }
-        if (sharedPreferences.getString("key_date_format"," ").equals("MM-dd-yyyy HH:mm")){
+        if (sharedPreferences.getString("key_date_format", " ").equals("MM-dd-yyyy HH:mm")) {
             return year + " " + getMonthFormat(month) + " " + dayOfMonth;
         }
         return getMonthFormat(month) + " " + dayOfMonth + " " + year;

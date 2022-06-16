@@ -27,7 +27,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelViewHolders> {
 
@@ -56,19 +55,18 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
         sdf = new SimpleDateFormat(dateFormat, Locale.getDefault());
         SimpleDateFormat databaseFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String[] tmp = new String[2];
-        if(date != null) {
+        if (date != null) {
             try {
                 this.lookup.setTime(databaseFormat.parse(date));
                 tmp = date.split(" ");
-                
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
             tmp = sdf.format(Calendar.getInstance().getTime()).split(" ");
         }
-        
+
         this.lookupDate = tmp[0];
         this.lookupTime = tmp[1];
     }
@@ -127,8 +125,9 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
 
     /**
      * open the room fragment with the given room name
+     *
      * @param roomName name of the room
-     * @param event event to be added to the room
+     * @param event    event to be added to the room
      */
     public void openRoomFragment(String roomName, Event event) {
         Bundle bundle = new Bundle();
@@ -154,6 +153,14 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
         roomDialogFragment.show(fragmentManager, "roomDialog_" + roomName);
     }
 
+    /**
+     * @param roomName name of the room
+     * @return the event of the room at the lookup date and time
+     */
+    public Event getEvent(String roomName) {
+        return db.getEventAt(buildingName, roomName, lookup);
+    }
+
     public static class LevelViewHolders extends RecyclerView.ViewHolder {
         final RichPathView richPathViewMap;
         final FragmentContainerView fragmentContainer;
@@ -163,14 +170,5 @@ public class LevelMapAdapter extends RecyclerView.Adapter<LevelMapAdapter.LevelV
             richPathViewMap = itemView.findViewById(R.id.map);
             fragmentContainer = itemView.findViewById(R.id.roomFragmentContainerView);
         }
-    }
-
-    /**
-     *
-     * @param roomName name of the room
-     * @return the event of the room at the lookup date and time
-     */
-    public Event getEvent(String roomName) {
-        return db.getEventAt(buildingName, roomName, lookup);
     }
 }
