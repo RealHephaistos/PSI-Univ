@@ -141,32 +141,49 @@ physique privé capable d'héberger ce serveur mySql et d'effectuer les mises à
 
 ### Barre de recherche
 
-- (Image)Barre Recherche 
-- (Image)Barre de recherche avancé
+ - (Image)Barre Recherche
+ - (Image)Barre de recherche avancé
 
-Afin de satisfaire le cahier des charges, l'utlisateur doit pouvoir chercher une salle précise de
-façon simple et efficace. Pour cela nous avons utlisé l'outil d'Android Studio "SearchView" qui nous
-a permis d'implenter la fonction de recherche. Cette barre de recheche ne fonctionne qu'avec le clic
-sur la salle dans le menu deroulant (identique dans les deux barres de recherche). 
+Afin de satisfaire le cahier des charges, l'utilisateur doit pouvoir chercher une salle précise de façon simple et efficace. Pour cela nous avons utilisé l'outil d'Android Studio "SearchView" qui nous a permis d'implanter la fonction de recherche. Cette barre de recherche ne fonctionne qu'avec le clic sur la salle dans le menu déroulant. Nous avons créé ce menu à l'aide de l'outil ListView d'Android Studio (identique dans les deux barres de recherche). Un filtre est disponible dans cette barre de recherche permettant une recherche rapide d'une salle précise.
 
-...
+Seul la barre de recherche de l'accueil possède une icône de menu qui permet d'ouvrir un menu tiroir et de naviguer entre toutes les activités possibles de l'application. Il s'agit d'une barre d'outils pour les autres activités qui va permettre la navigation.
 
-Les deux barres de recherche possède une icone de menu qui permet d'ouvrir un menu tiroir et de navigué entres toutes les activités possibles de l'application.
+La recherche est effectuée instantanément sur la page d'accueil mais ne l'est pas sur la page de recherche avancée. En effet, l'information reste affichée et est stockée afin de pouvoir appliquer les différents filtres à la recherche.
 
 ### Menu
 
-Le menu est séparé en deux parties. 
+Il existe 2 éléments associés au menu afin de répondre aux cahiers des charges.
 
-- (Image)Menu
-- Le menu tiroir qui s'affiche lorsque l'on appuie sur l'icone du menu situé en haut des différentes pages. Celui-ci ci peut aussi être ouvert en réalisant un scroll de gauche à droite. Différentes options apparaissent tout d'abord l'option acceuil permettant de revenir à la page contenant le plan du batiments. Le(s) option(s) dans la catégorie lieux ne sont pas utilisé car notre application n'est centré que sur l'université de Rennes 1 mais ces otions pourraient être utilisé pour ajouté d'autes facultés. Enfin l'option paramètres permettant d'ouvrir une page de paramètre. Toutes les options sauf les options de la catégorie lieux sont clickables et permmettent la nivigation entre tous les éléments de l'application
+- (Image)Menu icon 
+
+Dans un premier temps une icône de menu permettant de faire apparaître un menu tiroir qui va permettre d'accéder aux différentes pages.
+
 - (Image)ToolBar AdvancedSearch
 - (Image)ToolBar Settings
-- Les barres d'outils disponibles sur toutes les activités saauf celle d'accueil qui permettent un retout en arrière ainsi que l'ouverture du menu tiroit
 
+Cette icône est disponible dans la barre de recherche pour la page d'accueil (comme vue précédemment). Elle est disponible dans le coin supérieur droit des autres pages, sur la barre d'outils qui permet aussi de réaliser un retour en arrière.
+
+- (Image)Menu Tiroir
+- (Image)Menu Tiroir
+
+  Le menu tiroir qui s'affiche lorsque l'on appuie sur l'icône de menu décrite précédemment. Celui-ci peut aussi être ouvert en réalisant un scroll de gauche à droite. Différentes options apparaissent. Tout d'abord l'option accueil permettant de revenir à la page contenant le plan de l'université, la page initiale. L' option dans la catégorie lieux n'est sont pas utilisées car notre application ne traite que les données d'un bâtiment de l'université de Rennes 1. Cependant, ces options pourraient être utilisé si l'on étendait notre application à d'autres universités afin de pouvoir choisir le plan de l'université à afficher. Enfin l'option paramètre permettant d'ouvrir une page de paramètre. Toutes les options sauf les options de la catégorie lieux sont cliquables et permettent la navigation entre tous les éléments de l'application.
+Cette navigation a été possible avec l'utilisation d'un Drawer Layout permettant l'affichage de ce menu.
 
 ### Parametres
 
+Les paramètres sont constitués de 2 options:
+Langue : permet de changer la langue de l'application entre le français et l'anglais. Sachant que la fonction utiliser pour la modifier risque d'être supprimé dans les prochaines versions ("deprecated") nous avons inclus la librairie [Localization](https://github.com/akexorcist/Localization) qui devrait pouvoir la remplacer en cas de problèmes.
+Format : Change le format d'affichage de la date parmi trois choix possibles jj-mm-aaaa, mm-jj-aaaa, et aaaa-mm-jj.
+Ces modifications ne sont que visuels et n'apportent qu'un confort a l'utilisateur.
+Afin de réaliser ces changements nous avons utilisé les avantages des PréférencesFragment qui nous ont permis de partager les différentes valeurs sélectionnées entre tous les fichiers.
+
 ### Recherche avancée
+
+La recherche avancée est constituée d'une barre de recherche qui a deja été évoqué précédemment.
+Elle contient aussi 2 autres filtres qui permettent de rechercher la disponibilité d'une salle a une heure précise, répondant ainsi au cahier des charges.
+Le premier filtre est un sélectionneur de temps qui fait apparaître une horloge (icône en bas à gauche de la fenêtre pour une entre manuel) afin de sélectionner l'heure désiré.
+Le second filtre quant à lui est un sélectionneur de date qui fait apparaître un calendrier permettant la sélection d'une date précise.
+Si aucun des filtres n'est utilisé alors le résultat pad défaut sera le rez-de-chaussée de l'ISTIC à l'heure et date actuel.
 
 ### Vue de la carte du campus
 
@@ -201,15 +218,8 @@ batiment, et ouvre la vue bâtiment correspondante si c'est le cas.
 
 ## Tony
 
-Un projet que j'ai fortement apprécié réalisé. Un projet libre sur un sujet qui me plaisait et dont
-les objectifs finaux ont été réalisé. N'étant pas spécialement adepte de la création de code j'ai
-beacoup aimé réalisé l'interface graphique de l'application grâce aux outils fournis par Android
-Studio. De nombreux petits détails qui posent souvent problèmes mais que j'ai trouvé satisfaisant à
-résoudre. Un projet totalement libre qui a cependant quelques contraintes. En effet je trouve que
-l'on peut perdre facilement la notion du temps de travail, ne pas savoir si on a travaillé assez,
-cependant ces doutes sont souvent remis en cause lors des réunions avec le professeur tuteur ce qui
-je trouve est une bonne chose. Enfin, comme dans tous projets ils est difficile de savoir par ou
-commencé car contrairement aux projets réalisés en cours nous ne sommes pas guidé.
+Un projet que j'ai fortement apprécié réalisé. Un projet avec beaucoup de liberté, sur un sujet qui me plaisait et dont j'ai apprécié passer du temps dessus. N'étant pas spécialement adepte de la création de code j'ai beaucoup aimé réalisé et codé l'interface graphique de l'application grâce aux outils fournis par Android Studio. De nombreux petits détails qui posent souvent problèmes mais que j'ai trouvé satisfaisant à résoudre. Une liberté qui a cependant quelques contraintes. Comme dans tous projets il est difficile de savoir par où commencé car contrairement aux projets réalisés en cours nous ne sommes pas guidés. En conséquence, je trouve que l'on peut facilement  avoir des  interrogations sur l'avancement du projet. Cependant ces doutes sont souvent supprimées lors des réunions avec le professeur tuteur ce qui je trouve est une bonne chose. En effet, notre professeur nous a permis d'avoir une vision plus claire de notre application et nous a permis de définir des objectifs à realiser toutes les semaines.
+
 
 ## Morvan
 Le fait de pouvoir choisir le thème, la techno et les gens avec qui ont travail procure un vrai 
