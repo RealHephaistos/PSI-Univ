@@ -17,27 +17,27 @@ Vachez Guillaume (xelphire)
 	-Créations des user cases
 	-Comment récupérer les données pour les emplois du temps ? 
 		-Récupération manuelle depuis l'emploi du temps fournit depuis l'ENT, pas d'avancement car problème avec le site
--Utilisation de tutos en ligne pour comprendre l'utilisation de Android Studio
+-Utilisation de tutos en ligne pour comprendre l'utilisation d'Android Studio
 
 	---10/05/2022---
 
 -Réunion de l'ensemble des membres du projet sur discord afin de discuter sur le projet et principalement la partie BackEnd
 	-Mise au point des détails sur l'interface
-	-Analyse des fichiers données par l'emploi du temps que nous avons réussi à récupérer avant le problème sur le site
+	-Analyse des fichiers donnés par l'emploi du temps que nous avons réussi à récupérer avant le problème sur le site
 	-Retour sur le traitement des données de l'emploie du temps
-	-La même erreur ce produit
-	-Envoie d'un mail pour savoir si l'erreur est produit à cause de nos manipulations
--Utilisation de tutos en ligne pour comprendre l'utilisation de Android Studio
+	-La même erreur se produit
+	-Envoi d'un mail pour savoir si l'erreur est produite à cause de nos manipulations
+-Utilisation de tutos en ligne pour comprendre l'utilisation d'Android Studio
 	
 
 	---11/05/2022---
 
 -Réponse au mail envoyé
-	-Les manipulations que nous avons réalisé ne sont pas spécialement à faire
-	-Nous avons appris que nous avion besoin d'autorisations afin d'utiliser les données de l'emploi du temps
--Travail sur la partie FrontEnd et BackEnd
+	-Les manipulations que nous avons réalisées ne sont pas spécialement à faire
+	-Nous avons appris que nous avions besoin d'autorisations afin d'utiliser les données de l'emploi du temps
+-Travail sur la partie Frontend et Backend
 	-Issameddine : Importation "photoview"
-	-Tony : Ajout barre de menu et icone des paramètres
+	-Tony : Ajout barre de menu et icône des paramètres
 	-Morvan : ajout librairie Ical4j pour le traitement des données de l'emploie du temps et création de la classe "Room" ainsi qu'un fichier pour les fichiers.ics
 	-Guillaume :
 
@@ -46,24 +46,23 @@ Vachez Guillaume (xelphire)
 -Réunion en présentiel à la FAC avec le professeur tuteur
 -Présentation du projet 
 -Mise au point sur certains détails
--Discussion par rapport aux autorisations nécessaire à notre projet
+-Discussion par rapport aux autorisations nécessaires à notre projet
 	-Données de l'emploi du temps
-	-Demande d'autorisation pour les plans du 1er batiment que nous allons utlisé dans notre projet (Batiment 12D)
+	-Demande d'autorisation pour les plans du 1er bâtiment que nous allons utliser dans notre projet (Bâtiment 12D)
 -Nous avons défini des objectifs pour la prochaine réunion
--Demande d'autorisation pour utiliser les données de l'emploi du temps et les plans du batiment
--Travail sur la partie FrontEnd et BackEnd
+-Demande d'autorisation pour utiliser les données de l'emploi du temps et les plans du bâtiment
+-Travail sur la partie Frontend et Backend
 	-Issameddine :
 	-Tony :
-	-Morvan : Première version du parser, décision de ne plus utliser Ical4j (supression de la libraire) 
-	-Guillaume :Fonction pour récupérer un fichier ics depuis un irl qui va le télécharger dans le dossier ics
+	-Morvan : Première version du parser, décision de ne plus utiliser Ical4j (supression de la libraire) 
+	-Guillaume : Fonction pour récupérer un fichier.ics depuis un irl qui va le télécharger dans le dossier ics
 
 	---13/05/2022---
 
--Relance sur la demande d'autorisation pour utiliser les plans du batiment car incompréhension 
--Travail sur la partie BackEnd et FrontEnd
--Travail sur la partie FrontEnd et BackEnd
+-Relance sur la demande d'autorisation pour utiliser les plans du bâtiment car incompréhension 
+-Travail sur la partie Frontend et Backend
 	-Issameddine : Tantative de carte avec widget custom / scroll view custom 
-	-Tony : Modification Layout, ajout Material Componnents Android, ajout Toolbar et couleurs de la Fac stocké dans fichiers xml, Icon de recherche et Listener pour le menu et la recherhce
+	-Tony : Modification layout, ajout Material Componnents Android, ajout Toolbar et couleurs de la Fac stocké dans fichiers xml, Icon de recherche et Listener pour le menu et la recherche
 	-Morvan : Seconde version du parser avec scanner et affichage régler pour les tests.
 	-Guillaume :
 
@@ -71,30 +70,29 @@ Vachez Guillaume (xelphire)
 
 -Réunion pour faire un point sur le projet
 	-Stockage des données pour les salles avec SQL Lite
-	-Pas de nouvelle sur l'autorisation pour utilisé les données de l'emploi di temps
--Nous avons envoyé un schéma représentant l'interface que nous allons utlisé pour l'affichage des salles afin d'obtenir les autorisations pour les plans du batiment 
--Travail sur la partie BackEnd et FrontEnd
--Travail sur la partie FrontEnd et BackEnd
-	-Issameddine : Ajout de la classe CampusMapView qui gère les zoom, Mouvements sur la carte terminés, j'ai commencé à programmer les bat. J'ai pensé à enregistrer les bat préalablement dans un json (voir building_list.json) et le parser ça à chaque démarage du programme. Parsing de JSON permettant de cliquer sur les batiments. Affichage des batiments sur l'application et ajout des fichiers illustrator.
-	-Tony : Ecriture dans la barre de recherche possible. Ajout des différents documents demandés pour le projet.  Créations menu "tiroir" avec différents choix possibles (Acceuil , Lieux, Recherche avancée, Paramètres)
+	-Pas de nouvelle sur l'autorisation pour utiliser les données de l'emploi di temps
+-Nous avons envoyé un schéma représentant l'interface que nous allons utliser pour l'affichage des salles afin d'obtenir les autorisations pour les plans du bâtiment 
+-Travail sur la partie Frontend et Backend
+	-Issameddine : Ajout de la classe CampusMapView qui gère les zooms, Mouvements sur la carte terminée, début programmation des bâtiments. Idée d'enregistrer les bâtiments préalablement dans un json (voir building_list.json) et le parser à chaque démarrage du programme. Parsing de JSON permettant de cliquer sur les bâtiments. Affichage des bâtiments sur l'application et ajout des fichiers illustrator.
+	-Tony : Ecriture dans la barre de recherche possible. Ajout des différents documents demandés pour le projet.  Création menu "tiroir" avec différents choix possibles (Acceuil , Lieux, Recherche avancée, Paramètres)
 	-Morvan : 
 	-Guillaume :
 	
 	---17/05/2022---
 
--Travail sur la partie BackEnd et FrontEnd
--On a fixé la prochaine mise au point avec notre professeur "suiveur"
+-Travail sur la partie Backend et Frontend
+-On a fixé la prochaine mise au point avec notre professeur tuteur
 -Travail sur la partie FrontEnd et BackEnd
 	-Issameddine : Modification fichiers illustrator
-	-Tony : Mise a jour menu coulissant / tirroir (Bouton Accueil et création des pages pour la recheche avancé et les paramètres)
+	-Tony : Mise a jour menu coulissant / tiroir (Bouton accueil et création des pages pour la recherche avancée et les paramètres)
 	-Morvan : 
 	-Guillaume :
 
 	---18/05/2022---
 
--Travail sur la partie FrontEnd et BackEnd
-	-Issameddine :Ajout de la carte
-	-Tony : Mise a jour page paramètres (Switch affichage des salles, EditText pour la recherche,Bouton pour le choix de l'heure).
+-Travail sur la partie Frontend et Backend
+	-Issameddine : Ajout de la carte
+	-Tony : Mise a jour page paramètres (Switch affichage des salles, EditText pour la recherche, Bouton pour le choix de l'heure).
 	-Morvan : 
 	-Guillaume : Base de données en SQL Lite
 
@@ -103,42 +101,42 @@ Vachez Guillaume (xelphire)
 -Réunion avec notre professeur tuteur
 -Nous avons défini des objectifs pour la prochaine réunion
 -Discussion sur l'avancer de projet
--Nous avons discuter des autorisations manquantes ( accès aux données des emplois du temps)
-Travail sur la partie FrontEnd et BackEnd
-	-Issameddine :Ajout de la carte, réorganisation des packages, ajout du scroller a étage
+-Nous avons discuté des autorisations manquantes ( accès aux données des emplois du temps)
+Travail sur la partie Frontend et Backend
+	-Issameddine :Ajout de la carte, réorganisation des packages, ajout du scroller à étage
 	-Tony : Ajout classe pour les fragments des paramètres et la recherche avancée
 	-Morvan : 
 	-Guillaume : 
 
 	---20/05/2022---
 
-Travail sur la partie FrontEnd et BackEnd
+Travail sur la partie Frontend et Backend
 	-Issameddine : Suppression du scroller pour un recyclerView et migration vers androidX
-	-Tony : Fragments du menu tiroire clickable et implémentation du sélecteur de temps
+	-Tony : Fragments du menu tiroir clickable et implémentation du sélecteur de temps
 	-Morvan : 
 	-Guillaume : Mise a jour base de données en SQL Lite
 
 	---23/05/2022---
 
-Travail sur la partie FrontEnd et BackEnd
-	-Issameddine :Ajout du premier Vector drawable ic_level1.xml . Ajout de la librairie RichPathView. Les paths des plans peuvent être cliqués, ajout de font et changement de la version ciblée a android 26. Ajout de l'animation du nom d'étage
-	-Tony : Selecteur de temps fonctionnel. La langue de base du fichier strings.xml est l'anglais et création du fichier strings.xml en français
+Travail sur la partie Frontend et Backend
+	-Issameddine : Ajout du premier Vector drawable ic_level1.xml . Ajout de la librairie RichPathView. Les paths des plans peuvent être cliqués, ajout de font et changement de la version ciblée à android 26. Ajout de l'animation du nom d'étage
+	-Tony : Sélecteur de temps fonctionnel. La langue de base du fichier strings.xml est l'anglais et création du fichier strings.xml en français
 	-Morvan : 
 	-Guillaume : 
 
 	---24/05/2022---
 
-Travail sur la partie FrontEnd et BackEnd
-	-Issameddine :Ajout des différents niveau de la carte, des models et création du fragments pour les salles
-	-Tony :  Listener pour les switches et messages, debut recherche avancée avec date
+Travail sur la partie Frontend et Backend
+	-Issameddine : Ajout des différents niveaux de la carte, des models et création du fragment pour les salles
+	-Tony :  Listener pour les switches et messages, début recherche avancée avec date
 	-Morvan : 
 	-Guillaume : 
 
 	---25/05/2022---
 
-Travail sur la partie FrontEnd et BackEnd
+Travail sur la partie Frontend et Backend
 	-Issameddine :
-	-Tony : Recherche avancée date, commentaire et spécifications, mise a jour du fragments pour les paramètres, mise a jour de ce document
+	-Tony : Recherche avancée date, commentaire et spécifications, mise à jour du fragment pour les paramètres
 	-Morvan : 
 	-Guillaume : 
 
@@ -153,18 +151,18 @@ Travail sur la partie FrontEnd et BackEnd
 	---30/05/2022---
 
 Réunion globale sur discord afin de parler du projet
-	-Mise en commun / relation FrontEnd et BackEnd 
-Travail sur la partie FrontEnd et BackEnd
-	-Issameddine : Fin de la création et manipulation de la carte, et mise en commun averc Guillaume pour la suite
+	-Mise en commun / relation Frontend et Backend 
+Travail sur la partie Frontend et Backend
+	-Issameddine : Fin de la création et manipulation de la carte, et mise en commun avev Guillaume pour la suite
 	-Tony : Création d'une activité pour les paramètres et création des premiers paramètres dans un fichier préférence (possibilité de changer la langue de l'application : Anglais et Français) et modification sommaire lorsque changement de paramètre
 	-Morvan : 
-	-Guillaume : Mise a jour de la base de données SGLite, ajout de la fonction getBuilding(String buildingName) , fonction qui initialise la db avec des valeur de test,fonctin delete qui supprime toutes les tables,
+	-Guillaume : Mise a jour de la base de données SGLite, ajout de la fonction getBuilding(String buildingName) , fonction qui initialise la db avec des valeurs de test, fonction delete qui supprime toutes les tables,
 
 	---31/05/2022---
 
-Travail sur la partie FrontEnd et BackEnd
+Travail sur la partie Frontend et Backend
 	-Issameddine :
-	-Tony : Refonte graphique de la page d'accueil (barre de recherche et icone de menu), non fonctionnel avec les autres pannels pour le moment
+	-Tony : Refonte graphique de la page d'accueil (barre de recherche et icône de menu), non fonctionnel avec les autres panels pour le moment
 	-Morvan : 
 	-Guillaume : 
 
@@ -172,26 +170,26 @@ Travail sur la partie FrontEnd et BackEnd
 
 Réunion avec le professeur tuteur pour parler de l'avancer du projet
 	-Toujours en attente pour l'autorisation de l'utilisation des données de l'emploi du temps
-Travail sur la partie FrontEnd et BackEnd
+Travail sur la partie Frontend et Backend
 	-Issameddine : Résolution de bugs avec les salles vides
-	-Tony : Mise a jour de la page d'acceuil pour avoir accès au menu
+	-Tony : Mise à jour de la page d'accueil pour avoir accès au menu
 	-Morvan : 
 	-Guillaume : ajout fonction getEvents (String buildingName, String roomName, String startTime, String endTime)
 
 	---02/06/2022---
 
-Travail sur la partie FrontEnd et BackEnd
+Travail sur la partie Frontend et Backend
 	-Issameddine :
-	-Tony : Menu tiroir : suppresion des fragments pour passer uniquement sur des activités
-	-Morvan : Création d'une liste des salle lors de la recherche simple
+	-Tony : Menu tiroir : suppression des fragments pour passer uniquement sur des activités
+	-Morvan : Création d'une liste des salles lors de la recherche simple
 	-Guillaume : 
 
 	---03/06/2022---
 
-Travail sur la partie FrontEnd et BackEnd
+Travail sur la partie Frontend et Backend
 	-Issameddine :
-	-Tony : Toutes les activités autres que celle de la page d'acceuil on une barre d'action
-	-Morvan : Filtre sur la liste de recherche et remplacement des anciennes classes par la partie serveur et le fihcier .ics a utiliser pour ne pas a avoir a telécharger d'autres fichiers
+	-Tony : Toutes les activités autres que celle de la page d'accueil ont une barre d'action
+	-Morvan : Filtre sur la liste de recherche et remplacement des anciennes classes par la partie serveur et le fihcier .ics a utilisé pour ne pas à avoir à telécharger d'autres fichiers
 	-Guillaume : 
 
 	---06/06/2022---
@@ -200,15 +198,15 @@ Travail sur la partie FrontEnd et BackEnd
 
 	---07/06/2022---
 
-Travail sur la partie FrontEnd et BackEnd
-	-Issameddine : Resolution du bug par rapport à la carte (cliquable partout), modificaton des niveaux,ajout du Logo, modification de room et event qui affiche un message si il n'y a pas de cours après,Possibilité de ciblé un level / une room, correction bug ou l'amphi P n'était pas clicable,accès à la db terminé, retrait de la bar de statu, pour cherche à une date spécifique il faut appeler la class BuildingActivity avec un intent "time" tq "yyyy-MM-dd HH:mm"
-	-Tony :  Navigation entres toutes les activités terminé avec bouton de navigation fonctionnel et affichage du logo dans le menu tirroir, Settings : changement du sommaire lorsque celui-ci est modifié
-	-Morvan : Une salle à son niveau et son batiment, la recherche ouvre la bonne activité + Room.toString(), la barre de recherche contient toutes les salles de la Data Base et méthode getAllRooms dans dbHelper, fin de la barre de recherhe et un getter pour Room
+Travail sur la partie Frontend et Backend
+	-Issameddine : Résolution du bug par rapport à la carte (cliquable partout), modification des niveaux, ajout du Logo, modification de room et event qui affiche un message s'il n'y a pas de cours après. Possibilité de cibler un level / une room, correction bug ou l'amphi P n'était pas clicable, accès à la db terminé, retrait de la barre de statut, pour chercher à une date spécifique il faut appeler la class BuildingActivity avec un intent "time" avec le format "yyyy-MM-dd HH:mm"
+	-Tony :  Navigation entre toutes les activités terminées avec bouton de navigation fonctionnel et affichage du logo dans le menu tiroir, Settings : changement du sommaire lorsque celui-ci est modifié
+	-Morvan : Une salle à son niveau et son bâtiment, la recherche ouvre la bonne activité + Room.toString(), la barre de recherche contient toutes les salles de la Data Base et méthode getAllRooms dans dbHelper, fin de la barre de recherche et un getter pour Room
 	-Guillaume : 
 
 	---08/06/2022---
 
-Travail sur la partie FrontEnd et BackEnd
+Travail sur la partie Frontend et Backend
 	-Issameddine :
 	-Tony : Modification des options, le format des dates peut être changé (ne fonctionne pas pour le menu de sélection de date), choix de langues possibles mais encore quelques erreurs
 	-Morvan :
@@ -216,7 +214,7 @@ Travail sur la partie FrontEnd et BackEnd
 
 	---09/06/2022---
 
-Travail sur la partie FrontEnd et BackEnd
+Travail sur la partie Frontend et Backend
 	-Issameddine :
 	-Tony :  Avancé sur la partie changement dans langue dans les options. 
 	-Morvan :
@@ -224,17 +222,17 @@ Travail sur la partie FrontEnd et BackEnd
 
 	---10/06/2022---
 
-Travail sur la partie FrontEnd et BackEnd
+Travail sur la partie Frontend et Backend
 	-Issameddine :
-	-Tony : Les options sont fonctionnels, trvail sur la partie code de la recherche avancée. Mise à jour du README
+	-Tony : Les options sont fonctionnelles, travail sur la partie code de la recherche avancée. Mise à jour du README
 	-Morvan :
 	-Guillaume : 
 
 	---13/06/2022---
 
-Travail sur la partie FrontEnd et BackEnd
-	-Issameddine : Affichage des salles disponibles. Ajout d'une license et d"une preview de l'application dans le README
-	-Tony : Avancement sur la recherche avancé qui est quasiment fonctionnel, avec comme recherche par défault (sans utiliser les filtes) le rez-de-chaussée de l'istic à la date et heure actuelle. Mise a jour du README
+Travail sur la partie Frontend et Backend
+	-Issameddine : Affichage des salles disponibles. Ajout d'une licence et d'une preview de l'application dans le README
+	-Tony : Avancement sur la recherche avancée qui est quasiment fonctionnelle, avec comme recherche par défaut (sans utiliser les filtes) le rez-de-chaussée de l'Istic à la date et heure actuelle. Mise à jour du README
 	-Morvan :
 	-Guillaume : 
 
@@ -243,26 +241,26 @@ Réunion avec le professeur tuteur pour parler de l'avancer du projet
 	-Toujours en attente pour l'autorisation de l'utilisation des données de l'emploi du temps
 	-Création et discussion du rapport de fin de projet
 Réunion globale sur discord afin de parler du projet
-	-Mise en commun / relation FrontEnd et BackEnd 
-Travail sur la partie FrontEnd et BackEnd
-	-Issameddine : Modification du format des dates et de l'affichage des salles en fonction des paramètres pour l'affichage sur la carte. Ajout des diagrammes pour le fihcier DESIGN, création d'un fichier pour le rapport et mise a jour de celui-ci
-	-Tony : Suppresion du filtre de l'affichage des salles dans la recherche avancée, déplacer dans les paramètrs et réglage de bug. Mise à jour du rapport.
-	-Morvan,Guillaume  : Mise en commun afin d'avoir la connection à la base de donnée en ligne et pouvour l'utiliser et correction de Bug et ajout des fuseaux horaires.
+	-Mise en commun / relation Frontend et Backend 
+Travail sur la partie Frontend et Backend
+	-Issameddine : Modification du format des dates et de l'affichage des salles en fonction des paramètres pour l'affichage sur la carte. Ajout des diagrammes pour le fichier DESIGN, création d'un fichier pour le rapport et mise à jour de celui-ci
+	-Tony : Suppression du filtre de l'affichage des salles dans la recherche avancée, déplacer dans les paramètres et réglage de bug. Mise à jour du rapport.
+	-Morvan, Guillaume  : Mise en commun afin d'avoir la connexion à la base de données en ligne et pouvoir l'utiliser et correction de Bug et ajout des fuseaux horaires.
 
 	---15/06/2022---
 
-Travail sur la partie FrontEnd et BackEnd
-	-Issameddine : Réglage des problèmes avec la base de donnée et le format des dates. Supression de l'affichage des salles à cause de la libraire utilisé qui ne fonctionne pas correctement. Création de l'apk et mise a jour du fichier DESIGN
+Travail sur la partie Frontend et Backend
+	-Issameddine : Réglage des problèmes avec la base de données et le format des dates. Suppression de l'affichage des salles à cause de la libraire utilisée qui ne fonctionne pas correctement. Création de l'apk et mise à jour du fichier DESIGN
 	-Tony : Suppresion des paramètres pour l'affichage des salles dans le fragment. Résolution du problème sur les filtres lors de l'utilisation de la barre de recherche. Mise a jour du rapport
 	-Morvan :
 	-Guillaume : 
 
 	---16/06/2022---
 
-	-Issameddine : Mise a jour de la preview dans le README et vidéo de présentation
-	-Tony : Correction du bug pour l'affichage de la date. Mise a jour du rapport et du README
-	-Morvan :Mise a jour du rapport
-	-Guillaume : Mise a jour du rapport
+	-Issameddine : Mise à jour de la preview dans le README et vidéo de présentation
+	-Tony : Correction du bug pour l'affichage de la date. Mise à jour du rapport et du README
+	-Morvan :Mise à jour du rapport
+	-Guillaume : Mise à jour du rapport
 
 	---17/06/2022---
 
