@@ -43,10 +43,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         int index;
         switch (key) {
             case "key_language":
+                //Change the summary
                 androidx.preference.ListPreference listPreferenceLanguage = (androidx.preference.ListPreference) preference;
                 assert listPreferenceLanguage != null;
                 index = listPreferenceLanguage.findIndexOfValue(sharedPreferences.getString(key, " "));
                 preference.setSummary(listPreferenceLanguage.getEntries()[index]);
+                //Set the language
                 if (sharedPreferences.getString("key_language", "").compareTo("FRE") == 0) {
                     //Toast.makeText(getContext(), sharedPreferences.getString("key_language", " "), Toast.LENGTH_SHORT).show();
                     setLocal("fr");
@@ -56,6 +58,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
                 break;
             case "key_date_format":
+                //Change the summary
                 androidx.preference.ListPreference listPreferenceDate = (androidx.preference.ListPreference) preference;
                 assert listPreferenceDate != null;
                 index = listPreferenceDate.findIndexOfValue(sharedPreferences.getString(key, " "));
@@ -88,6 +91,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     }
 
     private void setLocal(String code) {
+        //Change the language and update
         if (isAdded()) {
             Locale locale = new Locale(code);
             Resources resources = getResources();

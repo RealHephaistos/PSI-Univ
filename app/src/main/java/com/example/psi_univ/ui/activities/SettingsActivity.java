@@ -26,7 +26,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        //Set the language before create the activity if the language has changed
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getString("key_language", "").compareTo("FRE") == 0) {
             //Toast.makeText(this, sharedPreferences.getString("key_language", " "), Toast.LENGTH_SHORT).show();
@@ -68,6 +68,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        //Navigation
         if (item.getItemId() == R.id.homepage) {
             startActivity(new Intent(this, MainActivity.class));
         }
@@ -88,6 +89,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
     }
 
     private void setLocal(String code) {
+        //Change the language and update
         Locale locale = new Locale(code);
         Locale.setDefault(locale);
 

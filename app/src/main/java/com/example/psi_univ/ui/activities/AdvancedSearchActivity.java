@@ -101,6 +101,7 @@ boolean def;
 
         SearchView searchView = findViewById(R.id.advanced_search_bar);
 
+
         DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
         List<Room> rooms = dataBaseHelper.getAllRooms();
         ListView room = findViewById(R.id.listRoom);
@@ -109,7 +110,9 @@ boolean def;
         room.setOnItemClickListener((parent, view, position, id) -> {
             def = false;
             Object selectedRoom = parent.getAdapter().getItem(position);
+            //get the initial value if filtered
             position = rooms.indexOf(selectedRoom);
+            //Store the value
             searchView.setQuery(rooms.get(position).getBuildingName() + " " + rooms.get(position).getRoomName(),true);
             searchView.clearFocus();
             mapPosition = position;
@@ -162,6 +165,16 @@ boolean def;
         });
     }
 
+    /**
+     * Date to String
+     *
+     * @param formatYear the Year
+     * @param formatMonth the month
+     * @param formatDay  the day
+     * @param timerHour  the hour
+     * @param timerMinute the minute
+     * @return A date in a string format for building activity
+     */
     private String makeTimeFormat(int formatYear, int formatMonth, int formatDay, int timerHour, int timerMinute) {
         String year = formatYear+"";
         String month= formatMonth +"";

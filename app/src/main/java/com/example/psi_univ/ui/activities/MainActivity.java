@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        //Set the language before create the activity if the language has changed
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getString("key_language", "").compareTo("FRE") == 0) {
             //Toast.makeText(this, sharedPreferences.getString("key_language", " "), Toast.LENGTH_SHORT).show();
@@ -60,7 +62,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ListView room = findViewById(R.id.listRoom);
         Intent resultIntent = new Intent(this, BuildingActivity.class);
         room.setOnItemClickListener((parent, view, position, id) -> {
+            //get the initial value if filtered
             Object selectedRoom = parent.getAdapter().getItem(position);
+            //Store the value
             position = rooms.indexOf(selectedRoom);
             //Toast.makeText(MainActivity.this, selectedRoom.toString(), Toast.LENGTH_SHORT).show();
             resultIntent.putExtra("building", rooms.get(position).getBuildingName());
