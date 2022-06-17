@@ -43,7 +43,7 @@ Vachez Guillaume (xelphire)
 
 	---12/05/2022---
 	
--Réunion en présentiel à la FAC avec le prof "suiveur"
+-Réunion en présentiel à la FAC avec le professeur tuteur
 -Présentation du projet 
 -Mise au point sur certains détails
 -Discussion par rapport aux autorisations nécessaire à notre projet
@@ -94,13 +94,13 @@ Vachez Guillaume (xelphire)
 
 -Travail sur la partie FrontEnd et BackEnd
 	-Issameddine :Ajout de la carte
-	-Tony : Mise a jour page paramètres (Switch affichage des salles, EditText pour la recherche,Bouton pour le choix de l'heure). Mise a jour de ce document
+	-Tony : Mise a jour page paramètres (Switch affichage des salles, EditText pour la recherche,Bouton pour le choix de l'heure).
 	-Morvan : 
 	-Guillaume : Base de données en SQL Lite
 
 	---19/05/2022---
 
--Réunion avec notre professeur "suiveur"
+-Réunion avec notre professeur tuteur
 -Nous avons défini des objectifs pour la prochaine réunion
 -Discussion sur l'avancer de projet
 -Nous avons discuter des autorisations manquantes ( accès aux données des emplois du temps)
@@ -170,7 +170,7 @@ Travail sur la partie FrontEnd et BackEnd
 
 	---01/06/2022---
 
-Réunion avec le professeur suiveur pour parler de l'avancer du projet
+Réunion avec le professeur tuteur pour parler de l'avancer du projet
 	-Toujours en attente pour l'autorisation de l'utilisation des données de l'emploi du temps
 Travail sur la partie FrontEnd et BackEnd
 	-Issameddine : Résolution de bugs avec les salles vides
@@ -218,7 +218,7 @@ Travail sur la partie FrontEnd et BackEnd
 
 Travail sur la partie FrontEnd et BackEnd
 	-Issameddine :
-	-Tony :  Avancé sur la partie changement dans langue dans les options. Mise à jour carnet de bord
+	-Tony :  Avancé sur la partie changement dans langue dans les options. 
 	-Morvan :
 	-Guillaume : 
 
@@ -239,6 +239,9 @@ Travail sur la partie FrontEnd et BackEnd
 	-Guillaume : 
 
 	---14/06/2022---
+Réunion avec le professeur tuteur pour parler de l'avancer du projet
+	-Toujours en attente pour l'autorisation de l'utilisation des données de l'emploi du temps
+	-Création et discussion du rapport de fin de projet
 Travail sur la partie FrontEnd et BackEnd
 	-Issameddine : Modification du format des dates et de l'affichage des salles en fonction des paramètres pour l'affichage sur la carte. Ajout des diagrammes pour le fihcier DESIGN, création d'un fichier pour le rapport et mise a jour de celui-ci
 	-Tony : Suppresion du filtre de l'affichage des salles dans la recherche avancée, déplacer dans les paramètrs et réglage de bug. Mise à jour du rapport.
@@ -261,4 +264,4 @@ Travail sur la partie FrontEnd et BackEnd
 
 	---17/06/2022---
 
-Finalisation : Dernier élement du rapport et rédaction de celui-ci et mise a jour du carnet de bord.
+Finalisation : Dernier élement du rapport et rédaction de celui-ci.
